@@ -1,24 +1,24 @@
 body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體";
-    font-size: 25pt;
+    font-size: 35pt;
 }
 
 /* 字體大小設定 */
 /* 彈出視窗字體 */
 #toolbox {
-    font-size: 5rem;
+    font-size: 30pt;
 }
 
 
 h1 {
     text-align: center;
-    font-size: 50pt;
+    font-size: 45pt;
 }
 
 h3 {
     text-align: center;
-    font-size: 30pt;
+    font-size: 40pt;
 }
 
 .content p {
