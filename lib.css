@@ -1,0 +1,129 @@
+body {
+    background-color: rgb(211, 208, 156);
+    font-family: "標楷體";
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.content p {
+    /* 首段空2格 */
+    text-indent: 2em;
+    /* 文字正確換行只能加這屬性 */
+    line-break: anywhere;
+}
+
+.content p:first-of-type {
+    text-indent: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.left,
+.right {
+    flex: 1;
+    /* 左右各佔 1 份 */
+}
+
+.center {
+    flex: 10;
+    /* 中間佔 2 份 */
+}
+
+
+
+/* ★★★ 彈出功能CSS區 ★★★ */
+
+/* 設定內部框 */
+#toolbox {
+    background-color: green;
+    border: 2px solid black;
+    padding: 10pt;
+    margin: 20pt;
+}
+
+#toolbox p,
+span {
+    text-align: center;
+}
+
+#toolbox button {
+    width: 18pt;
+}
+
+#toolbox {
+    font-size: 1rem;
+}
+
+/* 覆蓋層的樣式 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明背景 */
+    display: none;
+    /* 預設隱藏 */
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation {
+    display: flex;
+    flex-flow: row wrap;
+    /* 文字貼末尾 */
+    justify-content: flex-end;
+    /* 去除開頭符號 */
+    list-style: none;
+    margin: 0;
+}
+
+/* 漂浮按鈕 */
+.floating-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: white;
+    /* 底色 */
+    background-color: #4CAF50;
+    /* 底色範圍 */
+    padding: 5px 7px;
+    /* 背景變成圓形 */
+    border-radius: 50%;
+    /* 無用 */
+    font-size: 20px;
+    /* 超連結無底線 */
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    font-family: "標楷體";
+}
+
+.floating-btn:hover {
+    background-color: #388E3C;
+
+}
+/* 滑鼠游標符號設定，不設定碰到Setting會是文字I符號 */
+.mouse {
+    cursor: pointer;
+}
+
+.settingEmoji {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';
+}
