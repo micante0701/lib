@@ -32,6 +32,7 @@ a {
     text-decoration: none;
 }
 
+/* div容器設定 */
 .container {
     display: flex;
     width: 100%;
@@ -115,13 +116,13 @@ span {
     /* 背景變成圓形 */
     border-radius: 50%;
     /* 無用 */
-    font-size: 20px;
+    /* font-size: 20px; */
     /* 超連結無底線 */
     text-decoration: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 999;
     transition: background-color 0.2s ease;
-    font-size: 5rem;
+    font-size: 2rem;
     font-family: "標楷體";
 }
 
