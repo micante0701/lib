@@ -4,22 +4,15 @@ body {
     
 }
 
-/* 字體大小設定 */
-/* 彈出視窗字體 */
-#toolbox {
-    font-size: 30px;
-}
-
-
 .mainTitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
 }
 
 .subTitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -67,15 +60,18 @@ a {
     margin: 20pt;
 }
 
+/* 彈出視窗內文字 */
 #toolbox p,
 span {
     text-align: center;
+    font-size: 50px;
 }
 
+/* 彈出視窗內的 加減 按鈕 */
 #toolbox button {
-    width: 40px;
-    height: 40px;
-    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
     text-align: center;
 }
 
