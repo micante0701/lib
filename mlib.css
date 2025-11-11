@@ -1,17 +1,24 @@
 body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體";
-    font-size: 10rem;
+    font-size: 30pt;
 }
+
+/* 字體大小設定 */
+/* 彈出視窗字體 */
+#toolbox {
+    font-size: 5rem;
+}
+
 
 h1 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 10rem;
 }
 
 h3 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 8rem;
 }
 
 .content p {
@@ -63,12 +70,13 @@ span {
 }
 
 #toolbox button {
-    width: 18pt;
+    width: 50pt;
+    height: 50pt;
+    font-size: 30pt;
+    text-align: center;
 }
 
-#toolbox {
-    font-size: 5rem;
-}
+
 
 /* 覆蓋層的樣式 */
 .overlay {
@@ -130,3 +138,4 @@ span {
 .settingEmoji {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';
 }
+
