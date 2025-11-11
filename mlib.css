@@ -11,14 +11,16 @@ body {
 }
 
 
-h1 {
+.mainTitle {
     text-align: center;
-    font-size: 100%;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-h3 {
+.subTitle {
     text-align: center;
-    font-size: 80%;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .content p {
