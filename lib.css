@@ -1,6 +1,7 @@
 body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體";
+    font-size: 2rem;
 }
 
 h1 {
@@ -64,7 +65,7 @@ span {
 }
 
 #toolbox {
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 /* 覆蓋層的樣式 */
