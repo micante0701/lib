@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="revised" content="2025/07/03">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib.css">
+    <script>
+        window.onload = genTable;
+        function getNames() {
+            return [
+                ["歧路指歸", "戰德克", "印光大師", "李德明"],
+                ["阿彌陀經", "姚秦龜茲三藏鳩摩羅什譯", "", ""],
+                ["佛說無量壽經", "曹魏天竺三藏康僧鎧譯", "", ""],
+                ["佛說觀無量壽佛經", "宋西域三藏畺良耶舍譯", "", ""],
+                ["大乘無量壽經白話", "黃念祖", "", ""]
+
+
+            ]
+        }
+        function genTable() {
+            let names = getNames();
+            let text = "";
+            for (let i = 0; i < names.length; i++) {
+                text += `<tr>`;
+                text += `<td><a href="000${i}.html">${names[i][0]}</a></td>`;
+                text += `<td>${names[i][1]}</td>`;
+                text += `<td>${names[i][2]}</td>`;
+                text += `<td>${names[i][3]}</td>`;
+                text += `</tr>`;
+            }
+            document.getElementById("show").innerHTML = text;
+        }
+    </script>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>名稱</th>
+                <th>作者</th>
+                <th>鑑定</th>
+                <th>參定</th>
+            </tr>
+        </thead>
+        <tbody id="show">
+            <!-- JS將在此產生表格 -->
+        </tbody>
+
+
+    </table>
+</body>
+
+</html>
