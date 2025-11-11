@@ -70,9 +70,9 @@ span {
 }
 
 #toolbox button {
-    width: 80pt;
-    height: 80pt;
-    font-size: 50pt;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
     text-align: center;
 }
 
