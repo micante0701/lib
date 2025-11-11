@@ -61,7 +61,10 @@ span {
 }
 
 #toolbox button {
-    width: 18pt;
+    width: 50pt;
+    height: 50pt;
+    font-size: 30pt;
+    text-align: center;
 }
 
 #toolbox {
