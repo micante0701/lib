@@ -6,13 +6,13 @@ body {
 
 .mainTitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .subTitle {
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -21,7 +21,7 @@ body {
     text-indent: 2em;
     /* 文字正確換行只能加這屬性 */
     line-break: anywhere;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .content p:first-of-type {
