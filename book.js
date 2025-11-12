@@ -20,7 +20,7 @@ function changeFontSize(delta) {
         let currentSize = parseFloat(style); // 轉成數字
         // 計算新大小並限制範圍
         let newSize = currentSize + delta;
-        if (newSize < 10) newSize = 10;
+        if (newSize < 2) newSize = 2;
         if (newSize > 72) newSize = 72;
         // 套用新大小
         p.style.fontSize = newSize + "px";
