@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｄ 2";
+    content: "CSS 版本 Ｄ 3";
     display: block;
     background: yellow;
     color: black;
@@ -19,7 +19,7 @@ body::before {
 
 body {
     background-color: rgb(211, 208, 156);
-    font-family: "標楷體", sans-serif;
+    font-family: "標楷體", "Noto Sans TC", "Source Han Serif", "Noto Serif CJK", sans-serif;
     font-size: 2rem;
 }
 
