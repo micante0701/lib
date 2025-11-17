@@ -1,17 +1,34 @@
+body::before {
+    content: "CSS 版本 Ｄ 0";
+    display: block;
+    background: yellow;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#version{
+    display: block;
+    background: yellow;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
 body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體";
     font-size: 2rem;
 }
 
-h1 {
-    text-align: center;
-}
-
+h1,
 h3 {
     text-align: center;
 }
 
+/* 文本控制 */
 .content p {
     /* 首段空2格 */
     text-indent: 2em;
@@ -23,10 +40,12 @@ h3 {
     text-indent: 0;
 }
 
+/* 超連結設定 */
 a {
     text-decoration: none;
 }
 
+/* div容器設定 */
 .container {
     display: flex;
     width: 100%;
@@ -42,8 +61,6 @@ a {
     flex: 10;
     /* 中間佔 2 份 */
 }
-
-
 
 /* ★★★ 彈出功能CSS區 ★★★ */
 
@@ -96,7 +113,7 @@ span {
     margin: 0;
 }
 
-/* 漂浮按鈕 */
+/* 漂浮按鈕設定 */
 .floating-btn {
     position: fixed;
     top: 10px;
@@ -123,6 +140,7 @@ span {
     background-color: #388E3C;
 
 }
+
 /* 滑鼠游標符號設定，不設定碰到Setting會是文字I符號 */
 .mouse {
     cursor: pointer;
