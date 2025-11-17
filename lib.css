@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｄ 0";
+    content: "CSS 版本 Ｄ 2";
     display: block;
     background: yellow;
     color: black;
@@ -8,7 +8,7 @@ body::before {
     font-weight: bold;
 }
 
-#version{
+#version {
     display: block;
     background: yellow;
     color: black;
@@ -19,7 +19,7 @@ body::before {
 
 body {
     background-color: rgb(211, 208, 156);
-    font-family: "標楷體";
+    font-family: "標楷體", sans-serif;
     font-size: 2rem;
 }
 

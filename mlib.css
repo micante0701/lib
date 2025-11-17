@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｍ 刪除font-size: 3rem; orange";
+    content: "CSS 版本 Ｍ 2";
     display: block;
     background: orange;
     color: black;
@@ -7,9 +7,4 @@ body::before {
     text-align: center;
     font-weight: bold;
 }    
-
-body {
-    
-}
-
 
