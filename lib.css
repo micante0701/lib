@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
 
 body::before {
-    content: "CSS 版本 Ｄ 5";
+    content: "CSS 版本 Ｄ 6";
     display: block;
     background: yellow;
     color: black;
