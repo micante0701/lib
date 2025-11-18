@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
-
 body::before {
-    content: "CSS 版本 Ｄ 6";
+    content: "CSS 版本 Ｄ 7";
     display: block;
     background: yellow;
     color: black;
@@ -21,7 +19,7 @@ body::before {
 
 body {
     background-color: rgb(211, 208, 156);
-    font-family: "DFKai-SB", "BiauKai","Noto Serif TC", "Noto Serif CJK SC",;
+    font-family: "DFKai-SB", "BiauKai","Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
 }
 
