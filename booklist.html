@@ -3,61 +3,124 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="revised" content="2025/07/03">
-    <title>目錄</title>
-    <link rel="stylesheet" href="lib.css">
-    <script>
-        window.onload = genTable;
-        function getNames() {
-            return [
-                ["歧路指歸", "戰德克", "印光大師", "李德明"],
-                ["阿彌陀經", "姚秦龜茲三藏鳩摩羅什譯", "", ""],
-                ["佛說無量壽經", "曹魏天竺三藏康僧鎧譯", "", ""],
-                ["佛說觀無量壽佛經", "宋西域三藏畺良耶舍譯", "", ""],
-                ["大乘無量壽經白話", "黃念祖", "", ""],
-                ["佛說阿彌陀經疏鈔卷第一", "明古杭雲棲寺沙門　袾宏　述", "", ""],
-                ["佛說阿彌陀經疏鈔卷第二", "明古杭雲棲寺沙門　袾宏　述", "", ""],
-                ["佛說阿彌陀經疏鈔卷第三", "明古杭雲棲寺沙門　袾宏　述", "", ""],
-                ["佛說阿彌陀經疏鈔卷第四", "明古杭雲棲寺沙門　袾宏　述", "", ""],
-                ["佛地經論卷第一", "親光菩薩等造", "", ""],
-                ["無量壽經甄解", "道隱法師", "", ""],       
-                ["大乘起信論", "馬鳴菩薩", "", ""],
-                ["", "", "", ""]
-            ]
-        }
-        function genTable() {
-            let names = getNames();
-            let text = "";
-            for (let i = 0; i < names.length; i++) {
-                text += `<tr>`;
-                text += `<td><a href="000${i}.html">${names[i][0]}</a></td>`;
-                text += `<td>${names[i][1]}</td>`;
-                text += `<td>${names[i][2]}</td>`;
-                text += `<td>${names[i][3]}</td>`;
-                text += `</tr>`;
-            }
-            document.getElementById("show").innerHTML = text;
-        }
-    </script>
+    <title>Title</title>
+    <meta name="revised" content="2025/11/03">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+<style>
+    body{
+        font-family: "標楷體";
+    }
+    a {
+        text-decoration: none;
+    }
+
+    .name {
+        /* 刪除間距 */
+        margin: 0;
+        /* 增加下方間距 */
+        margin-bottom: 8px;
+    }
+
+    .container {
+        display: grid;
+        /* 左200px，中間自動，右200px */
+        grid-template-columns: 200px 1fr 200px;
+        gap: 16px;
+        /* 讓容器至少佔滿整個視窗高度 */
+        min-height: 100vh;
+    }
+
+    .center {
+        display: grid;
+        gap: 16px;
+        /* 自動調整卡片欄數，最小寬度 250px，不夠就直列 */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .left,
+    .right {
+        flex: 1;
+        background-color: #eee;
+        min-height: 100px;
+    }
+
+
+
+    .card {
+        /* min-height: 100px; */
+        background: rgb(211, 208, 156);
+        text-align: center;
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 小螢幕：三欄改成直列 */
+    @media (max-width: 600px) {
+        .container {
+            grid-template-columns: 1fr;
+            /* 只剩一欄 */
+        }
+
+        .left,
+        .right {
+            display: none;
+            /* 小螢幕隱藏左右留白 */
+        }
+    }
+</style>
+<script>
+    window.onload = genTable;
+    function getNames() {
+        return [
+            ["0000", "歧路指歸", "戰德克", "印光大師鑑定", "李德明參定"],
+            ["0001", "阿彌陀經", "姚秦龜茲三藏鳩摩羅什譯", "", ""],
+            ["0002", "佛說觀無量壽佛經", "宋西域三藏畺良耶舍譯", "", ""],
+            ["0003", "佛說無量壽經", "曹魏天竺三藏康僧鎧譯", "", ""],
+            ["0004", "大乘無量壽經白話", "黃念祖", "", ""],
+            ["0005", "佛說阿彌陀經疏鈔卷第一", "明古杭雲棲寺沙門袾宏述", "", ""],
+            ["0006", "佛說阿彌陀經疏鈔卷第二", "明古杭雲棲寺沙門袾宏述", "", ""],
+            ["0007", "佛說阿彌陀經疏鈔卷第三", "明古杭雲棲寺沙門袾宏述", "", ""],
+            ["0008", "佛說阿彌陀經疏鈔卷第四", "明古杭雲棲寺沙門袾宏述", "", ""],
+            ["0009", "佛地經論卷第一", "親光菩薩等造", "", ""],
+            ["0010", "無量壽經甄解", "道隱法師", "", ""],
+            ["0011", "大乘起信論", "馬鳴菩薩造", "", ""],
+            ["0012", "", "", "", ""]
+        ]
+    }
+    function genTable() {
+        let names = getNames();
+        let text = "";
+        for (let i = 0; i < names.length; i++) {
+            text += `<div class="card">`;
+            text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
+            text += `<p class="name">${names[i][2]}</p>`;
+            text += `<p class="name">${names[i][3]}</p>`;
+            text += `<p class="name">${names[i][4]}</p>`;
+            text += `</div>`;
+        }
+        document.getElementById("show").innerHTML = text;
+    }
+</script>
 
 <body>
-    <div style="text-align: center;">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>名稱</th>
-                <th>作者</th>
-                <th>鑑定</th>
-                <th>參定</th>
-            </tr>
-        </thead>
-        <tbody id="show">
-            <!-- JS將在此產生表格 -->
-        </tbody>
+    <div class="container">
+        <div class="left">
 
-
-    </table>
+        </div>
+        <div class="center" id="show">
+            <!-- <div class="card">
+                <p class="bookTitle">★A</p>
+                <p class="name">名稱1</p>
+                <p class="name">名稱2</p>
+                <p class="name">名稱3</p>
+            </div> -->
+        </div>
+        <div class="right"></div>
     </div>
 </body>
 
