@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｄ 8";
+    content: "CSS 版本 Ｄ 9";
     display: block;
     background: yellow;
     color: black;
@@ -135,8 +135,8 @@ span {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 999;
     transition: background-color 0.2s ease;
-    font-size: 2rem;
     font-family: "標楷體";
+    font-size: 1.5rem;
     /* 刪除按鈕外框 */
     border: none;
     /* 文字置中 */
