@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｄ 9";
+    content: "CSS 版本 Ｄ 10";
     display: block;
     background: yellow;
     color: black;
@@ -141,7 +141,7 @@ span {
     border: none;
     /* 文字置中 */
     text-align: center;
-    min-width: 40px;
+    /* min-width: 40px; */
 }
 
 #btnPos1 {
