@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｄ 10";
+    content: "CSS 版本 Ｄ 11";
     display: block;
     background: yellow;
     color: black;
@@ -142,30 +142,27 @@ span {
     /* 文字置中 */
     text-align: center;
     /* min-width: 40px; */
+    /* 漂浮按鈕 右邊 距 邊界 距離 */
+    right: 5px;
+    position: fixed;
 }
 
 #btnPos1 {
     /* 底色 */
     background-color: gray;
-    position: fixed;
     top: 10px;
-    right: 10px;
 }
 
 #btnPos2 {
     /* 底色 */
     background-color: #4CAF50;
-    position: fixed;
     top: 80px;
-    right: 10px;
 }
 
 #btnPos3 {
     /* 底色 */
     background-color: #4CAF50;
-    position: fixed;
     bottom: 10px;
-    right: 10px;
 }
 
 .floating-btn:hover {
