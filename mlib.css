@@ -6,5 +6,24 @@ body::before {
     padding: 10px;
     text-align: center;
     font-weight: bold;
-}    
+}
 
+.floating-btn {
+    /* font-size: 電腦版2rem 手機版1rem */
+    font-size: 1rem;
+    /* 刪除按鈕外框 */
+    border: none;
+    /* 文字置中 */
+    text-align: center;
+    right: 5px;
+    position: fixed;
+    /* min-width: 電腦版40px 手機版auto */
+    min-width: auto;
+}
+
+#btnPos2 {
+    /* 底色 */
+    background-color: #4CAF50;
+    /* top: 電腦版80 手機版60 */
+    top: 60px;
+}
