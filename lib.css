@@ -28,6 +28,10 @@ h3 {
     text-align: center;
 }
 
+#bottom{
+    text-align: center;
+}
+
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
