@@ -19,7 +19,7 @@ body::before {
 
 body {
     background-color: rgb(211, 208, 156);
-    font-family: "標楷體","DFKai-SB", "BiauKai","Noto Serif TC", "Noto Serif CJK SC";
+    font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
 }
 
@@ -28,7 +28,7 @@ h3 {
     text-align: center;
 }
 
-#bottom{
+#bottom {
     text-align: center;
 }
 
@@ -119,12 +119,11 @@ span {
 
 /* 漂浮按鈕設定 */
 .floating-btn {
-    position: fixed;
+    /* position: fixed;
     top: 10px;
-    right: 10px;
+    right: 10px; */
     color: white;
-    /* 底色 */
-    background-color: #4CAF50;
+
     /* 底色範圍 */
     padding: 5px 7px;
     /* 背景變成圓形 */
@@ -136,8 +135,37 @@ span {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 999;
     transition: background-color 0.2s ease;
-    font-size: 1rem;
+    font-size: 2rem;
     font-family: "標楷體";
+    /* 刪除按鈕外框 */
+    border: none;
+    /* 文字置中 */
+    text-align: center;
+    min-width: 40px;
+}
+
+#btnPos1 {
+    /* 底色 */
+    background-color: gray;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+#btnPos2 {
+    /* 底色 */
+    background-color: #4CAF50;
+    position: fixed;
+    top: 80px;
+    right: 10px;
+}
+
+#btnPos3 {
+    /* 底色 */
+    background-color: #4CAF50;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
 
 .floating-btn:hover {
