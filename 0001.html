@@ -9,18 +9,6 @@
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
-    <!-- <script src="book2.js" defer></script> -->
-    <script>
-        // 等 DOM 建立好再執行
-        window.addEventListener("DOMContentLoaded", () => {
-            fetch("header.html")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("header").innerHTML = data;
-                })
-                .catch(error => console.error("載入失敗:", error));
-        });
-    </script>
 </head>
 
 <body>
