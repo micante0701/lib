@@ -9,33 +9,23 @@
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
+    <!-- <script src="book2.js" defer></script> -->
+    <script>
+        // 等 DOM 建立好再執行
+        window.addEventListener("DOMContentLoaded", () => {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header").innerHTML = data;
+                })
+                .catch(error => console.error("載入失敗:", error));
+        });
+    </script>
 </head>
 
 <body>
     <div id="version">文字版本 8</div>
-    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="openPopup()">⚙</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
-    <div id="overlay" class="overlay" onclick="closePopup(event)">
-        <span id="toolbox">
-            <p class="test">
-                <a href="booklist.html">回目錄</a>
-            </p>
-            <p>
-                <span>背景設定</span>
-                <br>
-                <button></button>
-                <button></button>
-            </p>
-            <p>
-                <span>文字大小</span><br>
-                <span>
-                    <br>
-                    <button class="mouse" onclick="changeFontSize(1)">+</button>
-                    <button class="mouse" onclick="changeFontSize(-1)">-</button>
-                </span>
-            </p>
-        </span>
+    <div id="header">
     </div>
     <div id="top">
         <h1>佛說阿彌陀經</h1>
@@ -74,7 +64,9 @@
             </p>
             <p>佛說此經已，舍利弗及諸比丘，一切世間天、人、阿修羅等，聞佛所說，歡喜信受，作禮而去。</p>
 
-            <strong><p>唐善導大師〈讚佛偈〉</p></strong>
+            <strong>
+                <p>唐善導大師〈讚佛偈〉</p>
+            </strong>
             <p>彌陀身色如金山，</p>
             <p>相好光明照十方；</p>
             <p>唯有念佛蒙光攝，</p>
@@ -84,7 +76,9 @@
             <p>到彼華開聞妙法，</p>
             <p>十地願行自然彰。</p>
 
-            <strong><p>北宋擇瑛法師〈讚佛偈〉</p></strong>
+            <strong>
+                <p>北宋擇瑛法師〈讚佛偈〉</p>
+            </strong>
             <p>阿彌陀佛身金色，</p>
             <p>相好光明無等倫；</p>
             <p>白毫宛轉五須彌，</p>
