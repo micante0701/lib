@@ -11,25 +11,35 @@
 <style>
     body{
         font-family: "標楷體";
+        background-color: #f5f5f5;
     }
     a {
         text-decoration: none;
     }
-
+    /* 作者、譯者等文字設定 */
     .name {
         /* 刪除間距 */
         margin: 0;
         /* 增加下方間距 */
-        margin-bottom: 16px;
+        padding-bottom: 16px;
     }
-
+    h1{
+        /* 增加頂部空間，避免黏天花板，原本是16px，但下方div有3px的margin，所以要配合16+3=19px */
+        padding: 19px;
+    }
+    /* 置頂標題區 */
+    .titleDiv{
+        text-align: center;
+    }
+    /* 中間方塊區 */
     .container {
         display: grid;
         /* 左200px，中間自動，右200px */
-        grid-template-columns: 200px 1fr 200px;
+        /* grid-template-columns: 200px 1fr 200px; */
+        grid-template-columns: 1fr minmax(250px, 1200px) 1fr;
         gap: 16px;
         /* 讓容器至少佔滿整個視窗高度 */
-        min-height: 100vh;
+        /* min-height: 100vh; */
     }
 
     .center {
@@ -41,15 +51,11 @@
 
     .left,
     .right {
-        flex: 1;
-        background-color: #eee;
-        min-height: 100px;
+        /* min-height: 100px; */
     }
 
 
-
     .card {
-        /* min-height: 100px; */
         background: rgb(211, 208, 156);
         text-align: center;
         font-size: 2rem;
@@ -57,21 +63,29 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin: 3px;
+        margin-left: 3px;
+        margin-right: 3px;
     }
 
     /* 小螢幕：三欄改成直列 */
     @media (max-width: 600px) {
         .container {
             grid-template-columns: 1fr;
+            margin-right: 10px;
+            margin-left: 10px;
             /* 只剩一欄 */
         }
 
         .left,
         .right {
-            display: none;
+            /* display: none; */
             /* 小螢幕隱藏左右留白 */
+            /* text-align: center; */
         }
     }
+
+    
 </style>
 <script>
     window.onload = genTable;
@@ -92,6 +106,7 @@
             ["0012", "", "", "", ""]
         ]
     }
+
     function genTable() {
         let names = getNames();
         let text = "";
@@ -108,6 +123,9 @@
 </script>
 
 <body>
+    <div class="titleDiv">
+        <h1>數位圖書館</h1>
+    </div>
     <div class="container">
         <div class="left">
 
@@ -120,7 +138,9 @@
                 <p class="name">名稱3</p>
             </div> -->
         </div>
-        <div class="right"></div>
+        <div class="right">
+
+        </div>
     </div>
 </body>
 
