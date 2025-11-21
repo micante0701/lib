@@ -9,12 +9,36 @@
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
+    
 </head>
 
 <body>
     <div id="version">文字版本 8</div>
     <div id="header">
     </div>
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="openPopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox">
+            <p class="test">
+                <a href="booklist.html">回目錄</a>
+            </p>
+            <p>
+                <span>背景設定</span>
+                <br>
+                <input type="color" id="colorPicker">
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse" onclick="changeFontSize(-1)">-</button>
+                </span>
+            </p>
+        </span>
+    </div>
+
     <div id="top">
         <h1>佛說阿彌陀經</h1>
         <h3>姚秦龜茲三藏鳩摩羅什譯</h3>

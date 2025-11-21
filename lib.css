@@ -33,6 +33,7 @@ h3 {
     text-align: center;
 }
 
+
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
@@ -83,10 +84,18 @@ span {
 }
 
 #toolbox button {
-    width: 50pt;
-    height: 50pt;
+    /* width: 60px;
+    height: 60px; */
     font-size: 30pt;
     text-align: center;
+}
+
+#toolbox button,
+#colorPicker {
+    width: 60px;
+    height: 60px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 #toolbox {

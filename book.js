@@ -1,3 +1,34 @@
+// 等 DOM 建立好再執行
+// window.addEventListener("DOMContentLoaded", () => {
+//     fetch("header.html")
+//         .then(response => response.text())
+//         .then(data => {
+//             document.getElementById("header").innerHTML = data;
+//         })
+//         .catch(error => console.error("載入失敗:", error));
+// });
+
+const colorInput = document.getElementById("colorPicker");
+// 取得 body 的目前背景顏色
+let currentColor = window.getComputedStyle(document.body).backgroundColor;
+// 把 rgb(...) 轉成 hex (#RRGGBB)
+function rgbToHex(rgb) {
+    const result = rgb.match(/\d+/g).map(Number); // 取出數字
+    return (
+        "#" +
+        result
+            .slice(0, 3) // 只取 R、G、B
+            .map(x => x.toString(16).padStart(2, "0"))
+            .join("")
+    );
+}
+// 設定 color input 的初始值
+colorInput.value = rgbToHex(currentColor);
+// 綁定事件：選擇顏色時更新背景
+colorInput.addEventListener("input", function () {
+    document.body.style.backgroundColor = this.value;
+});
+
 // 打開彈出視窗
 function openPopup() {
     document.getElementById("overlay").style.display = "flex";
