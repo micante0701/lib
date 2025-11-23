@@ -20,7 +20,7 @@ body::before {
 /* 定義字型 */
 @font-face {
     font-family: 'myFont';
-    src: url('font/u24980.woff') format('woff');
+    src: url('font/chui.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
