@@ -17,6 +17,20 @@ body::before {
     font-weight: bold;
 }
 
+/* 定義字型 */
+@font-face {
+    font-family: 'myFont';
+    src: url('font/u24980.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 套用字型 */
+.special_chui {
+    font-family: 'myFont', serif;
+    font-size: 48px;
+}
+
 body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
