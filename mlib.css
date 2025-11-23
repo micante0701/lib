@@ -1,5 +1,5 @@
 body::before {
-    content: "CSS 版本 Ｍ 10";
+    content: "CSS 版本 Ｍ1.0";
     display: block;
     background: orange;
     color: black;
