@@ -34,7 +34,6 @@ body {
     background-color: rgb(211, 208, 156);
     font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
-
 }
 
 h1,
@@ -57,16 +56,16 @@ blockquote {
     /* background-image: url(image/paper.png); */
 }
 
+.sizeDown {
+    font-size: 1.5rem;
+}
+
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
     text-indent: 2em;
     /* 文字正確換行只能加這屬性 */
     line-break: anywhere;
-}
-
-.sizeDown {
-    font-size: 1.5rem;
 }
 
 .content p:first-of-type {

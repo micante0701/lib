@@ -28,6 +28,13 @@ body::before {
     top: 60px;
 }
 
-.sizeDown {
+
+/* body預設2rem，手機版blockquote變太大，縮小些 */
+blockquote {
     font-size: 1.5rem;
+}
+
+/* 比一般設定(電腦版2rem 手機版1rem)再小的區域 */
+.sizeDown {
+    font-size: 1rem;
 }
