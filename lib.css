@@ -202,3 +202,7 @@ span {
 .settingEmoji {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';
 }
+
+.addMore p{
+    text-indent: 0;
+}
