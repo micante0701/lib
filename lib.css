@@ -60,6 +60,11 @@ blockquote {
     font-size: 1.5rem;
 }
 
+.originText{
+    background-color: bisque;
+    text-indent: 0;
+}
+
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
