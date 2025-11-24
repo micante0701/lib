@@ -1,3 +1,4 @@
+/* 版本資訊 */
 body::before {
     content: "CSS 版本 Ｄ2.0";
     display: block;
@@ -31,6 +32,7 @@ body::before {
 }
 
 body {
+    /* background-image: url(image/paper.png); */
     background-color: rgb(211, 208, 156);
     font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
@@ -45,26 +47,6 @@ h5 {
     font-size: 2rem;
 }
 
-
-#bottom {
-    text-align: center;
-}
-
-blockquote {
-    background-color: bisque;
-    text-indent: 0;
-    /* background-image: url(image/paper.png); */
-}
-
-.sizeDown {
-    font-size: 1.5rem;
-}
-
-.originText{
-    background-color: bisque;
-    text-indent: 0;
-}
-
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
@@ -75,6 +57,29 @@ blockquote {
 
 .content p:first-of-type {
     text-indent: 0;
+}
+
+.content p.originTextHymn {
+    text-indent: 0;
+    text-align: center;
+    background-color: burlywood;
+}
+
+.originText {
+    background-color: burlywood;
+}
+
+.addText {
+    background-color: bisque;
+    text-align: center;
+}
+
+#bottom {
+    text-align: center;
+}
+
+.sizeDown {
+    font-size: 1.5rem;
 }
 
 /* 超連結設定 */
