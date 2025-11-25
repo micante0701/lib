@@ -42,8 +42,8 @@ select {
 }
 
 body {
-    background-image: url(image/paper.png);
-    /* background-color: rgb(211, 208, 156); */
+    /* background-image: url(image/paper.png); */
+    background-color: rgb(211, 208, 156);
     font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
 }
