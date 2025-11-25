@@ -29,7 +29,7 @@ colorInput.addEventListener("input", function () {
     document.body.style.backgroundColor = this.value;
 });
 
-// 打開彈出視窗
+/* // 打開彈出視窗
 function openPopup() {
     document.getElementById("overlay").style.display = "flex";
 }
@@ -40,8 +40,37 @@ function closePopup(event) {
     if (event.target.id === "overlay") {
         document.getElementById("overlay").style.display = "none";
     }
+} */
+
+// 切換彈出視窗 (按鈕呼叫)
+function togglePopup() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = (overlay.style.display === "flex") ? "none" : "flex";
 }
 
+// 關閉彈出視窗 (點背景呼叫)
+function closePopup(event) {
+    if (event.target.id === "overlay") {
+        document.getElementById("overlay").style.display = "none";
+    }
+}
+
+// 鍵盤事件監聽
+document.addEventListener("keydown", function(e) {
+    const overlay = document.getElementById("overlay");
+
+    // ESC 鍵關閉
+    if (e.key === "Escape") {
+        overlay.style.display = "none";
+    }
+
+    // Ctrl + Q 開啟
+    if (e.ctrlKey && e.key.toLowerCase() === "q") {
+        overlay.style.display = "flex";
+    }
+});
+
+// 變更文字大小
 function changeFontSize(delta) {
     const paragraphs = document.querySelectorAll("p");
 

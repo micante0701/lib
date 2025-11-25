@@ -6,7 +6,6 @@
     <title>書籍一覽</title>
     <meta name="revised" content="2025/11/03">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <style>
     body{
@@ -49,12 +48,6 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
-    .left,
-    .right {
-        /* min-height: 100px; */
-    }
-
-
     .card {
         background: rgb(211, 208, 156);
         text-align: center;
@@ -66,6 +59,11 @@
         margin: 3px;
         margin-left: 3px;
         margin-right: 3px;
+    }
+
+    .card:hover {
+      background-color: yellow; /* 你想要的顏色 */
+      cursor: pointer; /* 滑鼠移上去顯示手型 */
     }
 
     /* 小螢幕：三欄改成直列 */
