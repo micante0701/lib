@@ -9,6 +9,16 @@ body::before {
     font-weight: bold;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+select {
+  font-size: 2rem;
+  text-align: center;
+  margin: 16px;
+}
+
 #version {
     display: block;
     background: yellow;
@@ -60,6 +70,12 @@ h5 {
 }
 
 .content p.originTextHymn {
+    text-indent: 0;
+    text-align: center;
+    background-color: burlywood;
+}
+
+.content p.bookNames {
     text-indent: 0;
     text-align: center;
     background-color: burlywood;

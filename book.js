@@ -57,3 +57,43 @@ function changeFontSize(delta) {
         p.style.fontSize = newSize + "px";
     });
 }
+
+/* 產生文字目錄 */
+/* HTML搭配<nav id="toc"></nav> */
+/* const toc = document.getElementById("toc");
+document.querySelectorAll("h5").forEach((h, i) => {
+    // 建立唯一 id
+    const id = "section-" + i;
+    h.id = id;
+
+    // 直接取整個 h5 的文字
+    const text = h.textContent;
+
+    // 建立目錄連結
+    const link = document.createElement("a");
+    link.href = "#" + id;
+    link.textContent = text;
+
+    // 加到目錄
+    toc.appendChild(link);
+    toc.appendChild(document.createElement("br")); // 換行
+}); */
+
+/* 針對<h5>產生目錄標題 */
+const toc = document.getElementById("toc");
+document.querySelectorAll("h5").forEach((h, i) => {
+    const id = "section-" + i;
+    h.id = id;
+
+    const option = document.createElement("option");
+    option.value = id;
+    option.textContent = h.textContent; // 顯示整個 h5 文字
+    toc.appendChild(option);
+});
+
+// 當使用者選擇章節時，跳到對應位置
+toc.addEventListener("change", function () {
+    if (this.value) {
+        document.getElementById(this.value).scrollIntoView({ behavior: "smooth" });
+    }
+});
