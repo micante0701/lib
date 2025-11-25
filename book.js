@@ -1,3 +1,4 @@
+// header.html執行區
 // 等 DOM 建立好再執行
 // window.addEventListener("DOMContentLoaded", () => {
 //     fetch("header.html")
@@ -8,6 +9,7 @@
 //         .catch(error => console.error("載入失敗:", error));
 // });
 
+// 背景顏色設定
 const colorInput = document.getElementById("colorPicker");
 // 取得 body 的目前背景顏色
 let currentColor = window.getComputedStyle(document.body).backgroundColor;

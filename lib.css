@@ -1,5 +1,5 @@
 /* 版本資訊 */
-body::before {
+/* body::before {
     content: "CSS 版本 Ｄ2.0";
     display: block;
     background: yellow;
@@ -7,7 +7,7 @@ body::before {
     padding: 10px;
     text-align: center;
     font-weight: bold;
-}
+} */
 
 html {
   scroll-behavior: smooth;
@@ -42,8 +42,8 @@ select {
 }
 
 body {
-    /* background-image: url(image/paper.png); */
-    background-color: rgb(211, 208, 156);
+    background-image: url(image/paper.png);
+    /* background-color: rgb(211, 208, 156); */
     font-family: "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
     font-size: 2rem;
 }
