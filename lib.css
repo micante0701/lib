@@ -65,6 +65,10 @@ h5 {
     background-color: burlywood;
 }
 
+.content p.addAnnotation {
+    background-color: lightblue;
+}
+
 .originText {
     background-color: burlywood;
 }
