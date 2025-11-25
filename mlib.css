@@ -27,3 +27,7 @@ body::before {
     /* top: 電腦版80 手機版60 */
     top: 60px;
 }
+
+select{
+    display: inline-block;
+}
