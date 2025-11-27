@@ -1,4 +1,5 @@
 window.onload = genTable;
+// 目錄資料陣列
 function getNames() {
     return [
         ["0000", "歧路指歸", "戰德克", "印光大師鑑定", "李德明參定"],
@@ -16,33 +17,33 @@ function getNames() {
         ["0012", "", "", "", ""]
     ]
 }
-
+// 產生目錄：分手機、電腦版，電腦版整個可以點，手機版只能點標題進入
 function genTable() {
     let names = getNames();
     let text = "";
-    for (let i = 0; i < names.length; i++) {
-        // text += `<div class="card">`;
-        // text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
-        // text += `<p class="name">${names[i][2]}</p>`;
-        // text += `<p class="name">${names[i][3]}</p>`;
-        // text += `<p class="name">${names[i][4]}</p>`;
-        // text += `</div>`;
-        text += `<div class="card">`;
-        text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
-        text += `<p class="name">${names[i][2]}</p>`;
-        text += `<p class="name">${names[i][3]}</p>`;
-        text += `<p class="name">${names[i][4]}</p>`;
-        text += `</div>`;
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        // console.log("手機版");
+        for (let i = 0; i < names.length; i++) {
+            text += `<div class="card">`;
+            text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
+            text += `<p class="name">${names[i][2]}</p>`;
+            text += `<p class="name">${names[i][3]}</p>`;
+            text += `<p class="name">${names[i][4]}</p>`;
+            text += `</div>`;
+        }
+    } else {
+        // console.log("電腦版");
+        for (let i = 0; i < names.length; i++) {
+            text += `<a href="${names[i][0]}.html" class="card">`;
+            text += `<p class="bookTitle">${names[i][1]}</p>`;
+            text += `<p class="name">${names[i][2]}</p>`;
+            text += `<p class="name">${names[i][3]}</p>`;
+            text += `<p class="name">${names[i][4]}</p>`;
+            text += `</a>`;
+        }
     }
     document.getElementById("show").innerHTML = text;
 }
-// 找出所有 .card 元素
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-        // 找出卡片裡的超連結
-        const link = card.querySelector("a");
-        if (link && link.href) {
-            window.location.href = link.href; // 導向該超連結
-        }
-    });
-});
+
+// 監聽視窗大小改變，變小就變手機版
+window.addEventListener("resize", genTable);

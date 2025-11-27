@@ -67,8 +67,14 @@ document.addEventListener("keydown", function(e) {
     }
 
     // Ctrl + Q 開啟
+    // if (e.ctrlKey && e.key.toLowerCase() === "q") {
+    //     overlay.style.display = "flex";
+    // }
+    // Ctrl + M 開/關切換
     if (e.ctrlKey && e.key.toLowerCase() === "q") {
-        overlay.style.display = "flex";
+        overlay.style.display = (overlay.style.display === "flex") ? "none" : "flex";
+        // 阻止瀏覽器可能的預設行為 (例如某些快捷鍵)
+        e.preventDefault();
     }
 });
 
