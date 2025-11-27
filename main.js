@@ -27,12 +27,12 @@ function genTable() {
         // text += `<p class="name">${names[i][3]}</p>`;
         // text += `<p class="name">${names[i][4]}</p>`;
         // text += `</div>`;
-        text += `<a href="${names[i][0]}.html" class="card">`;
-        text += `<p class="bookTitle">${names[i][1]}</p>`;
+        text += `<div class="card">`;
+        text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
         text += `<p class="name">${names[i][2]}</p>`;
         text += `<p class="name">${names[i][3]}</p>`;
         text += `<p class="name">${names[i][4]}</p>`;
-        text += `</a>`;
+        text += `</div>`;
     }
     document.getElementById("show").innerHTML = text;
 }
