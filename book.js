@@ -1,35 +1,75 @@
-// header.html執行區
+// ↓↓↓ header.html(程式碼End) ↓↓↓
 // 等 DOM 建立好再執行
-// window.addEventListener("DOMContentLoaded", () => {
-//     fetch("header.html")
-//         .then(response => response.text())
-//         .then(data => {
-//             document.getElementById("header").innerHTML = data;
-//         })
-//         .catch(error => console.error("載入失敗:", error));
-// });
-
-// 背景顏色設定
-const colorInput = document.getElementById("colorPicker");
-// 取得 body 的目前背景顏色
-let currentColor = window.getComputedStyle(document.body).backgroundColor;
-// 把 rgb(...) 轉成 hex (#RRGGBB)
-function rgbToHex(rgb) {
-    const result = rgb.match(/\d+/g).map(Number); // 取出數字
-    return (
-        "#" +
-        result
-            .slice(0, 3) // 只取 R、G、B
-            .map(x => x.toString(16).padStart(2, "0"))
-            .join("")
-    );
-}
-// 設定 color input 的初始值
-colorInput.value = rgbToHex(currentColor);
-// 綁定事件：選擇顏色時更新背景
-colorInput.addEventListener("input", function () {
-    document.body.style.backgroundColor = this.value;
+window.addEventListener("DOMContentLoaded", () => {
+    fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+        })
+        .catch(error => console.error("載入失敗:", error));
 });
+// ↑↑↑ header.html(程式碼End) ↑↑↑
+
+// ↓↓↓ 自定義背景色(程式碼Start) ↓↓↓
+// // 背景顏色設定
+// const colorInput = document.getElementById("colorPicker");
+// // 取得 body 的目前背景顏色
+// let currentColor = window.getComputedStyle(document.body).backgroundColor;
+// // 把 rgb(...) 轉成 hex (#RRGGBB)
+// function rgbToHex(rgb) {
+//     const result = rgb.match(/\d+/g).map(Number); // 取出數字
+//     return (
+//         "#" +
+//         result
+//             .slice(0, 3) // 只取 R、G、B
+//             .map(x => x.toString(16).padStart(2, "0"))
+//             .join("")
+//     );
+// }
+// // 設定 color input 的初始值
+// colorInput.value = rgbToHex(currentColor);
+// // 綁定事件：選擇顏色時更新背景
+// colorInput.addEventListener("input", function () {
+//     document.body.style.backgroundColor = this.value;
+// });
+// ↑↑↑ 自定義背景色(程式碼End) ↑↑↑
+
+// ↓↓↓ 護眼模式切換(程式碼Start) ↓↓↓
+
+// 載入時偵測 localStorage
+let isLight;
+if (localStorage.getItem("isLight") === null) {
+    // 如果沒有存過，預設護眼模式
+    isLight = false;
+    localStorage.setItem("isLight", isLight);
+} else {
+    // 讀取之前存的狀態
+    isLight = localStorage.getItem("isLight") === "true";
+}
+
+// 初始化畫面
+applyTheme();
+
+function toggleTheme() {
+    isLight = !isLight; // 狀態反轉
+    localStorage.setItem("isLight", isLight); // 存到 localStorage
+    applyTheme();
+}
+
+function applyTheme() {
+    const btn = document.getElementById("themePicker");
+
+    if (isLight) {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        btn.textContent = "一般模式";
+    } else {
+        document.body.style.backgroundColor = "rgb(211, 208, 156)";
+        document.body.style.color = "black";
+        btn.textContent = "護眼模式";
+    }
+}
+// ↑↑↑ 護眼模式切換(程式碼End) ↑↑↑
 
 /* // 打開彈出視窗
 function openPopup() {
@@ -58,7 +98,7 @@ function closePopup(event) {
 }
 
 // 鍵盤事件監聽
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
     const overlay = document.getElementById("overlay");
 
     // ESC 鍵關閉

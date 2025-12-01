@@ -11,6 +11,7 @@
     <script src="book.js" defer></script>
     <script src="test.js" defer></script>
     <style>
+        /* JS Version */
         .jsv {
             display: block;
             background: lightblue;
@@ -19,6 +20,10 @@
             text-align: center;
             font-weight: bold;
         }
+
+        .btnWidth {
+            width: auto;
+        }
     </style>
 </head>
 
@@ -26,10 +31,10 @@
     <!-- <div id="version">HTML版本 V1.0</div> -->
     <div id="header">
     </div>
-    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <!-- <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
-    <div id="overlay" class="overlay" onclick="closePopup(event)">
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a> -->
+    <!-- <div id="overlay" class="overlay" onclick="closePopup(event)">
         <span id="toolbox">
             <p class="test">
                 <a href="booklist.html">回首頁</a>
@@ -37,13 +42,14 @@
             <p>
                 <span>背景設定</span>
                 <br>
-                <input type="color" id="colorPicker">
+                <input class="mouse toolboxBtn" type="color" id="colorPicker">
+                <button class="mouse btnSet" onclick="toggleTheme()" id="themePicker">啟動</button>
                 <br>
                 <span>文字大小</span>
                 <br>
                 <span>
-                    <button class="mouse" onclick="changeFontSize(1)">+</button>
-                    <button class="mouse" onclick="changeFontSize(-1)">-</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
                 </span>
                 <br>
                 <label for="toc">章節目錄</label>
@@ -53,7 +59,7 @@
                 </select>
             </p>
         </span>
-    </div>
+    </div> -->
     <div id="top">
         <h1>佛說阿彌陀經</h1>
         <h3>姚秦龜茲三藏鳩摩羅什譯</h3>
@@ -91,6 +97,12 @@
             <p>舍利弗！如我今者，稱讚諸佛不可思議功德；彼諸佛等，亦稱說我不可思議功德，而作是言：『釋迦牟尼佛能為甚難希有之事，能於娑婆國土五濁惡世，劫濁、見濁、煩惱濁、眾生濁、命濁中，得阿耨多羅三藐三菩提，為諸眾生說是一切世間難信之法。』舍利弗！當知我於五濁惡世行此難事，得阿耨多羅三藐三菩提，為一切世間說此難信之法，是為甚難！」
             </p>
             <p>佛說此經已，舍利弗及諸比丘，一切世間天、人、阿修羅等，聞佛所說，歡喜信受，作禮而去。</p>
+            <h5>[7]無量壽佛　說往生淨土呪：</h5>
+            <p class="originText">南無阿彌多婆夜　哆他伽哆夜　哆地夜他　阿彌唎(上聲)都婆毘　阿彌唎哆　[A1]悉耽婆毘　阿彌唎哆　毘迦蘭哆　伽彌膩　伽伽那　抧多迦隸　莎婆訶[A2]</p>
+            <p>誦此呪者，阿彌陀佛常住其頂，命終之後任運往生。</p>
+            <p>龍樹菩薩願生安養，夢感此呪。</p>
+            <p>耶舍三藏誦此呪，天平[A3]寺銹法師從耶舍三藏口受此呪。其人云：「經本外國不來。受持呪法，日夜六時各誦三七遍；晨夜[A4]澡漱，嚼[A5]楊枝，然香火，於形象前跪，合掌誦三七遍。日日恒爾，即滅四重、五逆、十惡，謗方等罪悉得除滅。現在不為一切諸邪鬼神之所惱亂，命終之後任運往生阿彌陀國。何況晝夜受持誦讀功德不可思議！」
+            </p>
             <div class="addMore">
                 <h5>唐善導大師〈讚佛偈〉</h5>
                 <p>彌陀身色如金山，</p>
