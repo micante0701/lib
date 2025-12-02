@@ -1,14 +1,4 @@
-// ↓↓↓ header.html(程式碼End) ↓↓↓
-// 等 DOM 建立好再執行
-window.addEventListener("DOMContentLoaded", () => {
-    fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("header").innerHTML = data;
-        })
-        .catch(error => console.error("載入失敗:", error));
-});
-// ↑↑↑ header.html(程式碼End) ↑↑↑
+
 
 // ↓↓↓ 自定義背景色(程式碼Start) ↓↓↓
 // // 背景顏色設定
@@ -57,7 +47,7 @@ function toggleTheme() {
 }
 
 function applyTheme() {
-    const btn = document.getElementById("themePicker");
+    const btn = document.getElementsByClassName("btnTheme");
 
     if (isLight) {
         document.body.style.backgroundColor = "white";
