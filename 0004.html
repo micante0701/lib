@@ -15,7 +15,36 @@
 </head>
 
 <body>
-    <div id="header">
+    <!-- <div id="header">
+    </div> -->
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox">
+            <p class="test">
+                <a href="booklist.html">回首頁</a>
+            </p>
+            <p>
+                <span>背景設定</span>
+                <br>
+                <!-- <input class="mouse toolboxBtn" type="color" id="colorPicker"> -->
+                <button class="mouse btnSet" onclick="toggleTheme()" id="themePicker">啟動</button>
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+                </span>
+                <br>
+                <label for="toc">章節目錄</label>
+                <br>
+                <select id="toc">
+                    <option value="">-- 請選擇 --</option>
+                </select>
+            </p>
+        </span>
     </div>
     <div id="top">
         <h1>大乘無量壽經白話解</h1>
