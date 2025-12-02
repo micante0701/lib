@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
-    <script src="test.js" defer></script>
+    <script src="jsTime.js" defer></script>
     <style>
         /* JS Version */
         .jsv {
@@ -20,21 +20,17 @@
             text-align: center;
             font-weight: bold;
         }
-
-        .btnWidth {
-            width: auto;
-        }
     </style>
 </head>
 
 <body>
     <!-- <div id="version">HTML版本 V1.0</div> -->
-    <div id="header">
-    </div>
-    <!-- <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <!-- <div id="header">
+    </div> -->
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a> -->
-    <!-- <div id="overlay" class="overlay" onclick="closePopup(event)">
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
         <span id="toolbox">
             <p class="test">
                 <a href="booklist.html">回首頁</a>
@@ -42,8 +38,8 @@
             <p>
                 <span>背景設定</span>
                 <br>
-                <input class="mouse toolboxBtn" type="color" id="colorPicker">
-                <button class="mouse btnSet" onclick="toggleTheme()" id="themePicker">啟動</button>
+                <!-- <input class="mouse toolboxBtn" type="color" id="colorPicker"> -->
+                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">啟動</button>
                 <br>
                 <span>文字大小</span>
                 <br>
@@ -59,7 +55,7 @@
                 </select>
             </p>
         </span>
-    </div> -->
+    </div>
     <div id="top">
         <h1>佛說阿彌陀經</h1>
         <h3>姚秦龜茲三藏鳩摩羅什譯</h3>
