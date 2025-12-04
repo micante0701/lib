@@ -22,7 +22,6 @@ function toggleTheme() {
 
 function applyTheme() {
     const btn = document.getElementsByClassName("btnTheme");
-
     if (isLight) {
         document.body.style.backgroundColor = "white";
         document.body.style.color = "black";
