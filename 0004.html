@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
     <script>
-
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                // 若你的站點在子路徑，例如 /blog/，請改成 navigator.serviceWorker.register("/blog/sw.js")
+                navigator.serviceWorker.register("/sw.js")
+                    .catch(err => console.error("SW registration failed:", err));
+            });
+        }
     </script>
 </head>
 

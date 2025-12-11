@@ -8,7 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
     <script src="main.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                // 若你的站點在子路徑，例如 /blog/，請改成 navigator.serviceWorker.register("/blog/sw.js")
+                navigator.serviceWorker.register("/sw.js")
+                    .catch(err => console.error("SW registration failed:", err));
+            });
+        }
+    </script>
 </head>
+
 <body>
     <div class="titleDiv">
         <h1>行動藏經閣</h1>
