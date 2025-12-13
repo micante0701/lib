@@ -9,6 +9,10 @@ a {
     text-decoration: none;
 }
 
+a:visited{
+    color: blue;
+}
+
 /* 作者、譯者等文字設定 */
 .name {
     /* 刪除間距 */
