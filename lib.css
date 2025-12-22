@@ -89,6 +89,30 @@ h5 {
     background-color: lightblue;
 }
 
+.content p.addSubtitle1 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 1rem;
+}
+
+.content p.addSubtitle2 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 3rem;
+}
+
+.content p.addSubtitle3 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 5rem;
+}
+
+.content p.addSubtitle4 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 7rem;
+}
+
 .originText {
     background-color: burlywood;
 }
