@@ -81,11 +81,10 @@ h1 {
         margin-left: 10px;
         /* 只剩一欄 */
     }
-
+}
     .left,
     .right {
         /* display: none; */
         /* 小螢幕隱藏左右留白 */
         /* text-align: center; */
     }
-}
