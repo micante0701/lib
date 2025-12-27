@@ -8,42 +8,34 @@
     <title>對照閱讀器</title>
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
-    <style>
-        /* div容器設定 */
-        .container {
-            height: 100vh;
-            /* 讓iframe高度佔滿視窗 */
-        }
-
-        .container iframe {
-            flex: 1;
-            /* 每個iframe平均分配空間 */
-            border: none;
-            /* 移除邊框 */
-        }
-
-        .thisTitle{
-            font-weight: bold;
-            text-align: center;
-            font-size: 2rem;
-        }
-        /* 手機版樣式 */
-        @media screen and (max-width: 768px) {
-            .thisTitle {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="pair.css">
+    <script src="main.js" defer></script>
+    <script src="pair.js" defer></script>    
 </head>
 
 <body>
-    <div class="thisTitle">
-        <p>對照閱讀器</p>
+    <div class="container thisTitle">
+        <div class="left">
+            <select id="leftSelect" name="page1">
+                <option value="0001">0001</option>
+                <option value="0002">0002</option>
+            </select>
+        </div>
+        <div class="center">對照閱讀器</div>
+        <div class="right">
+            <select id="rightSelect" name="page2">
+                <option value="0001">0001</option>
+                <option value="0002">0002</option>
+            </select>
+        </div>
     </div>
-    <div class="container">
-        <iframe src="0002.html"></iframe>
-        <iframe src="0003.html"></iframe>
+    <div class="container iHeight">
+        <iframe src="0001.html" id="leftFrame"></iframe>
+        <iframe src="0002.html" id="rightFrame"></iframe>
     </div>
+    <script> 
+        
+    </script>
 </body>
 
 </html>
