@@ -7,28 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>對照閱讀器</title>
     <link rel="stylesheet" href="lib.css">
-    <!-- <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)"> -->
     <link rel="stylesheet" href="pair.css">
+    <!-- <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)"> -->
     <script src="main.js" defer></script>
-    <script src="pair.js" defer></script>    
+    <script src="pair.js" defer></script>
 </head>
 
 <body>
-    <p class="thisTitle">
-        <div class="leftBar">
-            <select id="leftSelect" name="page1">
-
-            </select>
+    <div class="container">
+        <div class="left">
+            <div class="textMid">
+                <select id="leftSelect" name="page1"></select>
+            </div>
+            <div>
+                <iframe src="0002.html" id="leftFrame" class="iHeight"></iframe>
+            </div>
         </div>
-        <div class="rightBar">
-            <select id="rightSelect" name="page2">
-                
-            </select>
+        <div class="right">
+            <div class="textMid">
+                <select id="rightSelect" name="page2"></select>
+            </div>
+            <div>
+                <iframe src="0003.html" id="rightFrame" class="iHeight"></iframe>
+            </div>
         </div>
-    </p>
-    <div class="container iHeight">
-        <iframe src="0002.html" id="leftFrame"></iframe>
-        <iframe src="0003.html" id="rightFrame"></iframe>
     </div>
 </body>
 

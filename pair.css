@@ -1,7 +1,8 @@
 /* div容器高度設定(給iframe的div用) */
 .iHeight {
-    height: 98vh;
+    height: 99vh;
     /* 讓iframe高度佔滿視窗 */
+    width: 100%;
 }
 
 .container iframe {
@@ -11,21 +12,18 @@
     /* 移除邊框 */
 }
 
-/* 頂部頁面標題 */
-.thisTitle {
-    font-weight: bold;
-    text-align: center;
-    font-size: 2rem;
-}
-
-.leftBar,
+/* .leftBar,
 .rightBar{
-    width: 50%;
-    
-}
+    flex:1;
+} */
+
 /* 手機版樣式 */
 @media screen and (max-width: 768px) {
     .thisTitle {
         font-size: 3rem;
+    }
+
+    .iHeight {
+        height: 200vh;
     }
 }
