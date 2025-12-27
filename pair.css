@@ -18,6 +18,11 @@
     font-size: 2rem;
 }
 
+.leftBar,
+.rightBar{
+    width: 50%;
+    
+}
 /* 手機版樣式 */
 @media screen and (max-width: 768px) {
     .thisTitle {
