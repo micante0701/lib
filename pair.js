@@ -34,9 +34,15 @@ function genSelect(selectId) {
     const select = document.getElementById(selectId);
     select.innerHTML = ""; // 清空舊的
 
+    // === 插入預設「請選擇」 === 
+    const defaultOpt = document.createElement("option"); defaultOpt.value = ""; // 空值，避免觸發 iframe 
+    defaultOpt.textContent = "請選擇"; // 顯示文字 
+    defaultOpt.selected = true; // 預設選中 
+    select.appendChild(defaultOpt);
+
     for (let i = 0; i < names.length; i++) {
         const opt = document.createElement("option");
-        opt.value = names[i][0];      // 例如 "0001"
+        opt.value = names[i][0]; // 例如 "0001"
         opt.textContent = names[i][1]; // 顯示文字
         select.appendChild(opt);
     }
@@ -48,9 +54,13 @@ genSelect("rightSelect");
 
 // 綁定事件：選擇後更新 iframe
 document.getElementById("leftSelect").addEventListener("change", function () {
-    document.getElementById("leftFrame").src = this.value + ".html";
+    if (this.value) { 
+        document.getElementById("leftFrame").src = this.value + ".html"; 
+    }
 });
 
 document.getElementById("rightSelect").addEventListener("change", function () {
-    document.getElementById("rightFrame").src = this.value + ".html";
+    if (this.value) { 
+        document.getElementById("rightFrame").src = this.value + ".html"; 
+    }
 });
