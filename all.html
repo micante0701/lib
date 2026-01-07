@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="revised" content="2026/01/07">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿彌陀佛</title>
+    <link rel="stylesheet" href="lib.css">
+    <script src="book.js" defer></script>
+    <style>
+        iframe {
+            display: none;
+        }
+    </style>
+    <script>
+        function download() {
+            let text = "";
+            for (let i = 0; i < 10; i++) {
+                text += `<iframe src="000${i}.html" class=""></iframe>`;
+            }
+            for (let i = 10; i < 21; i++) {
+                text += `<iframe src="00${i}.html" class=""></iframe>`;
+            }
+            document.getElementById("download").innerHTML = text;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox">
+            <p>
+                <a href="index.html">回首頁</a>
+            </p>
+            <p>
+                <span>護眼模式</span>
+                <br>
+                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+                </span>
+                <br>
+                <label for="toc">章節目錄</label>
+                <br>
+                <select id="toc">
+                    <option value="">-- 請選擇 --</option>
+                </select>
+                <br>
+            </p>
+            <p>
+                <a href="pair.html">雙頁對照檢視</a>
+            </p>
+        </span>
+    </div>
+    <div id="top">
+        <h1>離線使用全集</h1>
+        <h3>載入本頁即可</h3>
+    </div>
+    <div class="container content">
+        <div class="left"></div>
+        <div class="center">
+            <div id="download">
+
+            </div>
+        </div>
+        <div class="right"></div>
+    </div>
+    <div class="bottom" id="bottom"><a href="#top">回到頂部</a></div>
+</body>
+
+</html>
