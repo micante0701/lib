@@ -26,7 +26,15 @@
             text += `<iframe src="index.html" class=""></iframe>`;
             text += `<iframe src="404.html" class=""></iframe>`;
             document.getElementById("download").innerHTML = text;
+
+            if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js")
+                    .catch(err => console.error("SW registration failed:", err));
+            });
+        }   
         }
+        
     </script>
 </head>
 
