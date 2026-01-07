@@ -10,7 +10,7 @@
     <script src="book.js" defer></script>
     <style>
         iframe {
-            visibility: hidden;
+            display: none;
         }
     </style>
     <script>
@@ -23,6 +23,8 @@
             for (let i = 10; i < 21; i++) {
                 text += `<iframe src="00${i}.html" class=""></iframe>`;
             }
+            text += `<iframe src="index.html" class=""></iframe>`;
+            text += `<iframe src="404.html" class=""></iframe>`;
             document.getElementById("download").innerHTML = text;
         }
     </script>
