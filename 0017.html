@@ -7,13 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>佛說大乘無量壽莊嚴經</title>
     <link rel="stylesheet" href="lib.css">
-    <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>
-    <div id="header">
-    </div>
+    <!-- <div id="header">
+    </div> -->
     <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>

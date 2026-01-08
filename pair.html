@@ -8,9 +8,17 @@
     <title>對照閱讀器</title>
     <link rel="stylesheet" href="lib.css">
     <link rel="stylesheet" href="pair.css">
-    <!-- <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)"> -->
     <script src="main.js" defer></script>
     <script src="pair.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>

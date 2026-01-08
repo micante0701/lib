@@ -7,8 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大寶積經</title>
     <link rel="stylesheet" href="lib.css">
-    <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)">
     <script src="book.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>

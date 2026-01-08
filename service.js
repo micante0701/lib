@@ -19,18 +19,20 @@ const PRECACHE_URLS = [
   "/0015.html",
   "/0016.html",
   "/0017.html",
+  "/0018.html",
+  "/0019.html",
+  "/pair.html",
+  "/all.html",
   "/404.html",
   "/version.html",
-  "/booklist.html",
   "/lib.css",
-  "/mlib.css",
   "/main.css",
   "/main.js",
   "/header.js",
   "/book.js",
-  "/jsTime.js",
+  "/jsVersion.js",
   "/image/paper.png",
-  "/font/chui.woff"  // 可選，若你建立了離線頁
+  "/font/chui.woff"
 ];
 
 // 安裝：預先快取
@@ -52,35 +54,6 @@ self.addEventListener("activate", event => {
   );
   self.clients.claim();
 });
-
-// 攔截請求
-// self.addEventListener("fetch", event => {
-//   const req = event.request;
-
-//   // 判斷是否為頁面導覽 (例如 F5、點連結、輸入網址)
-//   if (req.mode === "navigate") {
-//     event.respondWith(
-//       fetch(req)
-//         .then(res => {
-//           // 成功時更新快取
-//           const resClone = res.clone();
-//           caches.open(CACHE_NAME).then(cache => cache.put(req, resClone));
-//           return res;
-//         })
-//         .catch(async () => {
-//           // 網路失敗 → 回快取或離線頁
-//           const cached = await caches.match(req);
-//           return cached || caches.match("/offline.html");
-//         })
-//     );
-//     return;
-//   }
-
-//   // 其他資源 (CSS/JS/圖片) → Cache First
-//   event.respondWith(
-//     caches.match(req).then(cached => cached || fetch(req))
-//   );
-// });
 
 // 攔截請求
 self.addEventListener("fetch", event => {
@@ -111,7 +84,39 @@ self.addEventListener("fetch", event => {
   );
 });
 
-// 以下為前一版
+// 以下為第二版
+// 攔截請求
+// self.addEventListener("fetch", event => {
+//   const req = event.request;
+
+//   // 判斷是否為頁面導覽 (例如 F5、點連結、輸入網址)
+//   if (req.mode === "navigate") {
+//     event.respondWith(
+//       fetch(req)
+//         .then(res => {
+//           // 成功時更新快取
+//           const resClone = res.clone();
+//           caches.open(CACHE_NAME).then(cache => cache.put(req, resClone));
+//           return res;
+//         })
+//         .catch(async () => {
+//           // 網路失敗 → 回快取或離線頁
+//           const cached = await caches.match(req);
+//           return cached || caches.match("/offline.html");
+//         })
+//     );
+//     return;
+//   }
+
+//   // 其他資源 (CSS/JS/圖片) → Cache First
+//   event.respondWith(
+//     caches.match(req).then(cached => cached || fetch(req))
+//   );
+// });
+
+
+
+// 以下為原始版
 /*
 // 取得策略：HTML採 Network First（有網路就拿最新，離線用快取）；其他靜態檔採 Cache First
 self.addEventListener("fetch", event => {

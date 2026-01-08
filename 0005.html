@@ -3,28 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="revised" content="2025/10/23">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>佛說阿彌陀經</title>
     <link rel="stylesheet" href="lib.css">
-    <!-- <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)"> -->
     <script src="book.js" defer></script>
-    <script src="jsTime.js" defer></script>
-    <style>
-        /* JS Version */
-        .jsv {
-            display: block;
-            background: lightblue;
-            color: black;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-    </style>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>
-    <!-- <div id="version">HTML版本 V1.0</div> -->
     <!-- <div id="header">
     </div> -->
     <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
