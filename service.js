@@ -67,11 +67,18 @@ self.addEventListener("fetch", event => {
           const networkResponse = await fetch(req);
           const cache = await caches.open(CACHE_NAME);
           cache.put(req, networkResponse.clone());
-          // return networkResponse;
-          return cached;
+          return networkResponse;
         } catch (err) {
           // 網路失敗 → 強制回首頁快取或 offline.html
-          const cachedIndex = await caches.match("/index.html");
+          // const cachedIndex = await caches.match("/index.html");
+          // return cachedIndex || await caches.match("/offline.html");
+
+          // 網路失敗 → 回快取的頁面
+          const cachedPage = await caches.match(req); 
+          // 先找對應頁面快取 if (cachedPage) return cachedPage;
+          if (cachedPage) return cachedPage;
+          // 如果沒有，就回首頁或 offline.html 
+          const cachedIndex = await caches.match("/index.html"); 
           return cachedIndex || await caches.match("/offline.html");
         }
       })()
