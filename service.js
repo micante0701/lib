@@ -67,7 +67,8 @@ self.addEventListener("fetch", event => {
           const networkResponse = await fetch(req);
           const cache = await caches.open(CACHE_NAME);
           cache.put(req, networkResponse.clone());
-          return networkResponse;
+          // return networkResponse;
+          return cached;
         } catch (err) {
           // 網路失敗 → 強制回首頁快取或 offline.html
           const cachedIndex = await caches.match("/index.html");
