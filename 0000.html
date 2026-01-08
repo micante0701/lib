@@ -3,12 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="revised" content="2025/10/23">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>歧路指歸</title>
     <link rel="stylesheet" href="lib.css">
-    <!-- <link rel="stylesheet" href="mlib.css" media="screen and (max-width: 768px)"> -->
     <script src="book.js" defer></script>
+    <!-- <script src="header.js" defer></script> -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>
@@ -25,7 +34,6 @@
             <p>
                 <span>護眼模式</span>
                 <br>
-                <!-- <input class="mouse toolboxBtn" type="color" id="colorPicker"> -->
                 <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
                 <br>
                 <span>文字大小</span>

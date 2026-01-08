@@ -1,7 +1,7 @@
 const CACHE_NAME = "site-cache-v1"; // 修改資源後可改成 v2、v3...
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
-  "./index.html",
+  "./0000.html",
   "./0001.html",
   "./0002.html",
   "./0003.html",
@@ -21,27 +21,46 @@ const PRECACHE_URLS = [
   "./0017.html",
   "./0018.html",
   "./0019.html",
-  "./pair.html",
-  "./all.html",
   "./404.html",
-  "./version.html",
+  "./all.html",
+  "./book.js",
+  "./header.html",
+  "./header.js",
+  "./index.html",
   "./lib.css",
   "./main.css",
   "./main.js",
-  "./header.js",
-  "./book.js",
-  "./jsVersion.js",
+  "./pair.css",
+  "./pair.html",
+  "./pair.js",
   "./image/paper.png",
   "./font/chui.woff"
 ];
 
 // 安裝：預先快取
+// self.addEventListener("install", event => {
+//   event.waitUntil(
+//     caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS))
+//   );
+//   self.skipWaiting();
+// });
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS))
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      for (const url of PRECACHE_URLS) {
+        try {
+          await cache.add(url);
+          console.log("✅ Cached:", url);
+        } catch (err) {
+          console.warn("❌ Failed to cache:", url, err);
+        }
+      }
+    })()
   );
   self.skipWaiting();
 });
+
 
 // 啟用：清除舊版快取
 self.addEventListener("activate", event => {
@@ -74,11 +93,11 @@ self.addEventListener("fetch", event => {
           // return cachedIndex || await caches.match("/offline.html");
 
           // 網路失敗 → 回快取的頁面
-          const cachedPage = await caches.match(req); 
+          const cachedPage = await caches.match(req);
           // 先找對應頁面快取 if (cachedPage) return cachedPage;
           if (cachedPage) return cachedPage;
           // 如果沒有，就回首頁或 offline.html 
-          const cachedIndex = await caches.match("/index.html"); 
+          const cachedIndex = await caches.match("/index.html");
           return cachedIndex || await caches.match("/offline.html");
         }
       })()
