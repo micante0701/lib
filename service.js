@@ -1,6 +1,8 @@
 const CACHE_NAME = "site-cache-v1"; // 修改資源後可改成 v2、v3...
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
+  "./image/paper.png",
+  "./font/chui.woff",
   "./0000.html",
   "./0001.html",
   "./0002.html",
@@ -32,9 +34,7 @@ const PRECACHE_URLS = [
   "./main.js",
   "./pair.css",
   "./pair.html",
-  "./pair.js",
-  "./image/paper.png",
-  "./font/chui.woff"
+  "./pair.js"
 ];
 
 // 安裝：預先快取

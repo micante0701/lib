@@ -8,6 +8,15 @@
     <title>阿彌陀佛</title>
     <link rel="stylesheet" href="lib.css">
     <script src="book.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
     <style>
         iframe {
             /* display: none; */
