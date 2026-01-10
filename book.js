@@ -1,3 +1,6 @@
+// 抓<h1>當<title>的標題
+document.title = document.querySelector("h1").textContent;
+
 // ↓↓↓ 護眼模式切換(程式碼Start) ↓↓↓
 
 // 載入時偵測 localStorage

@@ -8,6 +8,15 @@
     <title>觀無量壽佛經講記</title>
     <link rel="stylesheet" href="lib.css">
     <script src="book.js" defer></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
 </head>
 
 <body>
@@ -350,7 +359,7 @@
             <p>最後更新日期：2026/01/10</p>
             <p>資料來源如下：</p>
             <p>一、文字檔來源→台中蓮社：<a href="https://tclotus.net/tcbl/99move/read/Wujing/3/02/fd000001.htm" target="_blank">https://tclotus.net/tcbl/99move/read/Wujing/3/02/fd000001.htm</a></p>
-            <p>隨時代演進，智慧手機及行動裝置普及，傳統電腦使用日衰。本站將其重新整理、排版，希冀閱讀更方便，無論公車、捷運、廁中等，皆能不浪費時間精進</p>
+            <p>隨時代演進，智慧手機及行動裝置普及，傳統電腦使用日衰。本站將其重新整理、排版(文字檔不少為當年談話逐字稿，若以閱讀方式可能無法瞬間理解，又年代久遠，對初機者更是障礙，本站補充解釋)、除錯(尊重原文，除錯指明顯轉錄錯誤，不少網站有心上傳文字檔，可能以傳統機器掃描，識別出現錯字，或是漏整大段，余不敢妄自判斷，交叉查證)，希冀閱讀更方便，無論公車、捷運、廁中等，皆能不浪費時間精進</p>
         </div>
         <div class="right"></div>
     </div>

@@ -81,6 +81,14 @@ h5 {
     font-size: 2rem;
 }
 
+.textMid {
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
 /* 文本控制 */
 .content p {
     /* 首段空2格 */
@@ -133,6 +141,12 @@ h5 {
     padding-left: 7rem;
 }
 
+.content p.addSubtitle5 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 9rem;
+}
+
 .content p.none {
     text-indent: 0em;
 }
@@ -157,6 +171,11 @@ h5 {
 /* 超連結設定 */
 a {
     text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    /* 已訪問過的連結顏色，設成和未訪問相同 */
 }
 
 /* div容器設定 */
