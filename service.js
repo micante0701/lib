@@ -23,6 +23,7 @@ const PRECACHE_URLS = [
   "./0017.html",
   "./0018.html",
   "./0019.html",
+  "./0020.html",
   "./404.html",
   "./all.html",
   "./book.js",
@@ -88,10 +89,6 @@ self.addEventListener("fetch", event => {
           cache.put(req, networkResponse.clone());
           return networkResponse;
         } catch (err) {
-          // 網路失敗 → 強制回首頁快取或 offline.html
-          // const cachedIndex = await caches.match("/index.html");
-          // return cachedIndex || await caches.match("/offline.html");
-
           // 網路失敗 → 回快取的頁面
           const cachedPage = await caches.match(req);
           // 先找對應頁面快取 if (cachedPage) return cachedPage;
