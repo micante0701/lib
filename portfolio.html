@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <title>作品集</title>
+    <meta name="revised" content="2026/01/18">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script>
+        window.onload = genTable;
+        function genTable() {
+            let names = getNames();
+            let text = "";
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                // console.log("手機版");
+                for (let i = 0; i < names.length; i++) {
+                    text += `<div class="card">`;
+                    text += `<p class="bookTitle"><a href="${names[i][2]}">${names[i][1]}</a></p>`; //超連結
+                    text += `<p class="name">${names[i][1]}</p>`;
+                    text += `</div>`;
+                }
+            } else {
+                // console.log("電腦版");
+                for (let i = 0; i < names.length; i++) {
+                    text += `<a href="${names[i][2]}" class="card">`; //超連結
+                    text += `<p class="bookTitle">${names[i][0]}</p>`; //標題
+                    text += `<p class="name">${names[i][1]}</p>`;
+                    text += `</a>`;
+                }
+            }
+            document.getElementById("show").innerHTML = text;
+        }
+        function getNames() {
+            return [
+                ["0001", "樂湖餐廳<br>(形象官網)", "https://micante0701.github.io/resto/", "", ""],
+                ["0002", "Micante新聞網<br>(互動式外語教學)", "https://micante0701.github.io/news/", "", ""],
+                ["0003", "行動藏經閣<br>(行動裝置閱讀器)<br>(尚未完成)", "https://micante0701.github.io/lib/", "", ""],
+                ["0004", "Cyberpunk<br>AI輔助實作<br>(單頁呈現)", "https://micante0701.github.io/news/works/testText.html", "", ""],
+                ["0005", "HTML表格功能實作<br>(單頁呈現)", "https://micante0701.github.io/news/works/ranger.html", "", ""],
+            ]
+        }
+    </script>
+</head>
+
+<body>
+    <div class="titleDiv">
+        <h1>作品集</h1>
+    </div>
+    <div class="container">
+        <div class="left">
+
+        </div>
+        <div class="center" id="show">
+            <!-- <div class="card">
+                <p class="bookTitle">★A</p>
+                <p class="name">名稱1</p>
+                <p class="name">名稱2</p>
+                <p class="name">名稱3</p>
+            </div> -->
+        </div>
+        <div class="right">
+
+        </div>
+    </div>
+</body>
+
+</html>
