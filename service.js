@@ -40,13 +40,6 @@ const PRECACHE_URLS = [
   "./pair.js"
 ];
 
-// 安裝：預先快取
-// self.addEventListener("install", event => {
-//   event.waitUntil(
-//     caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS))
-//   );
-//   self.skipWaiting();
-// });
 self.addEventListener("install", event => {
   event.waitUntil(
     (async () => {
@@ -78,98 +71,81 @@ self.addEventListener("activate", event => {
 });
 
 // 攔截請求
+// self.addEventListener("fetch", event => {
+//   const req = event.request;
+
+//   if (req.mode === "navigate") {
+//     event.respondWith(
+//       (async () => {
+//         try {
+//           // 嘗試網路
+//           const networkResponse = await fetch(req);
+//           const cache = await caches.open(CACHE_NAME);
+//           cache.put(req, networkResponse.clone());
+//           return networkResponse;
+//         } catch (err) {
+//           // 網路失敗 → 回快取的頁面
+//           const cachedPage = await caches.match(req);
+//           // 先找對應頁面快取 if (cachedPage) return cachedPage;
+//           if (cachedPage) return cachedPage;
+//           // 如果沒有，就回首頁或 offline.html 
+//           const cachedIndex = await caches.match("/index.html");
+//           return cachedIndex || await caches.match("/offline.html");
+//         }
+//       })()
+//     );
+//     return;
+//   }
+
+//   // 其他資源 → Cache First
+//   event.respondWith(
+//     caches.match(req).then(cached => cached || fetch(req))
+//   );
+// });
+
+// 攔截請求
 self.addEventListener("fetch", event => {
   const req = event.request;
 
   if (req.mode === "navigate") {
     event.respondWith(
       (async () => {
+        // ✅ 修改：先檢查快取，避免恐龍畫面
+        const cachedPage = await caches.match(req);
+        if (cachedPage) return cachedPage;
+
         try {
-          // 嘗試網路
+          // ✅ 修改：沒快取 → 嘗試網路並補齊
           const networkResponse = await fetch(req);
           const cache = await caches.open(CACHE_NAME);
           cache.put(req, networkResponse.clone());
           return networkResponse;
         } catch (err) {
-          // 網路失敗 → 回快取的頁面
-          const cachedPage = await caches.match(req);
-          // 先找對應頁面快取 if (cachedPage) return cachedPage;
-          if (cachedPage) return cachedPage;
-          // 如果沒有，就回首頁或 offline.html 
-          const cachedIndex = await caches.match("/index.html");
-          return cachedIndex || await caches.match("/offline.html");
+          // ✅ 修改：網路失敗 → 回首頁或 offline.html
+          const cachedIndex = await caches.match("./index.html");
+          return cachedIndex || await caches.match("./offline.html");
         }
       })()
     );
     return;
   }
 
-  // 其他資源 → Cache First
+  // 其他資源 → Cache First + 網路補齊
   event.respondWith(
-    caches.match(req).then(cached => cached || fetch(req))
+    (async () => {
+      const cached = await caches.match(req);
+      if (cached) return cached;
+
+      try {
+        // ✅ 修改：沒快取 → 嘗試網路並補齊
+        const networkResponse = await fetch(req);
+        const cache = await caches.open(CACHE_NAME);
+        cache.put(req, networkResponse.clone());
+        return networkResponse;
+      } catch (err) {
+        // ✅ 修改：沒網路 → 回 offline.html
+        return await caches.match("./offline.html");
+      }
+    })()
   );
 });
-
-// 以下為第二版
-// 攔截請求
-// self.addEventListener("fetch", event => {
-//   const req = event.request;
-
-//   // 判斷是否為頁面導覽 (例如 F5、點連結、輸入網址)
-//   if (req.mode === "navigate") {
-//     event.respondWith(
-//       fetch(req)
-//         .then(res => {
-//           // 成功時更新快取
-//           const resClone = res.clone();
-//           caches.open(CACHE_NAME).then(cache => cache.put(req, resClone));
-//           return res;
-//         })
-//         .catch(async () => {
-//           // 網路失敗 → 回快取或離線頁
-//           const cached = await caches.match(req);
-//           return cached || caches.match("/offline.html");
-//         })
-//     );
-//     return;
-//   }
-
-//   // 其他資源 (CSS/JS/圖片) → Cache First
-//   event.respondWith(
-//     caches.match(req).then(cached => cached || fetch(req))
-//   );
-// });
-
-
-
-// 以下為原始版
-/*
-// 取得策略：HTML採 Network First（有網路就拿最新，離線用快取）；其他靜態檔採 Cache First
-self.addEventListener("fetch", event => {
-  const req = event.request;
-  const isHTML =
-    req.headers.get("accept")?.includes("text/html") ||
-    req.mode === "navigate";
-
-  if (isHTML) {
-    // 頁面：先嘗試網路，失敗再回快取或離線頁
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const resClone = res.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, resClone));
-          return res;
-        })
-        .catch(async () => {
-          const cached = await caches.match(req);
-          return cached || caches.match("/offline.html");
-        })
-    );
-  } else {
-    // 靜態資源：快取優先，沒有再走網路
-    event.respondWith(
-      caches.match(req).then(cached => cached || fetch(req))
-    );
-  }
-});
-*/
