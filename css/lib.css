@@ -1,0 +1,375 @@
+/* 版本資訊(打開會顯示在頁面上方) */
+/* body::before {
+    content: "CSS 版本 ＤＭ202512030709";
+    display: block;
+    background: yellow;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+} */
+
+html {
+    /* 卷軸移動 */
+    scroll-behavior: smooth;
+}
+
+body {
+    /* background-image: url(image/paper.png); */
+    background-color: rgb(211, 208, 156);
+    font-family: "CustomFont", "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
+    font-size: 2rem;
+}
+
+/* ↓↓↓ 文字設定：中文標楷體、英文Arial ↓↓↓ */
+@font-face {
+    font-family: "CustomFont";
+    src: local("DFKai-SB"), local("標楷體");
+    unicode-range: U+4E00-9FFF;
+    /* 中文範圍 */
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: local("Arial");
+    unicode-range: U+0020-007F;
+    /* 英文範圍 */
+}
+
+/* ↑↑↑ 文字設定：中文標楷體、英文Arial ↑↑↑ */
+
+/* ↓↓↓ 特殊字定義字型 ↓↓↓ */
+@font-face {
+    font-family: 'myFont';
+    src: url('font/chui.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 套用字型 */
+.special_chui {
+    font-family: 'myFont', serif;
+}
+
+/* ↑↑↑ 特殊字定義字型 ↑↑↑ */
+
+
+select {
+    font-size: 2rem;
+    text-align: center;
+    margin: 16px;
+}
+
+#version {
+    display: block;
+    background: yellow;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+.textMid {
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+/* ↓↓↓ 文本控制 ↓↓↓ */
+.content p {
+    /* 首段空2格 */
+    text-indent: 2em;
+    /* 文字正確換行只能加這屬性 */
+    line-break: anywhere;
+}
+
+.content p:first-of-type {
+    text-indent: 0;
+}
+
+.content p.originTextHymn {
+    text-indent: 0;
+    text-align: center;
+    background-color: burlywood;
+}
+
+.content p.bookNames {
+    text-indent: 0;
+    text-align: center;
+    background-color: burlywood;
+}
+
+.content p.addAnnotation {
+    background-color: lightblue;
+}
+
+.content p.addSubtitle1 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 1rem;
+}
+
+.content p.addSubtitle2 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 3rem;
+}
+
+.content p.addSubtitle3 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 5rem;
+}
+
+.content p.addSubtitle4 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 7rem;
+}
+
+.content p.addSubtitle5 {
+    text-indent: 0em;
+    background-color: lightblue;
+    padding-left: 9rem;
+}
+
+.content p.none {
+    text-indent: 0em;
+}
+
+.originText {
+    background-color: burlywood;
+}
+
+.addText {
+    background-color: bisque;
+    text-align: center;
+}
+
+/* ↑↑↑ 文本控制 ↑↑↑ */
+#bottom {
+    text-align: center;
+}
+
+.sizeDown {
+    font-size: 1.5rem;
+}
+
+/* 超連結設定 */
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    /* 已訪問過的連結顏色，設成和未訪問相同 */
+}
+
+/* div容器設定 */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.icontainer {
+    height: 80vh;
+    /* 高度為螢幕的 80% */
+}
+
+.container iframe {
+    flex: 1;
+    /* 平分寬度 (各 50%) */
+    border: none;
+    /* 移除邊框 */
+}
+
+.left,
+.right {
+    flex: 3;
+    /* 左右各佔 1 份 */
+}
+
+.center {
+    flex: 10;
+    /* 中間佔 2 份 */
+}
+
+/* ★★★ 彈出功能CSS區 ★★★ */
+
+/* 設定內部框 */
+#toolbox {
+    background-color: rgb(233, 230, 94);
+    border: 2px solid black;
+    padding: 10pt;
+    margin: 20pt;
+}
+
+#toolbox p,
+span {
+    text-align: center;
+}
+
+.btnTheme {
+    font-size: 2rem;
+    /* height: 60px; */
+    /* width: auto; */
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.toolboxBtn,
+#colorPicker {
+    width: 60px;
+    height: 60px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.toolboxBtn {
+    font-size: 2rem;
+    text-align: center;
+}
+
+#toolbox {
+    font-size: 2rem;
+}
+
+/* 覆蓋層的樣式 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明背景 */
+    display: none;
+    /* 預設隱藏 */
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation {
+    display: flex;
+    flex-flow: row wrap;
+    /* 文字貼末尾 */
+    justify-content: flex-end;
+    /* 去除開頭符號 */
+    list-style: none;
+    margin: 0;
+}
+
+/* 漂浮按鈕設定 */
+.floating-btn {
+    /* position: fixed;
+    top: 10px;
+    right: 10px; */
+    color: white;
+
+    /* 底色範圍 */
+    padding: 5px 7px;
+    /* 背景變成圓形 */
+    border-radius: 50%;
+    /* 無用 */
+    font-size: 20px;
+    /* 超連結無底線 */
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: background-color 0.2s ease;
+    font-family: "標楷體";
+    font-size: 2rem;
+    /* 刪除按鈕外框 */
+    border: none;
+    /* 文字置中 */
+    text-align: center;
+    /* min-width: 40px; */
+    /* 漂浮按鈕 右邊 距 邊界 距離 */
+    right: 5px;
+    position: fixed;
+    min-width: 40px;
+}
+
+#btnPos1 {
+    /* 底色 */
+    background-color: gray;
+    top: 10px;
+}
+
+#btnPos2 {
+    /* 底色 */
+    background-color: #4CAF50;
+    top: 80px;
+}
+
+#btnPos3 {
+    /* 底色 */
+    background-color: #4CAF50;
+    bottom: 10px;
+}
+
+.floating-btn:hover {
+    background-color: #388E3C;
+
+}
+
+/* 滑鼠游標符號設定，不設定碰到Setting會是文字I符號 */
+.mouse {
+    cursor: pointer;
+}
+
+.settingEmoji {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';
+}
+
+.addMore p {
+    text-indent: 0;
+}
+
+/* 手機版樣式 */
+@media screen and (max-width: 768px) {
+    .floating-btn {
+        /* font-size: 電腦版2rem 手機版1rem */
+        font-size: 1rem;
+        /* 刪除按鈕外框 */
+        border: none;
+        /* 文字置中 */
+        text-align: center;
+        right: 5px;
+        position: fixed;
+        /* min-width: 電腦版40px 手機版auto */
+        min-width: auto;
+    }
+
+    #btnPos2 {
+        /* 底色 */
+        background-color: #4CAF50;
+        /* top: 電腦版80 手機版60 */
+        top: 60px;
+    }
+
+    select {
+        display: inline-block;
+    }
+
+    .left,
+    .right {
+        flex: 1;
+        /* 左右各佔 1 份 */
+    }
+}
