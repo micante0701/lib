@@ -215,6 +215,7 @@ a:visited {
     .left,
     .right {
         display: none;
+        pointer-events: none;
     }
 
     .center {
