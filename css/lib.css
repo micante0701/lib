@@ -209,6 +209,21 @@ a:visited {
     /* 中間佔 2 份 */
 }
 
+@media (max-width: 768px) {
+    /* 避免產生閱讀Bug */
+    /* 2026/03/10新增 */
+    .left,
+    .right {
+        display: none;
+    }
+
+    .center {
+        flex: 1;
+        margin: 0px 50px 0px 50px;
+        padding: 0px 50px 0px 50px;
+    }
+}
+
 /* ★★★ 彈出功能CSS區 ★★★ */
 
 /* 設定內部框 */
