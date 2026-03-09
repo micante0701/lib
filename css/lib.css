@@ -215,13 +215,12 @@ a:visited {
     .left,
     .right {
         display: none;
-        pointer-events: none;
     }
 
     .center {
         flex: 1;
-        margin: 0px 50px 0px 50px;
-        padding: 0px 50px 0px 50px;
+        margin: 0;
+        padding: 20px;
     }
 }
 
