@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/lib.css">
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
-    <script>
+    <!-- <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
                 navigator.serviceWorker.register("./service.js")
@@ -17,8 +17,17 @@
                     .catch(err => console.error("Service Worker Registration Failed:", err));
             });
         }    
-    </script>
+    </script> -->
     <style>
+        .nv {
+            background-color: antiquewhite;
+            text-align: center;
+        }
+
+        .nv::before {
+            content: "電腦版本";
+        }
+
         @media screen and (max-width: 768px) {
 
             /* 下面這邊無效 待修正 */
@@ -29,12 +38,22 @@
 
             .center {
                 flex: 1;
-                margin: 0;
-                padding: 50px;
+                margin: 0 50px 50px 50px;
+                padding: 0px 50px 50px 50px;
             }
 
             /* 上面這邊無效 待修正 */
+
+            .nv {
+                background-color: rgb(249, 221, 185);
+                text-align: center;
+            }
+
+            .nv::before {
+                content: "行動裝置版本";
+            }
         }
+        
     </style>
 </head>
 
@@ -73,7 +92,7 @@
             </p>
         </span>
     </div>
-    <nav style="background-color: aquamarine; text-align: center;">Test nav bar</nav>
+    <nav class="nv"></nav>
     <div id="top">
         <h1>測試</h1>
         <h3>摳派樂</h3>
