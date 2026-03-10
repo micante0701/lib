@@ -369,14 +369,4 @@ span {
         display: inline-block;
     }
 
-    .left,
-    .right {
-        display: none;
-    }
-
-    /* .center {
-        flex: 1;
-        margin: 0;
-        padding: 20px;
-    } */
 }
