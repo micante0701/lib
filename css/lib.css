@@ -209,20 +209,7 @@ a:visited {
     /* 中間佔 2 份 */
 }
 
-@media (max-width: 768px) {
-    /* 避免產生閱讀Bug */
-    /* 2026/03/10新增 */
-    .left,
-    .right {
-        display: none;
-    }
 
-    .center {
-        flex: 1;
-        margin: 0;
-        padding: 20px;
-    }
-}
 
 /* ★★★ 彈出功能CSS區 ★★★ */
 
@@ -384,7 +371,12 @@ span {
 
     .left,
     .right {
-        flex: 1;
-        /* 左右各佔 1 份 */
+        display: none;
     }
+
+    /* .center {
+        flex: 1;
+        margin: 0;
+        padding: 20px;
+    } */
 }
