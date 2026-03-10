@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="revised" content="2025/10/23">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試頁</title>
+    <link rel="stylesheet" href="css/lib.css">
+    <script src="js/book.js" defer></script>
+    <!-- <script src="header.js" defer></script> -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service.js")
+                    .then(reg => console.log("Service Worker Registered:", reg))
+                    .catch(err => console.error("Service Worker Registration Failed:", err));
+            });
+        }    
+    </script>
+</head>
+
+<body>
+    <!-- <div id="header">
+    </div> -->
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox">
+            <p>
+                <a href="index.html">回首頁</a>
+            </p>
+            <p>
+                <span>護眼模式</span>
+                <br>
+                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+                </span>
+                <br>
+                <label for="toc">章節目錄</label>
+                <br>
+                <select id="toc">
+                    <option value="">-- 請選擇 --</option>
+                </select>
+                <br>
+            </p>
+            <p>
+                <a href="pair.html">雙頁對照檢視</a>
+            </p>
+        </span>
+    </div>
+    <div id="top">
+        <h1>測試</h1>
+        <h3>摳派樂</h3>
+    </div>
+    <div class="container content">
+        <!-- <div class="left"></div> -->
+        <div class="center">
+            <p>在遙遠的北方大陸，有一片名為「星辰之境」的土地。傳說這裡曾經是眾神居住的地方，夜空中閃爍的星光，便是他們留下的印記。凡人若能找到通往星辰之境的道路，便能獲得無窮智慧與力量。然而，千百年來，無人能真正踏入那片神秘的領域。</p>
+            <p>在大陸邊緣的一個小村莊裡，住著一名少年，名叫伊洛。他自幼失去雙親，由祖母撫養長大。伊洛雖然生活清苦，但心中始終懷抱著一個夢想——找到星辰之境，解開古老的謎團。</p>
+            <p>某個夜晚，伊洛在村外的山丘上仰望星空，忽然看見一道奇異的光芒劃破天際，墜落在森林深處。他心中一震，覺得這或許就是命運的召喚。</p>
+            <p>翌日清晨，伊洛獨自前往森林，尋找那道光芒的落點。他在密林深處發現了一塊閃耀著銀藍光芒的石頭——星石。當他伸手觸碰時，腦海中響起一個低沉的聲音：「選擇者啊，星辰之境的門已經開啟，你願意踏上旅途嗎？」</p>
+            <p>伊洛雖然驚訝，但毫不猶豫地回答：「我願意。」星石隨即化為一道光，融入他的胸口，留下了一個星形印記。從此，他的命運徹底改變。</p>
+            <p>在旅途中，伊洛遇見了三位重要的同伴：莉雅、凱恩、米拉。他們各自懷抱著不同的目標，卻因緣際會結伴而行，踏上了尋找星辰之境的旅途。</p>
+            <p>星辰之境的入口位於永夜山脈深處，途中必須通過三道試煉：勇氣、智慧與善良。每一次試煉，都讓他們更加團結，也讓伊洛逐漸成長。</p>
+            <p>然而，他們的旅途並非一帆風順。星石的力量引來了黑暗勢力的注意。暗影領主派出追逐者，企圖奪取星石，阻止凡人進入星辰之境。</p>
+            <p>凱恩在一次激烈的戰鬥中受傷，伊洛不得不挺身而出，首次展現星石的力量。他的胸口印記閃耀，化作一道星光屏障，擊退了敵人。眾人因此更加堅信，他就是被選中的人。</p>
+            <p>歷經艱辛，他們終於抵達永夜山脈的深處。那裡有一座巨大的石門，上面刻滿繁複的星辰符號。米拉低聲吟唱，符號逐漸亮起，石門緩緩開啟。</p>
+            <p>門後是一片奇幻的世界——天空佈滿流動的星河，土地閃耀著銀光，彷彿置身宇宙之中。這就是傳說中的星辰之境。</p>
+            <p>在星辰之境的核心，他們遇見了守護者——一位由星光凝聚而成的存在。守護者告訴伊洛：「星石的力量能改變世界，但也可能帶來毀滅。你必須選擇，是將力量據為己有，還是分享給眾人。」</p>
+            <p>伊洛沉思良久，想起祖母的話語。他微笑著回答：「力量不應屬於一人，而應成為守護眾人的希望。」</p>
+            <p>星石隨即化為無數光點，散落大地，為世界帶來新的希望。瘟疫消散，戰火平息，黑暗退去。</p>
+            <p>完成使命後，伊洛與同伴們回到村莊。雖然他失去了星石的力量，但心中卻充滿了無比的喜悅。他明白，真正的力量來自友情、勇氣與善良。</p>
+            <p>祖母看著他，眼中閃爍著欣慰的淚光：「孩子，你已經找到了屬於自己的星辰之境。」</p>
+            <p>伊洛的故事在大陸上流傳，成為後世的傳說。人們不再追尋星辰之境的入口，因為他們明白，星辰之境並不在遙遠的彼方，而在每個人心中。</p>
+        </div>
+        <!-- <div class="right"></div> -->
+    </div>
+    <div class="bottom" id="bottom"><a href="#top">回到頂部</a></div>
+</body>
+
+</html>
