@@ -10,6 +10,7 @@
 } */
 
 html {
+    /* 卷軸移動 */
     scroll-behavior: smooth;
 }
 
@@ -89,7 +90,7 @@ h5 {
     /* 垂直置中 */
 }
 
-/* 文本控制 */
+/* ↓↓↓ 文本控制 ↓↓↓ */
 .content p {
     /* 首段空2格 */
     text-indent: 2em;
@@ -160,6 +161,7 @@ h5 {
     text-align: center;
 }
 
+/* ↑↑↑ 文本控制 ↑↑↑ */
 #bottom {
     text-align: center;
 }
@@ -198,7 +200,7 @@ a:visited {
 
 .left,
 .right {
-    flex: 1;
+    flex: 3;
     /* 左右各佔 1 份 */
 }
 
@@ -206,6 +208,8 @@ a:visited {
     flex: 10;
     /* 中間佔 2 份 */
 }
+
+
 
 /* ★★★ 彈出功能CSS區 ★★★ */
 
@@ -363,5 +367,16 @@ span {
 
     select {
         display: inline-block;
+    }
+
+    .left,
+    .right {
+        display: none;
+    }
+
+    .center {
+        flex: 1;
+        margin: 0;
+        padding: 30px;
     }
 }
