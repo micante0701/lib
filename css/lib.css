@@ -41,7 +41,14 @@ body {
 /* ↓↓↓ 特殊字定義字型 ↓↓↓ */
 @font-face {
     font-family: 'myFont';
-    src: url('font/chui.woff') format('woff');
+    src: url('font/f0001.woff') format('woff');
+    unicode-range: U+249B2;
+}
+
+@font-face {
+    font-family: 'myFont';
+    src: url('font/f0002.woff') format('woff');
+    unicode-range: U+207C3;
 }
 
 /* 套用字型 */
