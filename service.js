@@ -28,16 +28,16 @@ const PRECACHE_URLS = [
   "./0022.html",
   "./404.html",
   "./all.html",
-  "./book.js",
   "./header.html",
-  "./header.js",
   "./index.html",
-  "./lib.css",
-  "./main.css",
-  "./main.js",
-  "./pair.css",
   "./pair.html",
-  "./pair.js"
+  "./js/book.js",
+  "./js/header.js",
+  "./js/main.js",
+  "./js/pair.js",
+  "./css/lib.css",
+  "./css/main.css",
+  "./css/pair.css"
 ];
 
 self.addEventListener("install", event => {
