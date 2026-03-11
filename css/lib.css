@@ -211,6 +211,7 @@ a:visited {
 
 
 
+
 /* ★★★ 彈出功能CSS區 ★★★ */
 
 /* 設定內部框 */
@@ -369,4 +370,24 @@ span {
         display: inline-block;
     }
 
+}
+
+/* 排版2026/03/11新增 */
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+    }
+
+    .left,
+    .right {
+        display: none;
+    }
+
+    .center {
+        flex: 1;
+    }
+
+    .content {
+        padding: 0 30px 30px 30px;
+    }
 }
