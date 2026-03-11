@@ -39,17 +39,17 @@ body {
 /* ↑↑↑ 文字設定：中文標楷體、英文Arial ↑↑↑ */
 
 /* ↓↓↓ 特殊字定義字型 ↓↓↓ */
-/* @font-face {
+@font-face {
     font-family: 'myFont';
     src: url('font/chui.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-} */
+}
 
 /* 套用字型 */
-/* .special_chui {
+.special_chui {
     font-family: 'myFont', serif;
-} */
+}
 
 /* ↑↑↑ 特殊字定義字型 ↑↑↑ */
 
@@ -82,6 +82,36 @@ h5 {
     font-size: 2rem;
 }
 
+/* ↓↓↓ div容器設定 ↓↓↓ */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.icontainer {
+    height: 80vh;
+    /* 高度為螢幕的 80% */
+}
+
+.container iframe {
+    flex: 1;
+    /* 平分寬度 (各 50%) */
+    border: none;
+    /* 移除邊框 */
+}
+
+.left,
+.right {
+    flex: 1;
+    /* 左右各佔 1 份 */
+}
+
+.center {
+    flex: 5;
+    /* 中間佔 2 份 */
+}
+
+/* ↑↑↑ div容器設定 ↑↑↑ */
 .textMid {
     display: flex;
     justify-content: center;
@@ -180,34 +210,7 @@ a:visited {
     /* 已訪問過的連結顏色，設成和未訪問相同 */
 }
 
-/* div容器設定 */
-.container {
-    display: flex;
-    width: 100%;
-}
 
-.icontainer {
-    height: 80vh;
-    /* 高度為螢幕的 80% */
-}
-
-.container iframe {
-    flex: 1;
-    /* 平分寬度 (各 50%) */
-    border: none;
-    /* 移除邊框 */
-}
-
-.left,
-.right {
-    flex: 1;
-    /* 左右各佔 1 份 */
-}
-
-.center {
-    flex: 10;
-    /* 中間佔 2 份 */
-}
 
 
 
