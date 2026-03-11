@@ -39,17 +39,17 @@ body {
 /* ↑↑↑ 文字設定：中文標楷體、英文Arial ↑↑↑ */
 
 /* ↓↓↓ 特殊字定義字型 ↓↓↓ */
-@font-face {
+/* @font-face {
     font-family: 'myFont';
     src: url('font/chui.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 /* 套用字型 */
-.special_chui {
+/* .special_chui {
     font-family: 'myFont', serif;
-}
+} */
 
 /* ↑↑↑ 特殊字定義字型 ↑↑↑ */
 
