@@ -8,15 +8,6 @@
     <title>大乘無量壽經白話解</title>
     <link rel="stylesheet" href="css/lib.css">
     <script src="js/book.js" defer></script>
-    <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("./service.js")
-                    .then(reg => console.log("Service Worker Registered:", reg))
-                    .catch(err => console.error("Service Worker Registration Failed:", err));
-            });
-        }    
-    </script>
 </head>
 
 <body>
