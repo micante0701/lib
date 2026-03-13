@@ -17,21 +17,18 @@ html {
 body {
     /* background-image: url(image/paper.png); */
     background-color: rgb(211, 208, 156);
-    /* font-family: "CustomFont", "myFont", "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC"; */
     font-size: 2rem;
 }
-
-
-
-/* ↑↑↑ 特殊字定義字型 ↑↑↑ */
 
 select {
     font-size: 2rem;
     text-align: center;
     margin: 16px;
+    width: 90%;
 }
 
 #version {
+    /* 沒在用 */
     display: block;
     background: yellow;
     color: black;
@@ -59,6 +56,17 @@ h5 {
     width: 100%;
 }
 
+.left,
+.right {
+    flex: 1;
+    /* 左右各佔 1 份 */
+}
+
+.center {
+    flex: 5;
+    /* 中間佔 2 份 */
+}
+
 .icontainer {
     height: 80vh;
     /* 高度為螢幕的 80% */
@@ -69,17 +77,6 @@ h5 {
     /* 平分寬度 (各 50%) */
     border: none;
     /* 移除邊框 */
-}
-
-.left,
-.right {
-    flex: 1;
-    /* 左右各佔 1 份 */
-}
-
-.center {
-    flex: 5;
-    /* 中間佔 2 份 */
 }
 
 /* ↑↑↑ div容器設定 ↑↑↑ */
@@ -194,6 +191,7 @@ a:visited {
     border: 2px solid black;
     padding: 10pt;
     margin: 20pt;
+    width: 90%;
 }
 
 #toolbox p,
@@ -220,10 +218,6 @@ span {
 .toolboxBtn {
     font-size: 2rem;
     text-align: center;
-}
-
-#toolbox {
-    font-size: 2rem;
 }
 
 /* 覆蓋層的樣式 */
@@ -366,32 +360,33 @@ span {
     }
 }
 
-/* ↓↓↓ 文字設定：中文標楷體、英文Arial ↓↓↓ */
-/* 中文範圍 */
-/* @font-face {
+/* ↓↓↓ 字型設定 ↓↓↓ */
+body {
+    font-family: "CustomFont", "myFont", "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
+}
+
+@font-face {
     font-family: "CustomFont";
     src: local("DFKai-SB"), local("標楷體");
     unicode-range: U+4E00-9FFF;
-} */
+}
 
-/* 英文範圍 */
-/* @font-face {
+@font-face {
     font-family: "CustomFont";
     src: local("Arial");
     unicode-range: U+0020-007F;
-} */
+}
 
-/* ↑↑↑ 文字設定：中文標楷體、英文Arial ↑↑↑ */
-
-/* ↓↓↓ 特殊字定義字型 ↓↓↓ */
-/* @font-face {
+@font-face {
     font-family: 'myFont';
-    src: url('font/f0001.woff') format('woff');
+    src: url('../font/f0001.woff') format('woff');
     unicode-range: U+249B2;
 }
 
 @font-face {
     font-family: 'myFont';
-    src: url('font/f0002.woff') format('woff');
+    src: url('../font/f0002.woff') format('woff');
     unicode-range: U+207C3;
-} */
+}
+
+/* ↑↑↑ 字型設定 ↑↑↑ */
