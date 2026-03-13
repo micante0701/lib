@@ -1,3 +1,49 @@
+body {
+    /* background-image: url(image/paper.png); */
+    background-color: rgb(211, 208, 156);
+    font-size: 2rem;
+}
+
+.container {
+    display: flex;
+}
+
+.left,
+.right {
+    display: fl;
+    flex: 1;
+}
+
+/* ↑↑↑ div容器設定 ↑↑↑ */
+.textMid {
+    flex: 1;
+    text-align: center;
+    /* justify-content: center; */
+    /* 水平置中 */
+    /* align-items: center; */
+    /* 垂直置中 */
+}
+
+select {
+    font-size: 2rem;
+    text-align: center;
+    width: 90%;
+}
+
+.icontainer {
+    height: 80vh;
+    /* 高度為螢幕的 80% */
+}
+
+.container iframe {
+    flex: 1;
+    /* 平分寬度 (各 50%) */
+    border: none;
+    /* 移除邊框 */
+}
+
+
+
 /* div容器高度設定(給iframe的div用) */
 .iHeight {
     height: 90vh;
@@ -19,11 +65,11 @@
 
 /* 手機版樣式 */
 @media screen and (max-width: 768px) {
-    .thisTitle {
+    /* .thisTitle {
         font-size: 3rem;
     }
 
     .iHeight {
         height: 200vh;
-    }
+    } */
 }
