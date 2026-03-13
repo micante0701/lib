@@ -186,12 +186,29 @@ a:visited {
 /* ★★★ 彈出功能CSS區 ★★★ */
 
 /* 設定內部框 */
+/* 覆蓋層的樣式 */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 半透明背景 */
+    display: none;
+    /* 預設隱藏 */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
 #toolbox {
     background-color: rgb(233, 230, 94);
     border: 2px solid black;
     padding: 10pt;
     margin: 20pt;
-    width: 90%;
+    z-index: 1000;
 }
 
 #toolbox p,
@@ -220,20 +237,7 @@ span {
     text-align: center;
 }
 
-/* 覆蓋層的樣式 */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* 半透明背景 */
-    display: none;
-    /* 預設隱藏 */
-    justify-content: center;
-    align-items: center;
-}
+
 
 .navigation {
     display: flex;
@@ -338,6 +342,9 @@ span {
         display: inline-block;
     }
 
+    toolbox {
+        width: 90%;
+    }
 }
 
 /* 排版2026/03/11新增 */
