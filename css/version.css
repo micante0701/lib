@@ -1,0 +1,153 @@
+header{
+    text-align: right;
+    font-size: 2rem;
+}
+
+a{
+    text-decoration: none;
+    color: blue;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --bg-color: #e9f3fd;
+    --bg2-color: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --tag-new: #10b981;
+    --tag-fix: #ef4444;
+    --tag-improve: #f59e0b;
+    --tag-expand: #8b5cf6;
+    --tag-delete: #ef4444;
+    --tag-note: #18d9ef;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+    padding: 40px 20px;
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+}
+
+/* 更新區塊 */
+.log-item {
+    position: relative;
+    padding-left: 30px;
+    border-left: 2px solid var(--border-color);
+    margin-bottom: 40px;
+}
+
+/* 時間軸圓點 */
+.log-item::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid #fff;
+}
+
+.version-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.version-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.release-date {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+}
+
+/* 列表樣式 */
+.change-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.change-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* 標籤樣式 */
+.tag {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+    margin-right: 10px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.tag-new {
+    background-color: var(--tag-new);
+}
+
+.tag-fix {
+    background-color: var(--tag-fix);
+}
+
+.tag-improve {
+    background-color: var(--tag-improve);
+}
+
+.tag-expand {
+    background-color: var(--tag-expand);
+}
+
+.tag-delete {
+    background-color: var(--tag-delete);
+}
+
+.tag-note {
+    background-color: var(--tag-note);
+}
+
+.change-text {
+    color: #334155;
+}
+
+@media (max-width: 600px) {
+    .version-header {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
