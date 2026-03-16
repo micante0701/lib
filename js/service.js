@@ -2,7 +2,9 @@ const CACHE_NAME = "site-cache-v1"; // 修改資源後可改成 v2、v3...
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
   "./image/paper.png",
-  "./font/chui.woff",
+  "./font/f0001.woff",
+  "./font/f0002.woff",
+  
   "./0000.html",
   "./0001.html",
   "./0002.html",
@@ -26,18 +28,21 @@ const PRECACHE_URLS = [
   "./0020.html",
   "./0021.html",
   "./0022.html",
+
   "./404.html",
   "./all.html",
   "./header.html",
   "./index.html",
   "./pair.html",
   "./portfolio.html",
+
   "./js/book.js",
   "./js/header.js",
   "./js/main.js",
   "./js/pair.js",
   "./js/service.js",
   "./js/version.js",
+
   "./css/font.css",
   "./css/lib.css",
   "./css/main.css",
