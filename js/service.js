@@ -1,4 +1,5 @@
-const CACHE_NAME = "site-cache-v1"; // 修改資源後可改成 v2、v3...
+const CACHE_NAME = "site-cache-v1";
+
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
   "./image/paper.png",
@@ -49,109 +50,143 @@ const PRECACHE_URLS = [
   "./css/pair.css"
 ];
 
+
+// ⭐新增：自動補齊 cache
+async function ensureCache() {
+  const cache = await caches.open(CACHE_NAME);
+
+  for (const url of PRECACHE_URLS) {
+
+    const match = await cache.match(url);
+
+    if (!match) {
+      try {
+        await cache.add(url);
+        console.log("♻️ Auto repaired cache:", url);
+      } catch (err) {
+        console.warn("❌ Repair failed:", url);
+      }
+    }
+
+  }
+}
+
+
+
+// 安裝
 self.addEventListener("install", event => {
+
   event.waitUntil(
+
     (async () => {
+
       const cache = await caches.open(CACHE_NAME);
 
       for (const url of PRECACHE_URLS) {
+
         try {
           await cache.add(url);
           console.log("✅ Cached:", url);
+
         } catch (err) {
-          console.warn("❌ Failed to cache:", url, err);
+
+          console.warn("❌ Failed:", url);
+
         }
+
       }
+
     })()
+
   );
 
   self.skipWaiting();
+
 });
 
 
-// 啟用：清除舊版快取
+
+// 啟用
 self.addEventListener("activate", event => {
+
   event.waitUntil(
+
     (async () => {
 
-      // 原本的清除舊 cache
       const keys = await caches.keys();
+
       await Promise.all(
         keys.map(key => {
-          if (key !== CACHE_NAME) return caches.delete(key);
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
         })
       );
 
-      // ⭐修改：檢查並補齊 precache（解決手機清 cache 問題）
-      const cache = await caches.open(CACHE_NAME);
+      // ⭐新增：啟動時修復 cache
+      await ensureCache();
 
-      for (const url of PRECACHE_URLS) {
-        const match = await cache.match(url);
-
-        if (!match) {
-          try {
-            await cache.add(url);
-            console.log("♻️ Re-Cached:", url); // ⭐修改
-          } catch (err) {
-            console.warn("❌ Re-cache failed:", url, err); // ⭐修改
-          }
-        }
-      }
-
-      await self.clients.claim();
+      self.clients.claim();
 
     })()
+
   );
+
 });
+
+
+
+
+// ⭐新增：背景修復（不阻塞）
+async function backgroundRepair() {
+
+  const cache = await caches.open(CACHE_NAME);
+
+  for (const url of PRECACHE_URLS) {
+
+    const match = await cache.match(url);
+
+    if (!match) {
+
+      fetch(url)
+        .then(res => {
+          if (res.ok) cache.put(url, res.clone());
+        })
+        .catch(()=>{});
+
+    }
+
+  }
+
+}
+
+
 
 
 // 攔截請求
 self.addEventListener("fetch", event => {
+
   const req = event.request;
 
-  if (req.mode === "navigate") {
-    event.respondWith(
-      (async () => {
-
-        const cache = await caches.open(CACHE_NAME); // ⭐修改
-
-        // ⭐修改：確保首頁存在
-        const indexCache = await cache.match("./");
-        if (!indexCache) {
-          try {
-            await cache.add("./");
-            console.log("♻️ Re-Cached index"); // ⭐修改
-          } catch (err) { }
-        }
-
-        const cachedPage = await caches.match(req);
-        if (cachedPage) return cachedPage;
-
-        try {
-          const networkResponse = await fetch(req);
-
-          cache.put(req, networkResponse.clone());
-
-          return networkResponse;
-        } catch (err) {
-
-          const cachedIndex = await caches.match("./");
-          return cachedIndex || await caches.match("./offline.html");
-
-        }
-      })()
-    );
-    return;
-  }
-
-  // 其他資源 → Cache First + 網路補齊
   event.respondWith(
+
     (async () => {
+
+      // ⭐新增：每次請求都輕量檢查
+      ensureCache();
+
       const cached = await caches.match(req);
 
-      if (cached) return cached;
+      if (cached) {
+
+        // ⭐新增：背景修復
+        backgroundRepair();
+
+        return cached;
+      }
 
       try {
+
         const networkResponse = await fetch(req);
 
         const cache = await caches.open(CACHE_NAME);
@@ -159,9 +194,18 @@ self.addEventListener("fetch", event => {
         cache.put(req, networkResponse.clone());
 
         return networkResponse;
+
       } catch (err) {
-        return await caches.match("./offline.html");
+
+        // ⭐新增 fallback
+        const fallback = await caches.match("./");
+
+        return fallback;
+
       }
+
     })()
+
   );
+
 });
