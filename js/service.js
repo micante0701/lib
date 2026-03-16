@@ -1,5 +1,4 @@
 const CACHE_NAME = "site-cache-v1";
-
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
   "./image/paper.png",
@@ -36,7 +35,8 @@ const PRECACHE_URLS = [
   "./index.html",
   "./pair.html",
   "./portfolio.html",
-
+  "./version.html",
+  
   "./js/book.js",
   "./js/header.js",
   "./js/main.js",
@@ -49,7 +49,6 @@ const PRECACHE_URLS = [
   "./css/main.css",
   "./css/pair.css"
 ];
-
 
 // ⭐新增：自動補齊 cache
 async function ensureCache() {
@@ -70,8 +69,6 @@ async function ensureCache() {
 
   }
 }
-
-
 
 // 安裝
 self.addEventListener("install", event => {
@@ -103,8 +100,6 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 
 });
-
-
 
 // 啟用
 self.addEventListener("activate", event => {
