@@ -1,11 +1,55 @@
 // Service Worker
+// if ("serviceWorker" in navigator) {
+//     window.addEventListener("load", () => {
+//         navigator.serviceWorker.register("service.js")
+//             .then(reg => console.log("Service Worker Registered:", reg))
+//             .catch(err => console.error("Service Worker Registration Failed:", err));
+//     });
+// }
+
+// ↑↑↑ 舊版 Service Worker ↑↑↑
+
+// ↓↓↓ 新版 Service Worker ↓↓↓
+
+// ✅ 註冊 Service Worker
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service.js")
-            .then(reg => console.log("Service Worker Registered:", reg))
-            .catch(err => console.error("Service Worker Registration Failed:", err));
-    });
+    // navigator.serviceWorker.register("./sw.js")
+  navigator.serviceWorker.register("js/service.js")
+    .then(() => console.log("SW 註冊成功"))
+    .catch(err => console.log("SW 失敗", err));
 }
+
+// ✅ 儲存閱讀狀態
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("lastPage", location.pathname);
+  localStorage.setItem("scrollY", window.scrollY);
+});
+
+// ✅ 回來時恢復（手機關鍵）
+window.addEventListener("pageshow", () => {
+  restoreState();
+});
+
+function restoreState() {
+  const scrollY = localStorage.getItem("scrollY");
+
+  if (scrollY) {
+    setTimeout(() => {
+      window.scrollTo(0, parseInt(scrollY));
+    }, 100);
+  }
+}
+
+// ✅ 首頁自動回上次閱讀
+if (location.pathname.endsWith("index.html") || location.pathname === "/") {
+  const lastPage = localStorage.getItem("lastPage");
+
+  if (lastPage && lastPage !== location.pathname) {
+    location.href = lastPage;
+  }
+}
+
+// ↑↑↑ 新版 Service Worker ↑↑↑
 
 window.onload = genTable;
 // 目錄資料陣列
