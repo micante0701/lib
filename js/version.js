@@ -1,4 +1,4 @@
-function getVersion() {
+export function getVersion() {
     return [
         ["V5.7.2", "2026/03/17", "Improve", "離線瀏覽功能加強(針對手機自動清除快取)", "", ""],
         ["V5.7.2", "2026/03/17", "fix", "V5.5.2產生的首頁離線瀏覽失效修復", "", ""],
@@ -53,7 +53,7 @@ function getVersion() {
 }
 function renderChangelog() {
     const rawData = getVersion();
-    const container = document.getElementById('changelog-container');
+    const container = document.getElementById('versionID');
 
     // 1. 資料處理：按「版本號」群組化
     const groupedByVersion = rawData.reduce((acc, curr) => {
