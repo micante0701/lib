@@ -14,7 +14,7 @@
 // ✅ 註冊 Service Worker
 if ("serviceWorker" in navigator) {
     // navigator.serviceWorker.register("./sw.js")
-  navigator.serviceWorker.register("js/service.js")
+  navigator.serviceWorker.register("js/service.js", { scope: '/' })
     .then(() => console.log("SW 註冊成功"))
     .catch(err => console.log("SW 失敗", err));
 }
