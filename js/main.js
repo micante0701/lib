@@ -68,29 +68,37 @@ function genTable() {
 
 window.addEventListener("resize", genTable);
 
+import { getVersion } from './version.js';
 
-function getVersion() {
-    return [
-        ["0000", "歧路指歸", "本站依當年出版品(共3種互相校對)人工抄錄", "2025-09-25", "2025-10-23"],
-        ["0001", "大正新脩大藏經 第 12 冊 No. 366 佛說阿彌陀經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0366"],
-        ["0002", "大正新脩大藏經 第 12 冊 No. 365 佛說觀無量壽佛經", "2025-08", "2025-03-06", "https://cbetaonline.dila.edu.tw/zh/T0365 "],
-        ["0003", "大正新脩大藏經 第 12 冊 No. 360 佛說無量壽經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0360"],
-        ["0004", "大乘無量壽經白話", "黃念老法音網站", "http://huangnianlao.net/?page_id=9148", ""],
-        ["0005", "卍新纂大日本續藏經 第 22 冊 No. 424 阿彌陀經疏鈔", "2025-08", "2025-02-24", "https://cbetaonline.dila.edu.tw/zh/X0424"],
-        ["0006", "無量壽經甄解", "臺中蓮社", "https://tclotus.net/tcbl/99move/read/Wujing/2/02/fd000001.htm", ""],
-        ["0007", "大正新脩大藏經 第 11 冊 No. 310 大寶積經", "2025-08", "2025-07-02", "https://cbetaonline.dila.edu.tw/zh/T0310"],
-        ["0008", "大正新脩大藏經 第 32 冊 No. 1666 大乘起信論", "2025-08", "2025-07-02", "https://cbetaonline.dila.edu.tw/zh/T1666"],
-        ["0009", "大正新脩大藏經 第 30 冊 No. 1568 十二門論", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T1568"],
-        ["0010", "大正新脩大藏經 第 12 冊 No. 367 稱讚淨土佛攝受經", "2025-08", "2025-02-03", "https://cbetaonline.dila.edu.tw/zh/T12n0367"],
-        ["0011", "大正新脩大藏經 第 8 冊 No. 235 金剛般若波羅蜜經", "2025-08", "2025-02-03", "https://cbetaonline.dila.edu.tw/T0235"],
-        ["0012", "大正新脩大藏經 第 16 冊 No. 680 佛說佛地經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T1530"],
-        ["0013", "大正新脩大藏經 第 26 冊 No. 1530 佛地經論", "2025-08", "2025-01-30","https://cbetaonline.dila.edu.tw/zh/T1530"],
-        ["0014", "大正新脩大藏經 第 12 冊 No. 364 佛說大阿彌陀經", "2025-08", "2025-01-30","https://cbetaonline.dila.edu.tw/zh/T0364"],
-        ["0015", "大正新脩大藏經 第 12 冊 No. 361 佛說無量清淨平等覺經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0361"],
-        ["0016", "大正新脩大藏經 第 12 冊 No. 362 佛說阿彌陀三耶三佛薩樓佛檀過度人道經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0362"],
-        ["0017", "大正新脩大藏經 第 12 冊 No. 363 佛說大乘無量壽莊嚴經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0363"],
-        ["0018", "佛說無量壽經講記", "道源長老", "", ""],
-        ["0019", "轉經行道願往生淨土法事讚", "沙門善導集記", "", ""],
-        ["0", "", "", "", ""]
-    ]
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const latestVersion = getVersion()[0][0]; // 取第一筆的版本號
+    const link = document.getElementById("versionID");
+    link.textContent = latestVersion; // 更新文字
+});
+
+// function getVersion() {
+//     return [
+//         ["0000", "歧路指歸", "本站依當年出版品(共3種互相校對)人工抄錄", "2025-09-25", "2025-10-23"],
+//         ["0001", "大正新脩大藏經 第 12 冊 No. 366 佛說阿彌陀經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0366"],
+//         ["0002", "大正新脩大藏經 第 12 冊 No. 365 佛說觀無量壽佛經", "2025-08", "2025-03-06", "https://cbetaonline.dila.edu.tw/zh/T0365 "],
+//         ["0003", "大正新脩大藏經 第 12 冊 No. 360 佛說無量壽經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0360"],
+//         ["0004", "大乘無量壽經白話", "黃念老法音網站", "http://huangnianlao.net/?page_id=9148", ""],
+//         ["0005", "卍新纂大日本續藏經 第 22 冊 No. 424 阿彌陀經疏鈔", "2025-08", "2025-02-24", "https://cbetaonline.dila.edu.tw/zh/X0424"],
+//         ["0006", "無量壽經甄解", "臺中蓮社", "https://tclotus.net/tcbl/99move/read/Wujing/2/02/fd000001.htm", ""],
+//         ["0007", "大正新脩大藏經 第 11 冊 No. 310 大寶積經", "2025-08", "2025-07-02", "https://cbetaonline.dila.edu.tw/zh/T0310"],
+//         ["0008", "大正新脩大藏經 第 32 冊 No. 1666 大乘起信論", "2025-08", "2025-07-02", "https://cbetaonline.dila.edu.tw/zh/T1666"],
+//         ["0009", "大正新脩大藏經 第 30 冊 No. 1568 十二門論", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T1568"],
+//         ["0010", "大正新脩大藏經 第 12 冊 No. 367 稱讚淨土佛攝受經", "2025-08", "2025-02-03", "https://cbetaonline.dila.edu.tw/zh/T12n0367"],
+//         ["0011", "大正新脩大藏經 第 8 冊 No. 235 金剛般若波羅蜜經", "2025-08", "2025-02-03", "https://cbetaonline.dila.edu.tw/T0235"],
+//         ["0012", "大正新脩大藏經 第 16 冊 No. 680 佛說佛地經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T1530"],
+//         ["0013", "大正新脩大藏經 第 26 冊 No. 1530 佛地經論", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T1530"],
+//         ["0014", "大正新脩大藏經 第 12 冊 No. 364 佛說大阿彌陀經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0364"],
+//         ["0015", "大正新脩大藏經 第 12 冊 No. 361 佛說無量清淨平等覺經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0361"],
+//         ["0016", "大正新脩大藏經 第 12 冊 No. 362 佛說阿彌陀三耶三佛薩樓佛檀過度人道經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0362"],
+//         ["0017", "大正新脩大藏經 第 12 冊 No. 363 佛說大乘無量壽莊嚴經", "2025-08", "2025-01-30", "https://cbetaonline.dila.edu.tw/zh/T0363"],
+//         ["0018", "佛說無量壽經講記", "道源長老", "", ""],
+//         ["0019", "轉經行道願往生淨土法事讚", "沙門善導集記", "", ""],
+//         ["0", "", "", "", ""]
+//     ]
+// }
+
