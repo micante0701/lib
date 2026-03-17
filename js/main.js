@@ -68,7 +68,7 @@ function genTable() {
 
 window.addEventListener("resize", genTable);
 
-import { getVersion } from '/version.js';
+import { getVersion } from './version.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const latestVersion = getVersion()[0][0]; // 取第一筆的版本號
