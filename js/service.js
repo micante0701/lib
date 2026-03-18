@@ -2,7 +2,7 @@ const CACHE_NAME = "library-cache-v1";
 const ASSETS = [
   "./",
   "/image/paper.png",
-  "/image/amitabha.icon",
+  "/image/amitabha.png",
   "/font/f0001.woff",
   "/font/f0002.woff",
   
