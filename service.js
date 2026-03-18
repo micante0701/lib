@@ -5,6 +5,7 @@ const PRECACHE_URLS = [
   "./image/amitabha.png",
   "./font/f0001.woff",
   "./font/f0002.woff",
+
   "./0000.html",
   "./0001.html",
   "./0002.html",
@@ -34,16 +35,19 @@ const PRECACHE_URLS = [
   "./pair.html",
   "./portfolio.html",
   "./version.html",
+
+  "./service.js",
   "./js/book.js",
   "./js/header.js",
   "./js/main.js",
   "./js/pair.js",
-  "./js/service.js",
   "./js/version.js",
+
   "./css/font.css",
   "./css/lib.css",
   "./css/main.css",
-  "./css/pair.css"
+  "./css/pair.css",
+  "./css/version.css"
 ];
 
 self.addEventListener("install", event => {
