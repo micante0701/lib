@@ -67,27 +67,6 @@ h5 {
     /* 中間佔 2 份 */
 }
 
-.icontainer {
-    height: 80vh;
-    /* 高度為螢幕的 80% */
-}
-
-.container iframe {
-    flex: 1;
-    /* 平分寬度 (各 50%) */
-    border: none;
-    /* 移除邊框 */
-}
-
-/* ↑↑↑ div容器設定 ↑↑↑ */
-.textMid {
-    display: flex;
-    justify-content: center;
-    /* 水平置中 */
-    align-items: center;
-    /* 垂直置中 */
-}
-
 /* ↓↓↓ 文本控制 ↓↓↓ */
 .content p {
     /* 首段空2格 */
@@ -100,12 +79,6 @@ h5 {
     text-indent: 0;
 }
 
-.content p.originTextHymn {
-    text-indent: 0;
-    text-align: center;
-    background-color: burlywood;
-}
-
 .content p.bookNames {
     text-indent: 0;
     text-align: center;
@@ -116,42 +89,51 @@ h5 {
     background-color: lightblue;
 }
 
-.content p.addSubtitle1 {
+.content p.originTextHymn {
+    text-indent: 0;
+    text-align: center;
+    background-color: burlywood;
+    padding: 20px;
+}
+
+.originText {
+    background-color: burlywood;
+    padding: 20px;
+}
+
+.content p.addSubtitle1,
+.content p.addSubtitle2,
+.content p.addSubtitle3,
+.content p.addSubtitle4,
+.content p.addSubtitle5 {
     text-indent: 0em;
     background-color: lightblue;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.content p.addSubtitle1 {
     padding-left: 1rem;
 }
 
 .content p.addSubtitle2 {
-    text-indent: 0em;
-    background-color: lightblue;
     padding-left: 3rem;
 }
 
 .content p.addSubtitle3 {
-    text-indent: 0em;
-    background-color: lightblue;
     padding-left: 5rem;
 }
 
 .content p.addSubtitle4 {
-    text-indent: 0em;
-    background-color: lightblue;
     padding-left: 7rem;
 }
 
 .content p.addSubtitle5 {
-    text-indent: 0em;
-    background-color: lightblue;
     padding-left: 9rem;
 }
 
 .content p.none {
     text-indent: 0em;
-}
-
-.originText {
-    background-color: burlywood;
 }
 
 .addText {
@@ -178,13 +160,7 @@ a:visited {
     /* 已訪問過的連結顏色，設成和未訪問相同 */
 }
 
-
-
-
-
-
 /* ★★★ 彈出功能CSS區 ★★★ */
-
 /* 設定內部框 */
 /* 覆蓋層的樣式 */
 
