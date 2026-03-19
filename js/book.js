@@ -125,21 +125,127 @@ function changeFontSize(delta) {
     });
 }
 
+
+// V5.7.3以前的版本
+
 /* 針對<h5>產生目錄標題 */
+// const toc = document.getElementById("toc");
+// document.querySelectorAll("h5").forEach((h, i) => {
+//     const id = "section-" + i;
+//     h.id = id;
+
+//     const option = document.createElement("option");
+//     option.value = id;
+//     option.textContent = h.textContent; // 顯示整個 h5 文字
+//     toc.appendChild(option);
+// });
+
+// 當使用者選擇章節時，跳到對應位置
+// toc.addEventListener("change", function () {
+//     if (this.value) {
+//         document.getElementById(this.value).scrollIntoView({ behavior: "smooth" });
+//     }
+// });
+
+/* 取得元素 */
 const toc = document.getElementById("toc");
-document.querySelectorAll("h5").forEach((h, i) => {
+const headings = document.querySelectorAll("h5");
+const btnUp = document.getElementById("btnPos2");
+const btnDown = document.getElementById("btnPos3");
+
+/* 建立目錄 */
+headings.forEach((h, i) => {
     const id = "section-" + i;
     h.id = id;
 
     const option = document.createElement("option");
     option.value = id;
-    option.textContent = h.textContent; // 顯示整個 h5 文字
+    option.textContent = h.textContent;
     toc.appendChild(option);
 });
 
-// 當使用者選擇章節時，跳到對應位置
+/* ===== 功能1：滾動同步選單 ===== */
+function updateTOCOnScroll() {
+    let currentIndex = -1;
+
+    headings.forEach((h, i) => {
+        const rect = h.getBoundingClientRect();
+
+        // 找最接近畫面頂部但還沒超過太多的
+        if (rect.top <= 100) {
+            currentIndex = i;
+        }
+    });
+
+    if (currentIndex >= 0) {
+        toc.value = "section-" + currentIndex;
+    } else {
+        toc.value = ""; // 在第一個章節上方
+    }
+}
+
+window.addEventListener("scroll", updateTOCOnScroll);
+
+
+/* ===== 功能2：select 點擊跳轉 ===== */
 toc.addEventListener("change", function () {
     if (this.value) {
-        document.getElementById(this.value).scrollIntoView({ behavior: "smooth" });
+        document.getElementById(this.value)
+            .scrollIntoView({ behavior: "smooth" });
+    }
+});
+
+
+/* ===== 工具：取得目前所在章節 index ===== */
+function getCurrentIndex() {
+    let index = -1;
+
+    headings.forEach((h, i) => {
+        const rect = h.getBoundingClientRect();
+        if (rect.top <= 100) {
+            index = i;
+        }
+    });
+
+    return index;
+}
+
+
+/* ===== ↑ 按鈕 ===== */
+btnUp.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const current = getCurrentIndex();
+
+    if (current > 0) {
+        // 上一個章節
+        headings[current - 1].scrollIntoView({ behavior: "smooth" });
+    } else {
+        // 最頂部
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+});
+
+
+/* ===== ↓ 按鈕 ===== */
+btnDown.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const current = getCurrentIndex();
+
+    if (current === -1) {
+        // 還在第一個章節上方 → 去第一個
+        headings[0].scrollIntoView({ behavior: "smooth" });
+
+    } else if (current < headings.length - 1) {
+        // 下一個章節
+        headings[current + 1].scrollIntoView({ behavior: "smooth" });
+
+    } else {
+        // 最底部
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
     }
 });
