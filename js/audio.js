@@ -1,0 +1,38 @@
+(function () {
+    const player = document.getElementById("musicPlayer");
+
+    // 👉 只在 player 裡面找元素（關鍵）
+    const audio = player.querySelector(".bgm");
+    const playBtn = player.querySelector(".playBtn");
+    const muteBtn = player.querySelector(".muteBtn");
+    const volumeControl = player.querySelector(".volumeControl");
+    const status = player.querySelector(".status");
+
+    // 初始化音量
+    audio.volume = 0.5;
+    volumeControl.value = 0.5;
+
+    // 播放 / 暫停
+    playBtn.addEventListener("click", async () => {
+        if (audio.paused) {
+            await audio.play();
+            playBtn.textContent = "⏸";
+            status.textContent = "播放中";
+        } else {
+            audio.pause();
+            playBtn.textContent = "▶";
+            status.textContent = "已暫停";
+        }
+    });
+
+    // 靜音
+    muteBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        muteBtn.textContent = audio.muted ? "🔇" : "🔊";
+    });
+
+    // 音量
+    volumeControl.addEventListener("input", () => {
+        audio.volume = volumeControl.value;
+    });
+})();
