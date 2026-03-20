@@ -3,11 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="revised" content="2025/11/03">
+    <meta name="description" content="大乘起信論">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大乘起信論</title>
+    <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
     <link rel="stylesheet" href="css/lib.css">
+    <link rel="stylesheet" href="css/audio.css">
     <script src="js/book.js" defer></script>
+    <script src="js/audio.js" defer></script>
+    <!-- <script src="header.js" defer></script> -->
 </head>
 
 <body>
@@ -22,6 +26,17 @@
                 <a href="index.html">回首頁</a>
             </p>
             <p>
+                <span>背景音</span>
+                <div class="player" id="musicPlayer">
+                    <button class="playBtn">▶</button>
+                    <button class="muteBtn">🔊</button>
+                    <span class="status">已暫停</span>
+                    <input type="range" class="volumeControl" min="0" max="1" step="0.01">
+                    <audio class="bgm" loop>
+                        <source src="assets/audio/amitabha.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <br>
                 <span>護眼模式</span>
                 <br>
                 <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
