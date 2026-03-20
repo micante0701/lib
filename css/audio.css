@@ -1,6 +1,7 @@
 .player {
     display: flex;
-    align-items: center;
+    /* 水平置中 */
+    margin: 0 auto;
     gap: 10px;
     background: #222;
     color: white;
