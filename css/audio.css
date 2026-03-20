@@ -1,0 +1,27 @@
+.player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #222;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.player button {
+    background: #444;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.player button:hover {
+    background: #666;
+}
+
+.player input[type="range"] {
+    width: 100px;
+}
