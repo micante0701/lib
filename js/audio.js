@@ -13,20 +13,21 @@
     volumeControl.value = 0.5;
 
     // 播放 / 暫停
-    playBtn.addEventListener("click", async () => {
-        try {
-            if (audio.paused) {
-                await audio.play();
-                playBtn.textContent = "⏸";
-                status.textContent = "播放中";
-            } else {
-                audio.pause();
-                playBtn.textContent = "▶";
-                status.textContent = "已暫停";
-            }
-        } catch (err) {
-            console.error("播放失敗:", err);
-            status.textContent = "播放失敗";
+    playBtn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play()
+                .then(() => {
+                    playBtn.textContent = "⏸";
+                    status.textContent = "播放中";
+                })
+                .catch((err) => {
+                    console.error("播放失敗:", err);
+                    status.textContent = "播放被阻擋";
+                });
+        } else {
+            audio.pause();
+            playBtn.textContent = "▶";
+            status.textContent = "已暫停";
         }
     });
 
