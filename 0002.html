@@ -32,30 +32,34 @@
     <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
     <div id="overlay" class="overlay" onclick="closePopup(event)">
-        <span id="toolbox">
+        <span id="toolbox" class="overlay-content">
             <p>
                 <a href="index.html">回首頁</a>
             </p>
             <p>
-                
-                <br>
-                <span>護眼模式</span>
-                <br>
-                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
-                <br>
-                <span>文字大小</span>
-                <br>
-                <span>
-                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
-                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
-                </span>
-                <br>
-                <label for="toc">章節目錄</label>
-                <br>
-                <select id="toc">
-                    <option value="">-- 請選擇 --</option>
-                </select>
-                <br>
+            <figure>
+                <figcaption>背景音</figcaption>
+                <audio controls
+                    src="https://tw2.hwadzan.info/media/mp3/61/61-075/61-075-0001.mp3"></audio>
+            </figure>
+            <br>
+            <span>護眼模式</span>
+            <br>
+            <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+            <br>
+            <span>文字大小</span>
+            <br>
+            <span>
+                <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+            </span>
+            <br>
+            <label for="toc">章節目錄</label>
+            <br>
+            <select id="toc">
+                <option value="">-- 請選擇 --</option>
+            </select>
+            <br>
             </p>
             <p>
                 <a href="pair.html">雙頁對照檢視</a>
