@@ -76,19 +76,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const volumeControl = player.querySelector(".volumeControl");
     const audio = player.querySelector(".bgm");
 
-    // 初始化音量
+    // 初始化音量與靜音狀態
+    audio.muted = false;
     audio.volume = 0.5;
     volumeControl.value = audio.volume;
 
     // 播放 / 暫停
     playBtn.addEventListener("click", function () {
         if (audio.paused) {
-            // 行動裝置需要使用者互動才能播放
             audio.play().then(() => {
                 status.textContent = "播放中";
                 playBtn.textContent = "⏸";
             }).catch(err => {
                 console.log("播放失敗，可能被瀏覽器阻擋：", err);
+                alert("行動裝置可能阻擋了自動播放，請再點一次播放鍵。");
             });
         } else {
             audio.pause();
@@ -106,9 +107,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // 音量控制
     volumeControl.addEventListener("input", function () {
         audio.volume = this.value;
+        if (audio.volume === 0) {
+            muteBtn.textContent = "🔇";
+        } else {
+            muteBtn.textContent = audio.muted ? "🔇" : "🔊";
+        }
     });
 
-    // 當播放狀態改變時更新顯示
+    // 狀態同步
     audio.addEventListener("play", () => {
         status.textContent = "播放中";
         playBtn.textContent = "⏸";
