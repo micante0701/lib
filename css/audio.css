@@ -1,28 +1,43 @@
-.player {
-    display: flex;
-    /* 水平置中 */
-    margin: 0 auto;
-    gap: 10px;
-    background: #222;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    width: fit-content;
+figure {
+    width: 80%;
+    margin: 0px auto;
+    padding: 8px 16px;
+    border-radius: 14px;
+    background: #fff8dc; /* 淡奶油色 */
+    border: 2px solid #f4d35e;
+    box-shadow: 0 6px 0 #e6c84f; /* 偽立體感 */
+    text-align: center;
+    transition: all 0.2s ease;
 }
 
-.player button {
-    background: #444;
-    border: none;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
+/* 按壓感效果 */
+figure:hover {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #e6c84f;
 }
 
-.player button:hover {
-    background: #666;
+/* 標題 */
+figcaption {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8a6d1d;
+    margin-bottom: 12px;
+    /* letter-spacing: 1px; */
 }
 
-.player input[type="range"] {
-    width: 100px;
+/* 音訊播放器 */
+audio {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* 裝飾線 */
+figure::after {
+    /* content: ""; */
+    display: block;
+    /* margin: 12px auto 0; */
+    /* width: 40%; */
+    /* height: 4px; */
+    border-radius: 2px;
+    /* background: linear-gradient(to right, #f4d35e, #ee964b); */
 }
