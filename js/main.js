@@ -1,4 +1,10 @@
+// 引入Service Worker
+import { registerServiceWorker } from "./service-worker.js";
+registerServiceWorker();
+
+// 進入頁面啟動：genTable()：產生目錄
 window.onload = genTable;
+
 // 目錄資料陣列
 function getNames() {
     return [

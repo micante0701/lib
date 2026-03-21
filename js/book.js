@@ -1,3 +1,7 @@
+// 引入Service Worker
+import { registerServiceWorker } from "./service-worker.js";
+registerServiceWorker();
+
 // 抓<h1>當<title>的標題
 document.title = document.querySelector("h1").textContent;
 
