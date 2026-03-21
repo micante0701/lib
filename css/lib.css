@@ -9,6 +9,43 @@
     font-weight: bold;
 } */
 
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+/* ↓↓↓ 字型設定 ↓↓↓ */
+body {
+    font-family: "CustomFont", "myFont", "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: local("DFKai-SB"), local("標楷體");
+    unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: local("Arial");
+    unicode-range: U+0020-007F;
+}
+
+@font-face {
+    font-family: 'myFont';
+    src: url('../assets/fonts/f0001.woff') format('woff');
+    unicode-range: U+249B2;
+}
+
+@font-face {
+    font-family: 'myFont';
+    src: url('../assets/fonts/f0002.woff') format('woff');
+    unicode-range: U+207C3;
+}
+
+/* ↑↑↑ 字型設定 ↑↑↑ */
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+/* ↓↓↓ 基本標籤設定 ↓↓↓ */
+
 html {
     /* 卷軸移動 */
     scroll-behavior: smooth;
@@ -50,7 +87,12 @@ h5 {
     font-size: 2rem;
 }
 
+/* ↑↑↑ 基本標籤設定 ↑↑↑ */
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
 /* ↓↓↓ div容器設定 ↓↓↓ */
+
 .container {
     display: flex;
     width: 100%;
@@ -67,7 +109,18 @@ h5 {
     /* 中間佔 2 份 */
 }
 
+#bottom {
+    text-align: center;
+}
+
+/* .sizeDown {
+    font-size: 1.5rem;
+} */
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
 /* ↓↓↓ 文本控制 ↓↓↓ */
+
 .content p {
     /* 首段空2格 */
     text-indent: 2em;
@@ -142,15 +195,10 @@ h5 {
 }
 
 /* ↑↑↑ 文本控制 ↑↑↑ */
-#bottom {
-    text-align: center;
-}
 
-.sizeDown {
-    font-size: 1.5rem;
-}
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
 
-/* 超連結設定 */
+/* ↓↓↓ 文字超連結設定 ↓↓↓ */
 a {
     text-decoration: none;
 }
@@ -160,7 +208,12 @@ a:visited {
     /* 已訪問過的連結顏色，設成和未訪問相同 */
 }
 
-/* ★★★ 彈出功能CSS區 ★★★ */
+/* ↑↑↑ 文字超連結設定 ↑↑↑ */
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+/* ↓↓↓ Overlay相關設定 ↓↓↓ */
+
 /* 設定內部框 */
 /* 覆蓋層的樣式 */
 
@@ -223,9 +276,11 @@ span {
     text-align: center;
 }
 
-/* ↑↑↑ ★ 彈出功能CSS區 ★ ↑↑↑ */
+/* ↑↑↑ Overlay相關設定 ↑↑↑ */
 
-/* ↓↓↓ 捲軸 ↓↓↓ */
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+/* ↓↓↓ Overlay捲軸 ↓↓↓ */
 
 .overlay-content {
     /* Firefox 專用 */
@@ -261,7 +316,57 @@ span {
     /* 滑過時顏色 */
 }
 
-/* ↑↑↑ 捲軸 ↑↑↑ */
+/* ↑↑↑ Overlay捲軸 ↑↑↑ */
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+/* ↓↓↓ 音訊 ↓↓↓ */
+
+figure {
+    width: 80%;
+    margin: 0px auto;
+    padding: 8px 16px;
+    border-radius: 14px;
+    background: #fff8dc; /* 淡奶油色 */
+    border: 2px solid #f4d35e;
+    box-shadow: 0 6px 0 #e6c84f; /* 偽立體感 */
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+/* 按壓感效果 */
+figure:hover {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #e6c84f;
+}
+
+/* 標題 */
+figcaption {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8a6d1d;
+    margin-bottom: 12px;
+    /* letter-spacing: 1px; */
+}
+
+/* 音訊播放器 */
+audio {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* 裝飾線 */
+figure::after {
+    /* content: ""; */
+    display: block;
+    /* margin: 12px auto 0; */
+    /* width: 40%; */
+    /* height: 4px; */
+    border-radius: 2px;
+    /* background: linear-gradient(to right, #f4d35e, #ee964b); */
+}
+
+/* ↑↑↑ 音訊 ↑↑↑ */
 
 .navigation {
     display: flex;
@@ -391,33 +496,3 @@ span {
     }
 }
 
-/* ↓↓↓ 字型設定 ↓↓↓ */
-body {
-    font-family: "CustomFont", "myFont", "標楷體", "DFKai-SB", "BiauKai", "Noto Serif TC", "Noto Serif CJK SC";
-}
-
-@font-face {
-    font-family: "CustomFont";
-    src: local("DFKai-SB"), local("標楷體");
-    unicode-range: U+4E00-9FFF;
-}
-
-@font-face {
-    font-family: "CustomFont";
-    src: local("Arial");
-    unicode-range: U+0020-007F;
-}
-
-@font-face {
-    font-family: 'myFont';
-    src: url('../assets/fonts/f0001.woff') format('woff');
-    unicode-range: U+249B2;
-}
-
-@font-face {
-    font-family: 'myFont';
-    src: url('../assets/fonts/f0002.woff') format('woff');
-    unicode-range: U+207C3;
-}
-
-/* ↑↑↑ 字型設定 ↑↑↑ */
