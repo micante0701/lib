@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="revised" content="2025/10/23">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測試文本</title>
+    <link rel="stylesheet" href="css/lib.css">
+    <link rel="stylesheet" href="css/audio.css">
+    <script src="js/book.js" defer></script>
+    <script src="js/audio.js" defer></script>
+
+</head>
+
+<body>
+    <!-- <div id="header">
+    </div> -->
+    <div>
+        <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    </div>
+    <div style="text-align: center;">
+        <span>背景音</span>
+        <div class="player" id="musicPlayer">
+            <button class="playBtn">▶</button>
+            <button class="muteBtn">🔊</button>
+            <span class="status">已暫停</span>
+            <input type="range" class="volumeControl" min="0" max="1" step="0.01">
+            <audio class="bgm" loop>
+                <source src="https://tw2.hwadzan.info/media/mp3/61/61-075/61-075-0001.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox">
+            <p>
+                <a href="index.html">回首頁</a>
+            </p>
+            <p>
+                <span>護眼模式</span>
+                <br>
+                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+                </span>
+                <br>
+                <label for="toc">章節目錄</label>
+                <br>
+                <select id="toc">
+                    <option value="">-- 請選擇 --</option>
+                </select>
+                <br>
+            </p>
+            <p>
+                <a href="pair.html">雙頁對照檢視</a>
+            </p>
+        </span>
+    </div>
+    <div id="top">
+        <h1>星辰之約</h1>
+        <h3>摳派樂</h3>
+    </div>
+    <div class="container">
+        <div class="left"></div>
+        <div class="center">
+            <div class="content">
+                <h5>章節一</h5>
+                <p>在遙遠的「銀月大陸」上，傳說有一座漂浮於天空的城堡，名為「星辰之塔」。這座塔由古老的魔法支撐，只有心懷純淨願望的人才能踏入。年輕的冒險者莉雅自小聽聞此傳說，她的村莊長年遭受黑霧侵襲，農作物枯萎，百姓陷入絕望。莉雅決心尋找星辰之塔，因為據說塔中藏有「光之心石」，能驅散一切黑暗。她背起行囊，踏上旅途。途中，她遇見一位神秘的吟遊詩人，詩人告訴她：「星辰之塔的門，唯有勇氣與慈悲能打開。」這句話成為她心中的指引。
+                </p>
+                <h5>章節二</h5>
+                <p>旅途並不平靜。莉雅穿越了「迷霧森林」，那裡的樹木會低語，試圖混淆旅人的心智。她幾度迷失方向，甚至差點陷入幻境，永遠無法醒來。幸好，她憶起村民的笑容與期盼，心中燃起堅定的信念，才得以走出幻境。接著，她來到「鏡湖」，湖面如水晶般清澈，卻映照出她最深的恐懼：孤獨、失敗、無力。莉雅鼓起勇氣，直視湖中的自己，並低聲說：「我不會退縮，因為我背負著希望。」湖面隨即破碎，化為一道光橋，引領她前往天空。
+                </p>
+                <h5>章節三</h5>
+                <p>當莉雅抵達星辰之塔時，塔門緊閉，周圍環繞著無數星光幻影。她聽見低沉的聲音：「欲入此塔，須以心證。」幻影化為試煉，考驗她的慈悲。她看見一群幻象村民在黑霧中痛苦掙扎，若她選擇獨自前行，便能輕易通過；但若她停下腳步幫助他們，則可能永遠困於幻境。莉雅毫不猶豫地伸手，將光芒注入幻象村民的心中。她的慈悲化為力量，幻象消散，塔門緩緩打開。她走入塔中，看見中央懸浮著「光之心石」，散發著溫暖的光。
+                </p>
+                <h5>章節四</h5>
+                <p>莉雅雙手捧起心石，瞬間感受到無窮的力量流入體內。她並未將力量據為己有，而是將其化為一道光雨，灑向大地。黑霧逐漸退散，村莊重獲生機，花草再度綻放。村民們驚喜地望著天空，讚頌她的勇氣與慈悲。莉雅明白，真正的力量並非來自心石，而是來自她願意為他人付出的心。星辰之塔在完成使命後，逐漸隱沒於雲端，只留下閃爍的星光。莉雅回到村莊，成為守護者，並將「星辰之約」傳頌下去：只要心懷勇氣與慈悲，黑暗終將退散，光明永不熄滅。
+                </p>
+                <h5>章節五</h5>
+                <p>在遙遠的「銀月大陸」上，傳說有一座漂浮於天空的城堡，名為「星辰之塔」。這座塔由古老的魔法支撐，只有心懷純淨願望的人才能踏入。年輕的冒險者莉雅自小聽聞此傳說，她的村莊長年遭受黑霧侵襲，農作物枯萎，百姓陷入絕望。莉雅決心尋找星辰之塔，因為據說塔中藏有「光之心石」，能驅散一切黑暗。她背起行囊，踏上旅途。途中，她遇見一位神秘的吟遊詩人，詩人告訴她：「星辰之塔的門，唯有勇氣與慈悲能打開。」這句話成為她心中的指引。
+                </p>
+                <h5>章節六</h5>
+                <p>旅途並不平靜。莉雅穿越了「迷霧森林」，那裡的樹木會低語，試圖混淆旅人的心智。她幾度迷失方向，甚至差點陷入幻境，永遠無法醒來。幸好，她憶起村民的笑容與期盼，心中燃起堅定的信念，才得以走出幻境。接著，她來到「鏡湖」，湖面如水晶般清澈，卻映照出她最深的恐懼：孤獨、失敗、無力。莉雅鼓起勇氣，直視湖中的自己，並低聲說：「我不會退縮，因為我背負著希望。」湖面隨即破碎，化為一道光橋，引領她前往天空。
+                </p>
+                <h5>章節七</h5>
+                <p>當莉雅抵達星辰之塔時，塔門緊閉，周圍環繞著無數星光幻影。她聽見低沉的聲音：「欲入此塔，須以心證。」幻影化為試煉，考驗她的慈悲。她看見一群幻象村民在黑霧中痛苦掙扎，若她選擇獨自前行，便能輕易通過；但若她停下腳步幫助他們，則可能永遠困於幻境。莉雅毫不猶豫地伸手，將光芒注入幻象村民的心中。她的慈悲化為力量，幻象消散，塔門緩緩打開。她走入塔中，看見中央懸浮著「光之心石」，散發著溫暖的光。
+                </p>
+                <h5>章節八</h5>
+                <p>莉雅雙手捧起心石，瞬間感受到無窮的力量流入體內。她並未將力量據為己有，而是將其化為一道光雨，灑向大地。黑霧逐漸退散，村莊重獲生機，花草再度綻放。村民們驚喜地望著天空，讚頌她的勇氣與慈悲。莉雅明白，真正的力量並非來自心石，而是來自她願意為他人付出的心。星辰之塔在完成使命後，逐漸隱沒於雲端，只留下閃爍的星光。莉雅回到村莊，成為守護者，並將「星辰之約」傳頌下去：只要心懷勇氣與慈悲，黑暗終將退散，光明永不熄滅。
+                </p>
+            </div>
+        </div>
+        <div class="right"></div>
+    </div>
+    <div id="bottom"><a href="#top">回到頂部</a></div>
+
+
+</body>
+
+</html>
