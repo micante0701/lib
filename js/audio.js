@@ -14,14 +14,19 @@
 
     // 播放 / 暫停
     playBtn.addEventListener("click", async () => {
-        if (audio.paused) {
-            await audio.play();
-            playBtn.textContent = "⏸";
-            status.textContent = "播放中";
-        } else {
-            audio.pause();
-            playBtn.textContent = "▶";
-            status.textContent = "已暫停";
+        try {
+            if (audio.paused) {
+                await audio.play();
+                playBtn.textContent = "⏸";
+                status.textContent = "播放中";
+            } else {
+                audio.pause();
+                playBtn.textContent = "▶";
+                status.textContent = "已暫停";
+            }
+        } catch (err) {
+            console.error("播放失敗:", err);
+            status.textContent = "播放失敗";
         }
     });
 
