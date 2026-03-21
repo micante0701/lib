@@ -14,18 +14,37 @@
 
     // 播放 / 暫停
     playBtn.addEventListener("click", () => {
-        if (audio.paused) {
-            const playPromise = audio.play();
+        if (!unlocked) {
+            // 👉 第一次點擊：強制解鎖音訊
+            audio.muted = true;
 
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    playBtn.textContent = "⏸";
-                    status.textContent = "播放中";
-                }).catch(err => {
-                    console.error(err);
-                    status.textContent = "播放被阻擋";
-                });
-            }
+            audio.play().then(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.muted = false;
+                unlocked = true;
+
+                // 👉 解鎖後「立刻播放」
+                return audio.play();
+            }).then(() => {
+                playBtn.textContent = "⏸";
+                status.textContent = "播放中";
+            }).catch(err => {
+                console.error(err);
+                status.textContent = "播放被阻擋";
+            });
+
+            return;
+        }
+
+        // 👉 正常播放流程（第二次之後）
+        if (audio.paused) {
+            audio.play().then(() => {
+                playBtn.textContent = "⏸";
+                status.textContent = "播放中";
+            }).catch(err => {
+                status.textContent = "播放被阻擋";
+            });
         } else {
             audio.pause();
             playBtn.textContent = "▶";
