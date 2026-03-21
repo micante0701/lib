@@ -1,6 +1,14 @@
 // 引入Service Worker
-import { registerServiceWorker } from "./service-worker.js";
-registerServiceWorker();
+// import { registerServiceWorker } from "./service-worker.js";
+// registerServiceWorker();
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service.js")
+            .then(reg => console.log("Service Worker Registered:", reg))
+            .catch(err => console.error("Service Worker Registration Failed:", err));
+    });
+}
 
 // 抓<h1>當<title>的標題
 document.title = document.querySelector("h1").textContent;
