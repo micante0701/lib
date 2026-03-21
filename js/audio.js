@@ -15,21 +15,40 @@
     // 播放 / 暫停
     playBtn.addEventListener("click", () => {
         if (audio.paused) {
-            audio.play()
-                .then(() => {
+            const playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
                     playBtn.textContent = "⏸";
                     status.textContent = "播放中";
-                })
-                .catch((err) => {
-                    console.error("播放失敗:", err);
+                }).catch(err => {
+                    console.error(err);
                     status.textContent = "播放被阻擋";
                 });
+            }
         } else {
             audio.pause();
             playBtn.textContent = "▶";
             status.textContent = "已暫停";
         }
     });
+    // playBtn.addEventListener("click", () => {
+    //     if (audio.paused) {
+    //         audio.play()
+    //             .then(() => {
+    //                 playBtn.textContent = "⏸";
+    //                 status.textContent = "播放中";
+    //             })
+    //             .catch((err) => {
+    //                 console.error("播放失敗:", err);
+    //                 status.textContent = "播放被阻擋";
+    //             });
+    //     } else {
+    //         audio.pause();
+    //         playBtn.textContent = "▶";
+    //         status.textContent = "已暫停";
+    //     }
+    // });
 
     // 靜音
     muteBtn.addEventListener("click", () => {
