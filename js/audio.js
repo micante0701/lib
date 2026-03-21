@@ -68,76 +68,54 @@
 //     });
 // })();
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
     const player = document.getElementById("musicPlayer");
-    const audio = player.querySelector(".bgm");
     const playBtn = player.querySelector(".playBtn");
     const muteBtn = player.querySelector(".muteBtn");
-    const volumeControl = player.querySelector(".volumeControl");
     const status = player.querySelector(".status");
-
-    // 手機友善設定
-    audio.preload = "auto";
-    audio.playsInline = true;           // iOS
-    audio.setAttribute("webkit-playsinline", "true"); // iOS Safari
+    const volumeControl = player.querySelector(".volumeControl");
+    const audio = player.querySelector(".bgm");
 
     // 初始化音量
     audio.volume = 0.5;
-    volumeControl.value = 0.5;
-
-    // 音訊解鎖標記
-    let unlocked = false;
+    volumeControl.value = audio.volume;
 
     // 播放 / 暫停
-    playBtn.addEventListener("click", () => {
-        if (!unlocked) {
-            // 第一次點擊：靜音解鎖
-            audio.muted = true;
-            const unlockPromise = audio.play();
-            if (unlockPromise !== undefined) {
-                unlockPromise.then(() => {
-                    audio.pause();
-                    audio.currentTime = 0;
-                    audio.muted = false;
-                    unlocked = true;
-
-                    // 解鎖後立刻播放
-                    return audio.play();
-                }).then(() => {
-                    playBtn.textContent = "⏸";
-                    status.textContent = "播放中";
-                }).catch(err => {
-                    status.textContent = "播放被阻擋";
-                });
-            }
-            return;
-        }
-
+    playBtn.addEventListener("click", function () {
         if (audio.paused) {
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    playBtn.textContent = "⏸";
-                    status.textContent = "播放中";
-                }).catch(err => {
-                    status.textContent = "播放被阻擋";
-                });
-            }
+            // 行動裝置需要使用者互動才能播放
+            audio.play().then(() => {
+                status.textContent = "播放中";
+                playBtn.textContent = "⏸";
+            }).catch(err => {
+                console.log("播放失敗，可能被瀏覽器阻擋：", err);
+            });
         } else {
             audio.pause();
-            playBtn.textContent = "▶";
             status.textContent = "已暫停";
+            playBtn.textContent = "▶";
         }
     });
 
-    // 靜音切換
-    muteBtn.addEventListener("click", () => {
+    // 靜音 / 取消靜音
+    muteBtn.addEventListener("click", function () {
         audio.muted = !audio.muted;
         muteBtn.textContent = audio.muted ? "🔇" : "🔊";
     });
 
     // 音量控制
-    volumeControl.addEventListener("input", () => {
-        audio.volume = volumeControl.value;
+    volumeControl.addEventListener("input", function () {
+        audio.volume = this.value;
+    });
+
+    // 當播放狀態改變時更新顯示
+    audio.addEventListener("play", () => {
+        status.textContent = "播放中";
+        playBtn.textContent = "⏸";
+    });
+
+    audio.addEventListener("pause", () => {
+        status.textContent = "已暫停";
+        playBtn.textContent = "▶";
     });
 });
