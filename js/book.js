@@ -2,6 +2,8 @@
 // import { registerServiceWorker } from "./service-worker.js";
 // registerServiceWorker();
 
+// ↓↓↓ Service Worker ↓↓↓
+
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("service.js")
@@ -10,12 +12,43 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-// 抓<h1>當<title>的標題
+// Reset 按鈕功能
+document.getElementById("reset").addEventListener("click", async () => {
+    // 如果離線不允許reset
+    if (!navigator.onLine) {
+        alert("目前為離線狀態，無法重置，請連上網路後再試");
+        return;
+    }
+
+    if ("serviceWorker" in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+
+        for (let registration of registrations) {
+            await registration.unregister();
+        }
+
+        // 清除cache(刪除舊資料)
+        const cacheNames = await caches.keys();
+        for (let name of cacheNames) {
+            await caches.delete(name);
+        }
+
+        console.log("Service Workers & caches cleared");
+
+        window.location.reload();
+    }
+});
+
+// ↑↑↑ Service Worker ↑↑↑
+
+// 抓<h5>當<title>的標題
 document.title = document.querySelector("h1").textContent;
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
 
 // ↓↓↓ 護眼模式切換(程式碼Start) ↓↓↓
 
-// 載入時偵測 localStorage
+// 載入時偵測localStorage是否已有isLight這變數
 let isLight;
 if (localStorage.getItem("isLight") === null) {
     // 如果沒有存過，預設護眼模式
@@ -50,30 +83,7 @@ function applyTheme() {
 
 // ↑↑↑ 護眼模式切換(程式碼End) ↑↑↑
 
-// ↓↓↓ 自定義背景色(程式碼Start) ↓↓↓
-// // 背景顏色設定
-// const colorInput = document.getElementById("colorPicker");
-// // 取得 body 的目前背景顏色
-// let currentColor = window.getComputedStyle(document.body).backgroundColor;
-// // 把 rgb(...) 轉成 hex (#RRGGBB)
-// function rgbToHex(rgb) {
-//     const result = rgb.match(/\d+/g).map(Number); // 取出數字
-//     return (
-//         "#" +
-//         result
-//             .slice(0, 3) // 只取 R、G、B
-//             .map(x => x.toString(16).padStart(2, "0"))
-//             .join("")
-//     );
-// }
-// // 設定 color input 的初始值
-// colorInput.value = rgbToHex(currentColor);
-// // 綁定事件：選擇顏色時更新背景
-// colorInput.addEventListener("input", function () {
-//     document.body.style.backgroundColor = this.value;
-// });
-
-// ↑↑↑ 自定義背景色(程式碼End) ↑↑↑
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
 
 // ↓↓↓ Popup(程式碼Start) ↓↓↓
 
@@ -111,6 +121,8 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
 // 變更文字大小
 function changeFontSize(delta) {
     const paragraphs = document.querySelectorAll("p");
@@ -128,6 +140,7 @@ function changeFontSize(delta) {
     });
 }
 
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
 
 // V5.7.3以前的版本
 
@@ -150,6 +163,8 @@ function changeFontSize(delta) {
 //     }
 // });
 
+
+/* ↓↓↓ 針對<h5>產生目錄標題 ↓↓↓ */
 /* 取得元素 */
 const toc = document.getElementById("toc");
 const headings = document.querySelectorAll("h5");
@@ -252,3 +267,30 @@ btnDown.addEventListener("click", function (e) {
         });
     }
 });
+
+/* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
+
+// ↓↓↓ 自定義背景色(程式碼Start) ↓↓↓
+// // 背景顏色設定
+// const colorInput = document.getElementById("colorPicker");
+// // 取得 body 的目前背景顏色
+// let currentColor = window.getComputedStyle(document.body).backgroundColor;
+// // 把 rgb(...) 轉成 hex (#RRGGBB)
+// function rgbToHex(rgb) {
+//     const result = rgb.match(/\d+/g).map(Number); // 取出數字
+//     return (
+//         "#" +
+//         result
+//             .slice(0, 3) // 只取 R、G、B
+//             .map(x => x.toString(16).padStart(2, "0"))
+//             .join("")
+//     );
+// }
+// // 設定 color input 的初始值
+// colorInput.value = rgbToHex(currentColor);
+// // 綁定事件：選擇顏色時更新背景
+// colorInput.addEventListener("input", function () {
+//     document.body.style.backgroundColor = this.value;
+// });
+
+// ↑↑↑ 自定義背景色(程式碼End) ↑↑↑
