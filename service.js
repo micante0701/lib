@@ -1,10 +1,11 @@
 const CACHE_NAME = "site-cache-v1"; // 修改資源後可改成 v2、v3...
 const PRECACHE_URLS = [
   "./",             // 若站點在根目錄，保留；若在子目錄，改成子路徑首頁
-  "./image/paper.png",
-  "./image/amitabha.png",
-  "./font/f0001.woff",
-  "./font/f0002.woff",
+  "./assets/images/paper.png",
+  "./assets/icons/amitabha.png",
+  "./assets/fonts/f0001.woff",
+  "./assets/fonts/f0002.woff",
+  "./assets/audio/amitabha.mp3",
 
   "./0000.html",
   "./0001.html",
@@ -35,14 +36,15 @@ const PRECACHE_URLS = [
   "./pair.html",
   "./portfolio.html",
   "./version.html",
-
+  
+  "./js/service-worker.js",
   "./service.js",
   "./js/book.js",
   "./js/header.js",
   "./js/main.js",
   "./js/pair.js",
   "./js/version.js",
-
+  
   "./css/font.css",
   "./css/lib.css",
   "./css/main.css",
@@ -87,20 +89,20 @@ self.addEventListener("fetch", event => {
   if (req.mode === "navigate") {
     event.respondWith(
       (async () => {
-        // ✅ 修改：先檢查快取，避免恐龍畫面
+        // 先檢查快取，避免恐龍畫面
         const cachedPage = await caches.match(req);
         if (cachedPage) return cachedPage;
 
         try {
-          // ✅ 修改：沒快取 → 嘗試網路並補齊
+          // 沒快取 → 嘗試網路並補齊
           const networkResponse = await fetch(req);
           const cache = await caches.open(CACHE_NAME);
           cache.put(req, networkResponse.clone());
           return networkResponse;
         } catch (err) {
-          // ✅ 修改：網路失敗 → 回首頁或 offline.html
+          // 網路失敗 → 回首頁或 offline.html
           const cachedIndex = await caches.match("./index.html");
-          return cachedIndex || await caches.match("./offline.html");
+          return cachedIndex || await caches.match("./404.html");
         }
       })()
     );
@@ -114,13 +116,13 @@ self.addEventListener("fetch", event => {
       if (cached) return cached;
 
       try {
-        // ✅ 修改：沒快取 → 嘗試網路並補齊
+        // 沒快取 → 嘗試網路並補齊
         const networkResponse = await fetch(req);
         const cache = await caches.open(CACHE_NAME);
         cache.put(req, networkResponse.clone());
         return networkResponse;
       } catch (err) {
-        // ✅ 修改：沒網路 → 回 offline.html
+        // 沒網路 → 回 offline.html
         return await caches.match("./offline.html");
       }
     })()
