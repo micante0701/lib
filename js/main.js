@@ -6,7 +6,7 @@ registerServiceWorker();
 window.onload = genTable;
 
 // 目錄資料陣列
-function getNames() {
+export function getNames() {
     return [
         ["0000", "歧路指歸", "戰德克編述", "印光大師鑑定", "李德明參定"],
         ["0001", "佛說無量壽經", "曹魏天竺三藏康僧鎧譯", "", ""],

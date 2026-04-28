@@ -27,6 +27,7 @@
 //         ["0002", "標題2", "作者2", "出版社2", "備註2"]
 //     ];
 // }
+import { getNames } from "js/main.js"
 
 // 動態產生 select 選項
 function genSelect(selectId) {
