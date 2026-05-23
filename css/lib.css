@@ -327,9 +327,11 @@ figure {
     margin: 0px auto;
     padding: 8px 16px;
     border-radius: 14px;
-    background: #fff8dc; /* 淡奶油色 */
+    background: #fff8dc;
+    /* 淡奶油色 */
     border: 2px solid #f4d35e;
-    box-shadow: 0 6px 0 #e6c84f; /* 偽立體感 */
+    box-shadow: 0 6px 0 #e6c84f;
+    /* 偽立體感 */
     text-align: center;
     transition: all 0.2s ease;
 }
@@ -496,3 +498,32 @@ figure::after {
     }
 }
 
+/* tooltip 樣式 */
+.tooltip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed #666;
+    /* 輔助識別：虛線底線 */
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    /* 顯示在文字上方 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
