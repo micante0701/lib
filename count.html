@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="佛說無量壽經">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佛說無量壽經</title>
+    <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
+    <link rel="stylesheet" href="css/lib.css">
+    <script src="js/book.js" defer></script>
+    <!-- <script src="header.js" defer></script> -->
+    <style>
+        .divBtn{
+            
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size: 3em;
+        }
+    </style>
+</head>
+
+<body style="margin:0; display:flex; flex-direction:column; height:100vh;">
+    <!-- <div id="header">
+    </div> -->
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <span id="toolbox" class="overlay-content">
+            <p>
+                <a href="index.html">回首頁</a>
+            </p>
+            <p>
+            <figure>
+                <figcaption>背景音</figcaption>
+                <audio controls loop src="assets/audio/amitabha.mp3"></audio>
+            </figure>
+            <br>
+            <span>護眼模式</span>
+            <br>
+            <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+            <br>
+            <span>文字大小</span>
+            <br>
+            <span>
+                <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+            </span>
+            <br>
+            <label for="toc">章節目錄</label>
+            <br>
+            <select id="toc">
+                <option value="">-- 請選擇 --</option>
+            </select>
+            <br>
+            </p>
+            <p>
+                <a href="pair.html">雙頁對照檢視</a>
+            </p>
+            <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
+        </span>
+    </div>
+    <div id="top">
+        <h1>計數器</h1>
+    </div>
+    <div id="countBtn" class="divBtn">
+        <div id="countNum">0</div>
+    </div>
+    <script>
+        const count = document.getElementById("countBtn");
+        count.addEventListener("click", () => {
+            addNum()
+        });
+
+        function addNum() {
+            const n = document.getElementById("countNum")
+            n.innerText = parseInt(n.textContent, 10) + 1;
+        }
+    </script>
+</body>
+
+</html>
