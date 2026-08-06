@@ -5,66 +5,67 @@
     <meta charset="utf-8">
     <meta name="description" content="佛說無量壽經">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>佛說無量壽經</title>
+    <title>阿彌陀佛(計數器)</title>
     <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
     <link rel="stylesheet" href="css/lib.css">
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <style>
         /* 數字區塊 */
-        .divBtn{
-            flex:1;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+        .divBtn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 3em;
             /* 無法選取 */
             user-select: none;
         }
-        
     </style>
 </head>
 
 <body style="margin:0; display:flex; flex-direction:column; height:100vh;">
     <!-- <div id="header">
     </div> -->
-    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
-    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
-    <div id="overlay" class="overlay" onclick="closePopup(event)">
-        <span id="toolbox" class="overlay-content">
-            <p>
-                <a href="index.html">回首頁</a>
-            </p>
-            <p>
-            <figure>
-                <figcaption>背景音</figcaption>
-                <audio controls loop src="assets/audio/amitabha.mp3"></audio>
-            </figure>
-            <br>
-            <span>護眼模式</span>
-            <br>
-            <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
-            <br>
-            <span>文字大小</span>
-            <br>
-            <span>
-                <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
-                <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+    <div>
+        <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+        <div id="overlay" class="overlay" onclick="closePopup(event)">
+            <span id="toolbox" class="overlay-content">
+                <p>
+                    <a href="index.html">回首頁</a>
+                </p>
+                <p>
+                <figure>
+                    <figcaption>背景音</figcaption>
+                    <audio controls loop src="assets/audio/amitabha.mp3"></audio>
+                </figure>
+                <br>
+                <span>護眼模式</span>
+                <br>
+                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+                <br>
+                <span>文字大小</span>
+                <br>
+                <span>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+                </span>
+                <br>
+                <label for="toc">章節目錄</label>
+                <br>
+                <select id="toc">
+                    <option value="">-- 請選擇 --</option>
+                </select>
+                <br>
+                </p>
+                <!-- <p>
+                    <a href="pair.html">雙頁對照檢視</a>
+                </p> -->
+                <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
             </span>
-            <br>
-            <label for="toc">章節目錄</label>
-            <br>
-            <select id="toc">
-                <option value="">-- 請選擇 --</option>
-            </select>
-            <br>
-            </p>
-            <p>
-                <a href="pair.html">雙頁對照檢視</a>
-            </p>
-            <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
-        </span>
+        </div>
     </div>
     <div id="top">
         <h1>計數器</h1>
@@ -82,6 +83,60 @@
         function addNum() {
             const n = document.getElementById("countNum")
             n.innerText = parseInt(n.textContent, 10) + 1;
+        }
+
+        // ★ ★ ★ 更改數字區 ★ ★ ★ //
+        let pressTimer = null;
+        const longPressDuration = 800; // 長按時間門檻（毫秒）
+
+        // --- 長按相關事件監聽 (支援滑鼠與手機觸控) ---
+        count.addEventListener("mousedown", startLongPress);
+        count.addEventListener("touchstart", startLongPress);
+
+        count.addEventListener("mouseup", cancelLongPress);
+        count.addEventListener("mouseleave", cancelLongPress);
+        count.addEventListener("touchend", cancelLongPress);
+        count.addEventListener("touchmove", cancelLongPress); // 手指滑動時取消長按
+
+        function startLongPress(e) {
+            // 防止手機觸控時同時觸發預設行為或滑鼠事件
+            // e.preventDefault(); 
+
+            // 清除可能殘留的計時器
+            cancelLongPress();
+
+            pressTimer = setTimeout(() => {
+                // 長按觸發的動作
+                showPromptInput();
+            }, longPressDuration);
+        }
+
+        function cancelLongPress() {
+            if (pressTimer) {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+        }
+
+        // 彈出視窗輸入並改變數字
+        function showPromptInput() {
+            const n = document.getElementById("countNum");
+            const currentVal = n.textContent;
+
+            // 跳出輸入視窗
+            let userInput = prompt("請輸入要設定的數字：", currentVal);
+
+            // 確保使用者有輸入且按下確定（點擊取消則 userInput 為 null）
+            if (userInput !== null) {
+                let parsedNum = parseInt(userInput, 10);
+
+                // 檢查輸入是否為有效數字
+                if (!isNaN(parsedNum)) {
+                    n.innerText = parsedNum;
+                } else {
+                    alert("請輸入有效的數字！");
+                }
+            }
         }
     </script>
 </body>
