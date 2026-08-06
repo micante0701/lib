@@ -11,54 +11,72 @@
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <style>
+        /* ✨ 新增：重設邊界並設定全螢幕垂直版面，讓點擊區域撐滿整個畫面 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+
+        /* ✨ 新增：頂部標題列樣式 */
+        #top {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
         /* 數字區塊 */
         .divBtn {
             flex: 1;
             display: flex;
             justify-content: center;
-            /* align-items: center; */
-            align-items: flex-end;
-            font-size: 3em;
-            /* 無法選取 */
+            align-items: center;
+            font-size: 5em;
+            cursor: pointer;
             user-select: none;
+            transition: background-color 0.1s; /* ✨ 新增：平滑過渡效果 */
         }
 
-        /* 煙火特效文字的樣式 */
+        /* ✨ 新增：滑鼠按下時的背景深色回饋 */
+        .divBtn:active {
+            background-color: #e9ecef;
+        }
+
+        /* 飄浮文字樣式（✨ 進行大幅升級） */
         .floating-text {
             position: absolute;
-            font-weight: bold;
-            font-size: 16rem;
-            /* color: #ff4757; */
-            color: rgba(255, 255, 0, 0.841);
+            font-weight: 900;
+            font-size: 4rem;
             pointer-events: none;
-            /* 避免阻擋滑鼠點擊 */
-            transform: translate(-50%, -50%);
-            /* 讓文字中心對準滑鼠點擊位置 */
-            animation: firework 0.6s ease-out forwards;
+            
+            /* ✨ 新增：白色文字外框 + 黑色立體陰影，解決單色文字沒有層次的問題 */
+            text-shadow: 
+                -2px -2px 0 #fff, 2px -2px 0 #fff, 
+                -2px 2px 0 #fff, 2px 2px 0 #fff, 
+                4px 4px 8px rgba(0,0,0,0.3);
+            
+            /* ✨ 新增：改用 floatUp 動畫，搭配 cubic-bezier 讓文字先快速彈出後緩緩上升 */
+            animation: floatUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* 原地放大並淡出的煙火動畫 */
-        @keyframes firework {
+        /* ✨ 新增：全新的「向上飄浮並淡出」動畫（取代原本的 firework 原地放大） */
+        @keyframes floatUp {
             0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+                transform: translate(-50%, -20%) scale(0.3);
             }
-
-            50% {
+            20% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1.3);
+                transform: translate(-50%, -80%) scale(1.2);
             }
-
             100% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(1.6);
-            }
-        }
-
-        /* 手機版樣式 */
-        @media screen and (max-width: 768px) {
-            .floating-text {
-                font-size: 8rem;
+                /* 最終往上飄移動一段距離並稍微縮小淡出 */
+                transform: translate(-50%, -250%) scale(0.9);
             }
         }
     </style>
@@ -113,14 +131,17 @@
     </div>
     <script>
         const count = document.getElementById("countBtn");
-        const textArray = ["阿", "彌", "陀", "佛"];
+        const textArray = ["歡", "迎", "光", "臨"];
         let currentIndex = 0; // 記錄目前要顯示到第幾個字
+
+        // ✨ 新增：預設的活潑色彩庫
+        const colors = ["#ff4757", "#2ed573", "#1e90ff", "#ffa502", "#9b59b6", "#ff6348"];
 
         count.addEventListener("click", (e) => {
             // 1. 顯示特效文字
             showFloatingText(e.clientX, e.clientY);
 
-            // 2. 每次點擊都換下一個字，當完成一輪（回到 "歡" 時，也就是 currentIndex 變成 0）數字才 +1
+            // 2. 每次點擊都換下一個字，當完成一輪時數字才 +1
             currentIndex = (currentIndex + 1) % textArray.length;
 
             if (currentIndex === 0) {
@@ -140,16 +161,21 @@
             // 顯示當前字串
             span.innerText = textArray[currentIndex];
 
-            // 設定在滑鼠點擊的座標
-            span.style.left = `${x}px`;
+            // ✨ 新增：每一次點擊隨機挑選一個色彩
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            span.style.color = randomColor;
+
+            // ✨ 新增：加入微小的隨機 X 軸偏移 (-15px 到 +15px)，避免連續快速點擊時文字完全重疊
+            const randomXOffset = Math.floor(Math.random() * 30) - 15;
+            span.style.left = `${x + randomXOffset}px`;
             span.style.top = `${y}px`;
 
             document.body.appendChild(span);
 
-            // 動畫結束後（0.6秒後）自動刪除 DOM 元素
+            // ✨ 修改：配合新動畫的時間長度，改為 0.8 秒（800ms）後自動刪除 DOM 元素
             setTimeout(() => {
                 span.remove();
-            }, 600);
+            }, 800);
         }
     </script>
 </body>
