@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="阿彌陀佛 - 佛號計數器">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小工具</title>
+    <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
+    <link rel="stylesheet" href="css/main.css">
+    <script>
+        // 進入頁面啟動：genTable()：產生目錄
+        window.onload = genTable;
+
+        // 目錄資料陣列
+        function getNames() {
+            return [
+                ["count", "計數器1", "念一聲+1", "", ""],
+                ["count2", "計數器2", "念四字+1", "", ""],
+                ["count3", "計數器3", "設定目標念完", "", ""]
+                // ["0", "", "", "", ""]
+            ]
+        }
+        // 產生目錄：分手機、電腦版，電腦版整個可以點，手機版只能點標題進入
+        function genTable() {
+            let names = getNames();
+            let text = "";
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                // console.log("手機版");
+                for (let i = 0; i < names.length; i++) {
+                    text += `<div class="card">`;
+                    text += `<p class="bookTitle"><a href="${names[i][0]}.html">${names[i][1]}</a></p>`;
+                    text += `<p class="name">${names[i][2]}</p>`;
+                    text += `<p class="name">${names[i][3]}</p>`;
+                    text += `<p class="name">${names[i][4]}</p>`;
+                    text += `</div>`;
+                }
+            } else {
+                // console.log("電腦版");
+                for (let i = 0; i < names.length; i++) {
+                    text += `<a href="${names[i][0]}.html" class="card">`;
+                    text += `<p class="bookTitle">${names[i][1]}</p>`;
+                    text += `<p class="name">${names[i][2]}</p>`;
+                    text += `<p class="name">${names[i][3]}</p>`;
+                    text += `<p class="name">${names[i][4]}</p>`;
+                    text += `</a>`;
+                }
+            }
+            document.getElementById("show").innerHTML = text;
+        }
+        // 監聽視窗大小改變，變小就變手機版
+
+        window.addEventListener("resize", genTable);
+
+    </script>
+</head>
+
+<body>
+    <div class="titleDiv">
+        <h1>小工具</h1>
+    </div>
+    <div class="container">
+        <div class="left">
+
+        </div>
+        <div class="center" id="show">
+            <!-- <div class="card">
+                <p class="bookTitle">★A</p>
+                <p class="name">名稱1</p>
+                <p class="name">名稱2</p>
+                <p class="name">名稱3</p>
+            </div> -->
+        </div>
+        <div class="right">
+
+        </div>
+    </div>
+</body>
+
+</html>
