@@ -37,8 +37,11 @@ const PRECACHE_URLS = [
   "./pair.html",
   "./portfolio.html",
   "./version.html",
+
+  "./tools.html",
   "./count.html",
   "./count2.html",
+  "./count3.html",
   
   "./js/service-worker.js",
   "./service.js",
