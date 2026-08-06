@@ -12,18 +12,49 @@
     <!-- <script src="header.js" defer></script> -->
     <style>
         /* 數字區塊 */
-        .divBtn{
-            flex:1;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+        .divBtn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 3em;
             /* 游標換成按鈕提示 */
-            cursor: pointer; 
+            cursor: pointer;
             /* 無法選取 */
             user-select: none;
         }
-        
+
+        /* 煙火特效文字的樣式 */
+        .floating-text {
+            position: absolute;
+            font-weight: bold;
+            font-size: 8rem;
+            /* color: #ff4757; */
+            color: rgba(255, 255, 0, 0.841);
+            pointer-events: none;
+            /* 避免阻擋滑鼠點擊 */
+            transform: translate(-50%, -50%);
+            /* 讓文字中心對準滑鼠點擊位置 */
+            animation: firework 0.6s ease-out forwards;
+        }
+
+        /* 原地放大並淡出的煙火動畫 */
+        @keyframes firework {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.6);
+            }
+        }
     </style>
 </head>
 
@@ -75,15 +106,44 @@
         <div id="countNum">0</div>
     </div>
     <script>
-        // 點擊事件
         const count = document.getElementById("countBtn");
-        count.addEventListener("click", () => {
-            addNum()
+        const textArray = ["阿", "彌", "陀", "佛"];
+        let currentIndex = 0; // 記錄目前要顯示到第幾個字
+
+        count.addEventListener("click", (e) => {
+            // 1. 顯示特效文字
+            showFloatingText(e.clientX, e.clientY);
+
+            // 2. 每次點擊都換下一個字，當完成一輪（回到 "歡" 時，也就是 currentIndex 變成 0）數字才 +1
+            currentIndex = (currentIndex + 1) % textArray.length;
+
+            if (currentIndex === 0) {
+                addNum();
+            }
         });
-        // #countNum 數字+1
+
         function addNum() {
-            const n = document.getElementById("countNum")
+            const n = document.getElementById("countNum");
             n.innerText = parseInt(n.textContent, 10) + 1;
+        }
+
+        function showFloatingText(x, y) {
+            const span = document.createElement("span");
+            span.className = "floating-text";
+
+            // 顯示當前字串
+            span.innerText = textArray[currentIndex];
+
+            // 設定在滑鼠點擊的座標
+            span.style.left = `${x}px`;
+            span.style.top = `${y}px`;
+
+            document.body.appendChild(span);
+
+            // 動畫結束後（0.6秒後）自動刪除 DOM 元素
+            setTimeout(() => {
+                span.remove();
+            }, 600);
         }
     </script>
 </body>
