@@ -159,7 +159,7 @@
             const currentVal = n.textContent;
 
             // 跳出輸入視窗
-            let userInput = prompt("請輸入要設定的數字：", currentVal);
+            let userInput = prompt("請輸入欲修正的「數量(數字)」：", currentVal);
 
             // 確保使用者有輸入且按下確定（點擊取消則 userInput 為 null）
             if (userInput !== null) {
@@ -169,7 +169,7 @@
                 if (!isNaN(parsedNum)) {
                     n.innerText = parsedNum;
                 } else {
-                    alert("請輸入有效的數字！");
+                    alert("請輸入有效的「數字」！");
                 }
             }
         }
