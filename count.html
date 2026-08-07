@@ -14,8 +14,6 @@
         body {
             margin: 0;
             height: 100vh;
-            /* display:flex;
-            flex-direction:column; */
         }
 
         /*  */
@@ -100,6 +98,7 @@
         count.addEventListener("click", () => {
             addNum()
         });
+
         // #countNum 數字+1
         function addNum() {
             const n = document.getElementById("countNum")
@@ -107,6 +106,19 @@
             n.innerText = newNum;
             // 每次增加時同步存入 localStorage
             localStorage.setItem("count1_Value", newNum);
+        }
+
+        // 省電模式
+        const s = document.getElementsByTagName("h1")[0];
+        s.addEventListener("click", () => {
+            saveEnergy();
+        });
+
+        function saveEnergy() {
+            const b = document.getElementsByTagName("body")[0];
+            b.style.backgroundColor = "black";
+            document.getElementById("top").style.color = "white";
+            document.getElementById("countNum").style.color = "white";
         }
 
         // ★ ★ ★ 偵測起始值 ★ ★ ★ //
@@ -117,8 +129,6 @@
                 document.getElementById("countNum").innerText = savedNum;
             }
         });
-
-
 
         // ★ ★ ★ 更改數字區 ★ ★ ★ //
         let pressTimer = null;

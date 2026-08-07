@@ -11,6 +11,18 @@
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <style>
+        body {
+            margin: 0;
+            height: 100vh;
+        }
+
+        /*  */
+        .countArea {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
         /* 數字區塊容器 */
         .divBtn {
             flex: 1;
@@ -54,7 +66,7 @@
             top: 50%;
             /* 加上這行：垂直置中 */
             font-weight: bold;
-            font-size: 12rem;
+            font-size: 18rem;
             color: rgba(255, 255, 0, 0.841);
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -91,7 +103,7 @@
     </style>
 </head>
 
-<body style="margin:0; display:flex; flex-direction:column; height:100vh;">
+<body>
     <!-- <div id="header">
     </div> -->
     <div>
@@ -134,15 +146,17 @@
             </span>
         </div>
     </div>
-    <div id="top">
-        <h1>計數器2</h1>
-    </div>
-    <div id="countBtn" class="divBtn">
-        <div id="showText"></div>
-        <div id="countNum">0</div>
+    <div id="divCountArea" class="countArea">
+        <div id="top">
+            <h1>計數器3</h1>
+        </div>
+        <div class="divBtn">
+            <div id="showText"></div>
+            <div id="countNum">0</div>
+        </div>
     </div>
     <script>
-        const count = document.getElementById("countBtn");
+        const count = document.getElementById("divCountArea");
         const showTextDiv = document.getElementById("showText");
         const textArray = ["阿", "彌", "陀", "佛"];
         let currentIndex = 0; // 記錄目前要顯示到第幾個字
@@ -164,13 +178,16 @@
 
             resetTimer = setTimeout(() => {
                 currentIndex = 0; // 恢復初始索引
-                console.log("超過 3 秒未點擊，已自動重置狀態");
-            }, 3000); // 3000 毫秒 = 3 秒
+                console.log("超過 2 秒未點擊，已自動重置狀態");
+            }, 2000); // 2000 毫秒 = 2 秒
         });
 
         function addNum() {
             const n = document.getElementById("countNum");
-            n.innerText = parseInt(n.textContent, 10) + 1;
+            const newNum = parseInt(n.textContent, 10) + 1;
+            n.innerText = newNum;
+            // 每次增加時同步存入 localStorage
+            localStorage.setItem("count3_Value", newNum);
         }
 
         function showFloatingText() {
@@ -188,6 +205,15 @@
                 span.remove();
             }, 600);
         }
+
+        // ★ ★ ★ 偵測起始值 ★ ★ ★ //
+        // 1. 網頁一載入就從 localStorage 讀取並恢復數字
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedNum = localStorage.getItem("count3_Value");
+            if (savedNum !== null) {
+                document.getElementById("countNum").innerText = savedNum;
+            }
+        });
 
         // ★ ★ ★ 更改數字區 ★ ★ ★ //
         let pressTimer = null;
