@@ -11,6 +11,20 @@
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            /* display:flex;
+            flex-direction:column; */
+        }
+
+        /*  */
+        .countArea {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
         /* 數字區塊 */
         .divBtn {
             flex: 1;
@@ -29,7 +43,7 @@
     </style>
 </head>
 
-<body style="margin:0; display:flex; flex-direction:column; height:100vh;">
+<body>
     <!-- <div id="header">
     </div> -->
     <div>
@@ -72,23 +86,39 @@
             </span>
         </div>
     </div>
-    <div id="top">
-        <h1>計數器1</h1>
-    </div>
-    <div id="countBtn" class="divBtn">
-        <div id="countNum">0</div>
+    <div id="divCountArea" class="countArea">
+        <div id="top">
+            <h1>計數器1</h1>
+        </div>
+        <div class="divBtn">
+            <div id="countNum">0</div>
+        </div>
     </div>
     <script>
         // 點擊事件
-        const count = document.getElementById("countBtn");
+        const count = document.getElementById("divCountArea");
         count.addEventListener("click", () => {
             addNum()
         });
         // #countNum 數字+1
         function addNum() {
             const n = document.getElementById("countNum")
-            n.innerText = parseInt(n.textContent, 10) + 1;
+            const newNum = parseInt(n.textContent, 10) + 1;
+            n.innerText = newNum;
+            // 每次增加時同步存入 localStorage
+            localStorage.setItem("count1_Value", newNum);
         }
+
+        // ★ ★ ★ 偵測起始值 ★ ★ ★ //
+        // 1. 網頁一載入就從 localStorage 讀取並恢復數字
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedNum = localStorage.getItem("count1_Value");
+            if (savedNum !== null) {
+                document.getElementById("countNum").innerText = savedNum;
+            }
+        });
+
+
 
         // ★ ★ ★ 更改數字區 ★ ★ ★ //
         let pressTimer = null;
