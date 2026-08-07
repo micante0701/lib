@@ -11,56 +11,36 @@
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <style>
-        /* 數字區塊容器 */
+        /* 數字區塊 */
         .divBtn {
             flex: 1;
-            position: relative;
-            /* 作為內部絕對定位的參考基準 */
-            display: block;
-            /* 避免 flex 影響內部子元素的預設排列 */
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            align-items: flex-end;
+            font-size: 3em;
+            /* 無法選取 */
             user-select: none;
         }
 
-        /* 讓 #showText 佔滿整個區塊並置中特效文字 */
-        #showText {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* 計數數字區 */
         #countNum {
-            position: absolute;
-            bottom: 20px;
-            /* 距離底部 20px */
-            left: 50%;
-            /* 靠左 50% */
-            transform: translateX(-50%);
-            /* 水平置中校正 */
-            font-size: 3em;
+            /* 往上移動 20px */
+            transform: translateY(-50px);
             font-family: "Arial";
         }
 
         /* 煙火特效文字的樣式 */
         .floating-text {
             position: absolute;
-            left: 50%;
-            /* 加上這行：水平置中 */
-            top: 50%;
-            /* 加上這行：垂直置中 */
             font-weight: bold;
             font-size: 12rem;
+            /* color: #ff4757; */
             color: rgba(255, 255, 0, 0.841);
             pointer-events: none;
+            /* 避免阻擋滑鼠點擊 */
             transform: translate(-50%, -50%);
+            /* 讓文字中心對準滑鼠點擊位置 */
             animation: firework 0.6s ease-out forwards;
-            /* 電腦版稍微移動 */
-            bottom: -20px;
         }
 
         /* 原地放大並淡出的煙火動畫 */
@@ -85,7 +65,6 @@
         @media screen and (max-width: 768px) {
             .floating-text {
                 font-size: 8rem;
-                bottom: 0px;
             }
         }
     </style>
@@ -135,58 +114,21 @@
         </div>
     </div>
     <div id="top">
-        <h1>計數器2</h1>
+        <h1>計數器3</h1>
     </div>
     <div id="countBtn" class="divBtn">
-        <div id="showText"></div>
-        <div id="countNum">0</div>
+        <div id="countNum">5000</div>
     </div>
     <script>
+        // 點擊事件
         const count = document.getElementById("countBtn");
-        const showTextDiv = document.getElementById("showText");
-        const textArray = ["歡", "迎", "光", "臨"];
-        let currentIndex = 0; // 記錄目前要顯示到第幾個字
-        let resetTimer = null; // 用來存放 5 秒倒數的計時器變數
-
-        count.addEventListener("click", (e) => {
-            // 1. 顯示特效文字（固定在 #showText 範圍內）
-            showFloatingText();
-
-            // 2. 每次點擊都換下一個字，當完成一輪時 currentIndex 變成 0，數字才 +1
-            currentIndex = (currentIndex + 1) % textArray.length;
-
-            if (currentIndex === 0) {
-                addNum();
-            }
-
-            // --- 3. 處理 3 秒無點擊自動重置的邏輯 ---
-            clearTimeout(resetTimer);
-
-            resetTimer = setTimeout(() => {
-                currentIndex = 0; // 恢復初始索引
-                console.log("超過 3 秒未點擊，已自動重置狀態");
-            }, 3000); // 3000 毫秒 = 3 秒
+        count.addEventListener("click", () => {
+            addNum()
         });
-
+        // #countNum 數字+1
         function addNum() {
-            const n = document.getElementById("countNum");
-            n.innerText = parseInt(n.textContent, 10) + 1;
-        }
-
-        function showFloatingText() {
-            const span = document.createElement("span");
-            span.className = "floating-text";
-
-            // 顯示當前字串
-            span.innerText = textArray[currentIndex];
-
-            // 直接塞進 #showText 容器中，配合 CSS 置中與動畫
-            showTextDiv.appendChild(span);
-
-            // 動畫結束後（0.6秒後）自動刪除 DOM 元素
-            setTimeout(() => {
-                span.remove();
-            }, 600);
+            const n = document.getElementById("countNum")
+            n.innerText = parseInt(n.textContent, 10) - 1;
         }
 
         // ★ ★ ★ 更改數字區 ★ ★ ★ //
@@ -203,9 +145,14 @@
         count.addEventListener("touchmove", cancelLongPress); // 手指滑動時取消長按
 
         function startLongPress(e) {
+            // 防止手機觸控時同時觸發預設行為或滑鼠事件
+            // e.preventDefault(); 
+
+            // 清除可能殘留的計時器
             cancelLongPress();
 
             pressTimer = setTimeout(() => {
+                // 長按觸發的動作
                 showPromptInput();
             }, longPressDuration);
         }
@@ -222,11 +169,14 @@
             const n = document.getElementById("countNum");
             const currentVal = n.textContent;
 
+            // 跳出輸入視窗
             let userInput = prompt("請輸入要設定的數字：", currentVal);
 
+            // 確保使用者有輸入且按下確定（點擊取消則 userInput 為 null）
             if (userInput !== null) {
                 let parsedNum = parseInt(userInput, 10);
 
+                // 檢查輸入是否為有效數字
                 if (!isNaN(parsedNum)) {
                     n.innerText = parsedNum;
                 } else {
