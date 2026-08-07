@@ -63,7 +63,10 @@
                 <br>
                 <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
                 <br>
-                <span>文字大小</span>
+                <span>計數器加總</span>
+                <br>
+                <button class="mouse btnTheme" onclick="sumAllcounters()">啟動</button>
+                <!-- <span>文字大小</span>
                 <br>
                 <span>
                     <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
@@ -74,7 +77,7 @@
                 <br>
                 <select id="toc">
                     <option value="">-- 請選擇 --</option>
-                </select>
+                </select> -->
                 <br>
                 </p>
                 <!-- <p>
@@ -106,6 +109,25 @@
             n.innerText = newNum;
             // 每次增加時同步存入 localStorage
             localStorage.setItem("count1_Value", newNum);
+        }
+
+        // 加總所有計數器
+        function sumAllcounters() {
+            // 取得現有數值，若無則預設為 0
+            const a = parseInt(localStorage.getItem("count1_Value"), 10) || 0;
+            const b = parseInt(localStorage.getItem("count2_Value"), 10) || 0;
+            const c = parseInt(localStorage.getItem("count3_Value"), 10) || 0;
+            const d = parseInt(localStorage.getItem("count4_Value"), 10) || 0;
+            // 計算總和
+            const sumAll = a + b + c + d;
+            // 更新 localStorage
+            localStorage.setItem("count1_Value", sumAll); // 總和成為 count1 的新數據
+            localStorage.setItem("count2_Value", 0); // 歸零
+            localStorage.setItem("count3_Value", 0); // 歸零
+            localStorage.setItem("count4_Value", 0); // 歸零
+            // 刷新數字
+            document.getElementById("countNum").innerText = sumAll;
+            // 關閉
         }
 
         // 省電模式
