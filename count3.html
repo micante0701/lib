@@ -98,6 +98,8 @@
                 /* bottom: -20px; */
             }
         }
+
+        
     </style>
 </head>
 
@@ -260,6 +262,68 @@
                 }
             }
         }
+        
+        // ★ ★ ★ 省電模式 ★ ★ ★ //
+        const s = document.getElementsByTagName("h1")[0];
+        s.addEventListener("click", () => {
+            saveEnergy();
+        });
+
+        function saveEnergy() {
+            const b = document.getElementsByTagName("body")[0];
+            b.style.backgroundColor = "black";
+            document.getElementById("top").style.color = "white";
+            document.getElementById("countNum").style.color = "white";
+        }
+
+        // ★ ★ ★ 滑動跳頁轉換功能 ★ ★ ★ //
+
+        // 1. 記錄按下的起始位置與結束位置
+        let startX = 0;
+        let endX = 0;
+
+        // 設定觸發滑動的最短距離（像素），避免稍微碰到就誤判
+        const minDistance = 50;
+
+        // 2. 監聽「手指按下」事件
+        document.addEventListener('touchstart', function (e) {
+            // 取得第一隻手指觸碰的位置
+            startX = e.touches[0].clientX;
+        }, false);
+
+        // 3. 監聽「手指離開」事件
+        document.addEventListener('touchend', function (e) {
+            // 取得手指離開時的位置
+            endX = e.changedTouches[0].clientX;
+
+            // 計算滑動距離與方向
+            handleSwipe();
+        }, false);
+
+        // 4. 判斷滑動方向的函式
+        function handleSwipe() {
+            let distance = endX - startX;
+
+            // 如果滑動距離大於設定的最小值，才認定為有效滑動
+            if (Math.abs(distance) > minDistance) {
+                if (distance < 0) {
+                    // 起始點比結束點大（往左劃）
+                    window.location.href = "count1.html";
+                } else {
+                    // 起始點比結束點小（往右劃）
+                    window.location.href = "count1.html";
+                }
+            }
+        }
+        
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "ArrowLeft") {
+                window.location.href = "count1.html";
+            }
+            if (e.key === "ArrowRight") {
+                window.location.href = "count1.html";
+            };
+        });
     </script>
 </body>
 
