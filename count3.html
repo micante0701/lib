@@ -43,6 +43,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* ★ 點擊就會穿透過去點到底下的按鈕 */
+            pointer-events: none;
         }
 
         /* 計數數字區 */
@@ -98,8 +100,6 @@
                 /* bottom: -20px; */
             }
         }
-
-        
     </style>
 </head>
 
@@ -148,7 +148,7 @@
     </div>
     <div id="divCountArea" class="countArea">
         <div id="top">
-            <h1>計數器3</h1>
+            <h1>計數器3</h1><button onclick="saveEnergy()">CLICK</button>
         </div>
         <div>
             <div id="showText"></div>
@@ -158,6 +158,28 @@
         </div>
     </div>
     <script>
+        // ★ ★ ★ 省電模式 ★ ★ ★ //
+        const s = document.getElementsByTagName("h1")[0];
+        s.addEventListener("click", () => {
+            saveEnergy();
+        });
+
+        function saveEnergy() {
+            // const b = document.getElementsByTagName("body")[0];
+            // b.style.backgroundColor = "black";
+            // document.getElementById("top").style.color = "white";
+            // document.getElementById("countNum").style.color = "white";
+
+            // 直接使用 document.body 更改背景
+            document.body.style.backgroundColor = "black";
+
+            // 更改文字顏色
+            document.getElementById("top").style.color = "white";
+            document.getElementById("countNum").style.color = "white";
+        }
+
+        // ★ ★ ★ 主程式 ★ ★ ★ //
+
         const count = document.getElementById("divCountArea");
         const showTextDiv = document.getElementById("showText");
         const textArray = ["阿", "彌", "陀", "佛"];
@@ -262,19 +284,8 @@
                 }
             }
         }
-        
-        // ★ ★ ★ 省電模式 ★ ★ ★ //
-        const s = document.getElementsByTagName("h1")[0];
-        s.addEventListener("click", () => {
-            saveEnergy();
-        });
 
-        function saveEnergy() {
-            const b = document.getElementsByTagName("body")[0];
-            b.style.backgroundColor = "black";
-            document.getElementById("top").style.color = "white";
-            document.getElementById("countNum").style.color = "white";
-        }
+
 
         // ★ ★ ★ 滑動跳頁轉換功能 ★ ★ ★ //
 
@@ -315,7 +326,7 @@
                 }
             }
         }
-        
+
         document.addEventListener('keydown', function (e) {
             if (e.key === "ArrowLeft") {
                 window.location.href = "count.html";
