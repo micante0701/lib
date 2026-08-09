@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>阿彌陀佛(計數器)</title>
     <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
-    <link rel="stylesheet" href="css/lib.css">
-    <script src="js/book.js" defer></script>
+    <link rel="stylesheet" href="css/btn.css">
+    <script src="js/tools.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
     <!-- <style>
         body {
@@ -62,14 +62,19 @@
             /* 防止連續點擊反白 */
             user-select: none;
             transition: background-color 0.3s, color 0.3s;
+            /* background-color: black; */
+            background-color: rgb(211, 208, 156);
         }
 
-        /* 2. 深色模式（純黑省電） */
-        body.dark-mode {
-            /* background-color: black; */
-            background-color: pink;
-            /* color: #ffffff; */
-            color: green;
+        .mainTitle {
+            text-align: center;
+            font-size: 5rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .mainTitle {
+                font-size: 3rem;
+            }
         }
 
         /* 計數區域涵蓋全螢幕 */
@@ -85,10 +90,7 @@
             padding-top: 20px;
         }
 
-        #top h1 {
-            /* cursor: pointer; */
-            /* 讓滑鼠移上去呈現點擊手勢 */
-        }
+
 
         /* 數字區塊 */
         .divBtn {
@@ -114,8 +116,8 @@
     </div> -->
     <div>
         <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
-        <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
-        <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos2" href="count3.html">→</a>
+        <!-- <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a> -->
         <div id="overlay" class="overlay" onclick="closePopup(event)">
             <span id="toolbox" class="overlay-content">
                 <p>
@@ -127,37 +129,29 @@
                     <audio controls loop src="assets/audio/amitabha.mp3"></audio>
                 </figure>
                 <br>
-                <span>計數器歸零</span>
+                <span>計數「歸零」</span>
                 <br>
                 <button class="mouse btnTheme" onclick="resetToZero()">歸零</button>
                 <br>
-                <span>計數器加總</span>
+                <span>計數「加總」</span>
                 <br>
                 <button class="mouse btnTheme" onclick="sumAllcounters()">啟動</button>
-                <!-- <span>文字大小</span>
-                <br>
-                <span>
-                    <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
-                    <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
-                </span>
-                <br>
-                <label for="toc">章節目錄</label>
-                <br>
-                <select id="toc">
-                    <option value="">-- 請選擇 --</option>
-                </select> -->
                 <br>
                 </p>
-                <!-- <p>
-                    <a href="pair.html">雙頁對照檢視</a>
-                </p> -->
                 <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
             </span>
         </div>
     </div>
+    <!-- <div id="overlay-changeNum" class="overlay" onclick="closePopup(event)">
+        <div class="overlay-content">
+            <div>test</div>
+            <input id="overlay-newNum">
+        </div>
+    </div> -->
+
     <div id="divCountArea" class="countArea">
         <div id="top">
-            <h1 onclick="toggleBgColor(document.body)">計數器1</h1>
+            <h1 onclick="toggleBgColor(document.body)" class="mainTitle">計數器1</h1>
         </div>
         <div class="divBtn">
             <div id="countNum">0</div>
@@ -169,26 +163,27 @@
 
         // 取得計數器「起始值」
         window.addEventListener("DOMContentLoaded", () => {
+            // ★ 取得計數器起始值
             const startNum = localStorage.getItem("count1_Value");
 
             if (startNum !== null) {
                 document.getElementById("countNum").innerText = startNum;
             }
+
+            // ★ 取得local storage「背景顏色」設定
+            const savedTheme = localStorage.getItem('userTheme'); // 取得「背景顏色」設定
+            const mainTitle = document.querySelector(".countArea");
+            // 如果local storage有說是省電模式，則直接進入黑白畫面
+            if (savedTheme === 'dark') {
+                document.body.style.backgroundColor = "black";
+                mainTitle.style.color = "#ffffff";
+            }
+
         });
-
-        // 取得背景顏色
-        const savedTheme = localStorage.getItem('userTheme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
-        else {
-
-        }
 
         // ↑ ↑ ↑ 偵測起始值 ↑ ↑ ↑ //
 
         function resetToZero() {
-
             document.getElementById("countNum").innerHTML = 0;
             localStorage.setItem("count1_Value", 0);
         }
