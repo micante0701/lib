@@ -3,17 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="佛說無量壽經">
+    <meta name="description" content="阿彌陀佛(計數器)">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>阿彌陀佛(計數器)</title>
     <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
     <link rel="stylesheet" href="css/lib.css">
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
-    <style>
+    <!-- <style>
         body {
             margin: 0;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: #ffffff;
+            /* 無法選取 */
+            /* user-select: none; */
         }
 
         /*  */
@@ -30,13 +38,75 @@
             justify-content: center;
             align-items: center;
             font-size: 3em;
-            /* 無法選取 */
-            user-select: none;
+
         }
 
         #countNum {
-            /* 往上移動 20px */
             font-family: "Arial";
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+    </style> -->
+    <style>
+        /* 1. 預設模式（白色背景） */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            /* 預設改為白色 */
+            color: #000000;
+            user-select: none;
+            /* 取消註解：防止連續快速點擊時數字被選取反白 */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* 2. 深色模式（純黑省電） */
+        body.dark-mode {
+            background-color: black;
+            color: #ffffff;
+        }
+
+        /* 計數區域涵蓋全螢幕 */
+        .countArea {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #top {
+            padding-top: 20px;
+        }
+
+        #top h1 {
+            cursor: pointer;
+            /* 讓滑鼠移上去呈現點擊手勢 */
+            margin: 0;
+        }
+
+        /* 數字區塊 */
+        .divBtn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            width: 100%;
+        }
+
+        #countNum {
+            font-family: "Arial";
+            /* 自動依螢幕寬度拉大數字 */
+            font-size: 20vw;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -89,13 +159,37 @@
     </div>
     <div id="divCountArea" class="countArea">
         <div id="top">
-            <h1>計數器1</h1>
+            <h1 onclick="test(document.body)">計數器1</h1>
         </div>
         <div class="divBtn">
             <div id="countNum">0</div>
         </div>
     </div>
+
     <script>
+        // ↓ ↓ ↓ 偵測起始值 ↓ ↓ ↓ //
+
+        // 取得計數器「起始值」
+        window.addEventListener("DOMContentLoaded", () => {
+            const startNum = localStorage.getItem("count1_Value");
+
+            if (startNum !== null) {
+                document.getElementById("countNum").innerText = startNum;
+            }
+        });
+
+        // 取得背景顏色
+        const savedTheme = localStorage.getItem('userTheme');
+        if (savedTheme === 'black') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // ↑ ↑ ↑ 偵測起始值 ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 計數(點1+1) ↓ ↓ ↓ //
+
         // 點擊事件
         const count = document.getElementById("divCountArea");
         count.addEventListener("click", () => {
@@ -110,6 +204,12 @@
             // 每次增加時同步存入 localStorage
             localStorage.setItem("count1_Value", newNum);
         }
+
+        // ↑ ↑ ↑ 計數(點1+1) ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 計數器加總 ↓ ↓ ↓ //
 
         // 加總所有計數器
         function sumAllcounters() {
@@ -130,29 +230,62 @@
             // 關閉
         }
 
-        // 省電模式
-        const s = document.getElementsByTagName("h1")[0];
-        s.addEventListener("click", () => {
-            saveEnergy();
-        });
+        // ↑ ↑ ↑ 計數器加總 ↑ ↑ ↑ //
 
-        function saveEnergy() {
-            const b = document.getElementsByTagName("body")[0];
-            b.style.backgroundColor = "black";
-            document.getElementById("top").style.color = "white";
-            document.getElementById("countNum").style.color = "white";
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 省電模式 ↓ ↓ ↓ //
+
+        // 設定並套用顏色的函式
+
+        function test(element) {
+            // 取得元素計算後的背景顏色，並轉小寫、去除空白
+            const bgColor = window.getComputedStyle(element)
+                .backgroundColor
+                .toLowerCase()
+                .replace(/\s+/g, '');
+
+            // 判斷是否為黑色
+            const isBlack = ['black', '#000000', '#000', 'rgb(0,0,0)', 'rgba(0,0,0,1)'].includes(bgColor);
+
+            // 取得 DOM 元素（重複使用的元素先存成變數）
+            const topEl = document.getElementById("top");
+            const countNumEl = document.getElementById("countNum");
+
+            if (isBlack) {
+                // 當前是黑色 -> 切換為淺色主題
+                document.body.style.backgroundColor = "rgb(211, 208, 156)";
+                if (topEl) topEl.style.color = "black";
+                if (countNumEl) countNumEl.style.color = "black";
+            } else {
+                // 當前不是黑色（包含白色或其他顏色） -> 切換為深色主題
+                document.body.style.backgroundColor = "black";
+                if (topEl) topEl.style.color = "#ffffff";
+                if (countNumEl) countNumEl.style.color = "#ffffff";
+            }
         }
 
-        // ★ ★ ★ 偵測起始值 ★ ★ ★ //
-        // 1. 網頁一載入就從 localStorage 讀取並恢復數字
-        window.addEventListener("DOMContentLoaded", () => {
-            const savedNum = localStorage.getItem("count1_Value");
-            if (savedNum !== null) {
-                document.getElementById("countNum").innerText = savedNum;
-            }
-        });
 
-        // ★ ★ ★ 更改數字區 ★ ★ ★ //
+        function toggleBackgroundColor(e) {
+            // ★ 核心修復：阻止事件冒泡！點標題時「不會」觸發外層 divCountArea 的 +1
+            if (e) e.stopPropagation();
+
+            const isDark = document.body.classList.toggle('dark-mode');
+
+            if (isDark) {
+                localStorage.setItem('userTheme', 'black');
+            } else {
+                localStorage.setItem('userTheme', 'white');
+            }
+
+
+
+        }
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 更改數字區 ↓ ↓ ↓ //
+
         let pressTimer = null;
         const longPressDuration = 800; // 長按時間門檻（毫秒）
 
@@ -206,7 +339,11 @@
             }
         }
 
-        // ★ ★ ★ 滑動跳頁轉換功能 ★ ★ ★ //
+        // ↑ ↑ ↑ 更改數字區 ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 滑動跳頁轉換功能 ↓ ↓ ↓ //
 
         // 1. 記錄按下的起始位置與結束位置
         let startX = 0;
@@ -245,7 +382,8 @@
                 }
             }
         }
-        
+
+        // 電腦版左右鍵
         document.addEventListener('keydown', function (e) {
             if (e.key === "ArrowLeft") {
                 window.location.href = "count3.html";
