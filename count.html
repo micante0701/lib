@@ -59,18 +59,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff;
-            /* 預設改為白色 */
-            color: #000000;
+            /* 防止連續點擊反白 */
             user-select: none;
-            /* 取消註解：防止連續快速點擊時數字被選取反白 */
             transition: background-color 0.3s, color 0.3s;
         }
 
         /* 2. 深色模式（純黑省電） */
         body.dark-mode {
-            background-color: black;
-            color: #ffffff;
+            /* background-color: black; */
+            background-color: pink;
+            /* color: #ffffff; */
+            color: green;
         }
 
         /* 計數區域涵蓋全螢幕 */
@@ -87,7 +86,7 @@
         }
 
         #top h1 {
-            cursor: pointer;
+            /* cursor: pointer; */
             /* 讓滑鼠移上去呈現點擊手勢 */
         }
 
@@ -128,9 +127,9 @@
                     <audio controls loop src="assets/audio/amitabha.mp3"></audio>
                 </figure>
                 <br>
-                <span>護眼模式</span>
+                <span>計數器歸零</span>
                 <br>
-                <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+                <button class="mouse btnTheme" onclick="resetToZero()">歸零</button>
                 <br>
                 <span>計數器加總</span>
                 <br>
@@ -158,7 +157,7 @@
     </div>
     <div id="divCountArea" class="countArea">
         <div id="top">
-            <h1 onclick="test(document.body)">計數器1</h1>
+            <h1 onclick="toggleBgColor(document.body)">計數器1</h1>
         </div>
         <div class="divBtn">
             <div id="countNum">0</div>
@@ -179,11 +178,21 @@
 
         // 取得背景顏色
         const savedTheme = localStorage.getItem('userTheme');
-        if (savedTheme === 'black') {
+        if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
+        }
+        else {
+
         }
 
         // ↑ ↑ ↑ 偵測起始值 ↑ ↑ ↑ //
+
+        function resetToZero() {
+
+            document.getElementById("countNum").innerHTML = 0;
+            localStorage.setItem("count1_Value", 0);
+        }
+
 
         // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
 
@@ -203,6 +212,29 @@
             // 每次增加時同步存入 localStorage
             localStorage.setItem("count1_Value", newNum);
         }
+
+        // 按下空白鍵或 Ctrl 鍵觸發 addNum()
+        document.addEventListener("keydown", (e) => {
+            // 判斷按下的按鍵是否為「空白鍵」或「Ctrl 鍵」
+            const isSpace = e.code === "Space" || e.key === " ";
+            const isCtrl = e.key === "Control";
+
+            if (isSpace || isCtrl) {
+                e.preventDefault(); // 避免空白鍵預設網頁向下捲動行為
+                if (e.repeat) return; //避免長按空白鍵無限+1
+                addNum();
+            }
+        });
+
+        // // 空白鍵+1
+        // document.addEventListener("keydown", (e) => {
+        //     // 判斷按下的鍵是否為空白鍵
+        //     if (e.code === "Space" || e.key === " ") {
+        //         e.preventDefault(); // 避免空白鍵預設網頁向下捲動行為
+        //         if (e.repeat) return; //避免長按空白鍵無限+1
+        //         addNum();
+        //     }
+        // });
 
         // ↑ ↑ ↑ 計數(點1+1) ↑ ↑ ↑ //
 
@@ -237,7 +269,7 @@
 
         // 設定並套用顏色的函式
 
-        function test(element) {
+        function toggleBgColor(element) {
             // 取得元素計算後的背景顏色，並轉小寫、去除空白
             const bgColor = window.getComputedStyle(element)
                 .backgroundColor
@@ -256,30 +288,17 @@
                 document.body.style.backgroundColor = "rgb(211, 208, 156)";
                 if (topEl) topEl.style.color = "black";
                 if (countNumEl) countNumEl.style.color = "black";
+                localStorage.setItem("userTheme", "normal");
             } else {
                 // 當前不是黑色（包含白色或其他顏色） -> 切換為深色主題
                 document.body.style.backgroundColor = "black";
                 if (topEl) topEl.style.color = "#ffffff";
                 if (countNumEl) countNumEl.style.color = "#ffffff";
+                localStorage.setItem("userTheme", "dark");
             }
         }
 
-
-        function toggleBackgroundColor(e) {
-            // ★ 核心修復：阻止事件冒泡！點標題時「不會」觸發外層 divCountArea 的 +1
-            if (e) e.stopPropagation();
-
-            const isDark = document.body.classList.toggle('dark-mode');
-
-            if (isDark) {
-                localStorage.setItem('userTheme', 'black');
-            } else {
-                localStorage.setItem('userTheme', 'white');
-            }
-
-
-
-        }
+        // ↑ ↑ ↑ 省電模式 ↑ ↑ ↑ //
 
         // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
 
