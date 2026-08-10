@@ -51,12 +51,14 @@ const PRECACHE_URLS = [
   "./js/main.js",
   "./js/pair.js",
   "./js/version.js",
+  "./js/tools.js",
   
   "./css/font.css",
   "./css/lib.css",
   "./css/main.css",
   "./css/pair.css",
-  "./css/version.css"
+  "./css/version.css",
+  "./css/tools.css"
 ];
 
 self.addEventListener("install", event => {
