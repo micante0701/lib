@@ -31,6 +31,8 @@ const PRECACHE_URLS = [
   "./0021.html",
   "./0022.html",
   "./0023.html",
+  "./0024.html",
+  "./0025.html",
   "./404.html",
   "./header.html",
   "./index.html",
