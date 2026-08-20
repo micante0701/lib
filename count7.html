@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="阿彌陀佛(計數器)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿彌陀佛(計數器)</title>
+    <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
+    <link rel="stylesheet" href="css/tools.css">
+    <script src="js/tools.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* background-color: black; */
+            transition: background-color 0.9s, color 0.9s;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+            user-select: none;
+
+            background-image: url(assets/images/amitabha_desk.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-size: cover;
+        }
+
+        .banner-top,
+        .banner-center,
+        .banner-foot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-top {
+            height: 15vh;
+            font-size: 5vh;
+            font-weight: bold;
+        }
+
+        .banner-center {
+            height: 5vh;
+        }
+
+        .banner-foot {
+            height: 80vh;
+            font-size: 20vh;
+            font-family: "Arial";
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="header">
+    </div> -->
+    <div>
+        <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+        <a class="floating-btn mouse settingEmoji" id="btnPos2" href="count3.html">→</a>
+        <!-- <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a> -->
+        <div id="overlay" class="overlay" onclick="closePopup(event)">
+            <span id="toolbox" class="overlay-content">
+                <p>
+                    <a href="tools.html">返回工具列表</a>
+                </p>
+                <p>
+                <figure>
+                    <figcaption>背景音</figcaption>
+                    <audio controls loop src="assets/audio/amitabha.mp3"></audio>
+                </figure>
+                <br>
+                <span>計數「歸零」</span>
+                <br>
+                <button class="mouse btnTheme" onclick="resetToZero()">歸零</button>
+                <br>
+                <span>計數「加總」</span>
+                <br>
+                <button class="mouse btnTheme" onclick="sumAllcounters()">啟動</button>
+                <br>
+                </p>
+                <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="container" id="area-count">
+        <div class="banner-top">
+            <p onclick="toggleBgColor(document.body)" id="top">計數器</p>
+        </div>
+        <!-- <div id="area-count"> -->
+            <div class="banner-center">
+
+            </div>
+            <div class="banner-foot">
+                <p class="count-number" id="count-times">0</p>
+            </div>
+        <!-- </div> -->
+    </div>
+
+
+
+    <script>
+        // ↓ ↓ ↓ 偵測起始值 ↓ ↓ ↓ //
+
+        // 取得計數器「起始值」
+        window.addEventListener("DOMContentLoaded", () => {
+            // ★ 取得計數器起始值
+            const startNum = localStorage.getItem("count1_Value");
+
+            if (startNum !== null) {
+                document.getElementById("count-times").innerText = startNum;
+            }
+
+            // ★ 取得local storage「背景顏色」設定
+            const savedTheme = localStorage.getItem('userTheme'); // 取得「背景顏色」設定
+            const mainTitle = document.querySelector(".countArea");
+            // 如果local storage有說是省電模式，則直接進入黑白畫面
+            if (savedTheme === 'dark') {
+                document.body.style.backgroundColor = "black";
+                mainTitle.style.color = "#ffffff";
+            }
+
+        });
+
+        // ↑ ↑ ↑ 偵測起始值 ↑ ↑ ↑ //
+
+        function resetToZero() {
+            document.getElementById("count-times").innerHTML = 0;
+            localStorage.setItem("count1_Value", 0);
+        }
+
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 計數(點1+1) ↓ ↓ ↓ //
+
+        // 點擊事件
+        const count = document.getElementById("area-count");
+        count.addEventListener("click", () => {
+            addNum()
+        });
+
+        // #countNum 數字+1
+        function addNum() {
+            const n = document.getElementById("count-times")
+            const newNum = parseInt(n.textContent, 10) + 1;
+            n.innerText = newNum;
+            // 每次增加時同步存入 localStorage
+            localStorage.setItem("count1_Value", newNum);
+        }
+
+        // 按下空白鍵或 Ctrl 鍵觸發 addNum()
+        document.addEventListener("keydown", (e) => {
+            // 判斷按下的按鍵是否為「空白鍵」或「Ctrl 鍵」
+            const isSpace = e.code === "Space" || e.key === " ";
+            const isCtrl = e.key === "Control";
+
+            if (isSpace || isCtrl) {
+                e.preventDefault(); // 避免空白鍵預設網頁向下捲動行為
+                if (e.repeat) return; //避免長按空白鍵無限+1
+                addNum();
+            }
+        });
+
+        // // 空白鍵+1
+        // document.addEventListener("keydown", (e) => {
+        //     // 判斷按下的鍵是否為空白鍵
+        //     if (e.code === "Space" || e.key === " ") {
+        //         e.preventDefault(); // 避免空白鍵預設網頁向下捲動行為
+        //         if (e.repeat) return; //避免長按空白鍵無限+1
+        //         addNum();
+        //     }
+        // });
+
+        // ↑ ↑ ↑ 計數(點1+1) ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 計數器加總 ↓ ↓ ↓ //
+
+        // 加總所有計數器
+        function sumAllcounters() {
+            // 取得現有數值，若無則預設為 0
+            const a = parseInt(localStorage.getItem("count1_Value"), 10) || 0;
+            const b = parseInt(localStorage.getItem("count2_Value"), 10) || 0;
+            const c = parseInt(localStorage.getItem("count3_Value"), 10) || 0;
+            const d = parseInt(localStorage.getItem("count4_Value"), 10) || 0;
+            // 計算總和
+            const sumAll = a + b + c + d;
+            // 更新 localStorage
+            localStorage.setItem("count1_Value", sumAll); // 總和成為 count1 的新數據
+            localStorage.setItem("count2_Value", 0); // 歸零
+            localStorage.setItem("count3_Value", 0); // 歸零
+            localStorage.setItem("count4_Value", 0); // 歸零
+            // 刷新數字
+            document.getElementById("count-times").innerText = sumAll;
+            // 關閉
+        }
+
+        // ↑ ↑ ↑ 計數器加總 ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 省電模式 ↓ ↓ ↓ //
+
+        // 設定並套用顏色的函式
+
+        function toggleBgColor(element) {
+            // 取得元素計算後的背景顏色，並轉小寫、去除空白
+            const bgColor = window.getComputedStyle(element)
+                .backgroundColor
+                .toLowerCase()
+                .replace(/\s+/g, '');
+
+            // 判斷是否為黑色
+            const isBlack = ['black', '#000000', '#000', 'rgb(0,0,0)', 'rgba(0,0,0,1)'].includes(bgColor);
+
+            // 取得 DOM 元素（重複使用的元素先存成變數）
+            const topEl = document.getElementById("top");
+            const countNumEl = document.getElementById("count-times");
+
+            if (isBlack) {
+                // 當前是黑色 -> 切換為淺色主題
+                document.body.style.backgroundColor = "rgb(211, 208, 156)";
+                if (topEl) topEl.style.color = "black";
+                if (countNumEl) countNumEl.style.color = "black";
+                localStorage.setItem("userTheme", "normal");
+            } else {
+                // 當前不是黑色（包含白色或其他顏色） -> 切換為深色主題
+                document.body.style.backgroundColor = "black";
+                if (topEl) topEl.style.color = "#ffffff";
+                if (countNumEl) countNumEl.style.color = "#ffffff";
+                localStorage.setItem("userTheme", "dark");
+            }
+        }
+
+        // ↑ ↑ ↑ 省電模式 ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 更改數字區 ↓ ↓ ↓ //
+
+        let pressTimer = null;
+        const longPressDuration = 800; // 長按時間門檻（毫秒）
+
+        // --- 長按相關事件監聽 (支援滑鼠與手機觸控) ---
+        count.addEventListener("mousedown", startLongPress);
+        count.addEventListener("touchstart", startLongPress);
+
+        count.addEventListener("mouseup", cancelLongPress);
+        count.addEventListener("mouseleave", cancelLongPress);
+        count.addEventListener("touchend", cancelLongPress);
+        count.addEventListener("touchmove", cancelLongPress); // 手指滑動時取消長按
+
+        function startLongPress(e) {
+            // 防止手機觸控時同時觸發預設行為或滑鼠事件
+            // e.preventDefault(); 
+
+            // 清除可能殘留的計時器
+            cancelLongPress();
+
+            pressTimer = setTimeout(() => {
+                // 長按觸發的動作
+                showPromptInput();
+            }, longPressDuration);
+        }
+
+        function cancelLongPress() {
+            if (pressTimer) {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+        }
+
+        // 彈出視窗輸入並改變數字
+        function showPromptInput() {
+            const n = document.getElementById("count-times");
+            const currentVal = n.textContent;
+
+            // 跳出輸入視窗
+            let userInput = prompt("請輸入欲修正的「數量(數字)」：", currentVal);
+
+            // 確保使用者有輸入且按下確定（點擊取消則 userInput 為 null）
+            if (userInput !== null) {
+                let parsedNum = parseInt(userInput, 10);
+
+                // 檢查輸入是否為有效數字
+                if (!isNaN(parsedNum)) {
+                    n.innerText = parsedNum;
+                } else {
+                    alert("請輸入有效的「數字」！");
+                }
+            }
+        }
+
+        // ↑ ↑ ↑ 更改數字區 ↑ ↑ ↑ //
+
+        // ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★
+
+        // ↓ ↓ ↓ 滑動跳頁轉換功能 ↓ ↓ ↓ //
+
+        // 1. 記錄按下的起始位置與結束位置
+        let startX = 0;
+        let endX = 0;
+
+        // 設定觸發滑動的最短距離（像素），避免稍微碰到就誤判
+        const minDistance = 50;
+
+        // 2. 監聽「手指按下」事件
+        document.addEventListener('touchstart', function (e) {
+            // 取得第一隻手指觸碰的位置
+            startX = e.touches[0].clientX;
+        }, false);
+
+        // 3. 監聽「手指離開」事件
+        document.addEventListener('touchend', function (e) {
+            // 取得手指離開時的位置
+            endX = e.changedTouches[0].clientX;
+
+            // 計算滑動距離與方向
+            handleSwipe();
+        }, false);
+
+        // 4. 判斷滑動方向的函式
+        function handleSwipe() {
+            let distance = endX - startX;
+
+            // 如果滑動距離大於設定的最小值，才認定為有效滑動
+            if (Math.abs(distance) > minDistance) {
+                if (distance < 0) {
+                    // 起始點比結束點大（往左劃）
+                    window.location.href = "count3.html";
+                } else {
+                    // 起始點比結束點小（往右劃）
+                    window.location.href = "count3.html";
+                }
+            }
+        }
+
+        // 電腦版左右鍵
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "ArrowLeft") {
+                window.location.href = "count3.html";
+            }
+            if (e.key === "ArrowRight") {
+                window.location.href = "count3.html";
+            };
+        });
+
+    </script>
+</body>
+
+</html>
+
+<!-- <div id="divCountArea" class="countArea">
+        <div id="top">
+            <h1 onclick="toggleBgColor(document.body)" class="mainTitle">計數器1</h1>
+        </div>
+        <div>
+            <img src="assets/images/amitabha.png">
+        </div>
+        <div class="divBtn bg-amitabha">
+            <div id="countNum">0</div>
+        </div>
+    </div> -->
