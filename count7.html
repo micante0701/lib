@@ -61,9 +61,13 @@
 
         /* 手機模式 */
         @media screen and (max-width: 768px) {
-            .container{
+            .container {
                 background-position: 10% center;
                 transition: background-position 2s ease;
+            }
+
+            .banner-foot {
+                font-size: 15vh;
             }
         }
     </style>
@@ -107,12 +111,12 @@
             <p onclick="toggleBgColor(document.body)" id="top">計數器</p>
         </div>
         <!-- <div id="area-count"> -->
-            <div class="banner-center">
+        <div class="banner-center">
 
-            </div>
-            <div class="banner-foot">
-                <p class="count-number" id="count-times">0</p>
-            </div>
+        </div>
+        <div class="banner-foot">
+            <p class="count-number" id="count-times">0</p>
+        </div>
         <!-- </div> -->
     </div>
 
