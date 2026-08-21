@@ -336,35 +336,35 @@
         const minDistance = 50;
 
         // 2. 監聽「手指按下」事件
-        document.addEventListener('touchstart', function (e) {
-            // 取得第一隻手指觸碰的位置
-            startX = e.touches[0].clientX;
-        }, false);
+        // document.addEventListener('touchstart', function (e) {
+        //     // 取得第一隻手指觸碰的位置
+        //     startX = e.touches[0].clientX;
+        // }, false);
 
-        // 3. 監聽「手指離開」事件
-        document.addEventListener('touchend', function (e) {
-            // 取得手指離開時的位置
-            endX = e.changedTouches[0].clientX;
+        // // 3. 監聽「手指離開」事件
+        // document.addEventListener('touchend', function (e) {
+        //     // 取得手指離開時的位置
+        //     endX = e.changedTouches[0].clientX;
 
-            // 計算滑動距離與方向
-            handleSwipe();
-        }, false);
+        //     // 計算滑動距離與方向
+        //     handleSwipe();
+        // }, false);
 
-        // 4. 判斷滑動方向的函式
-        function handleSwipe() {
-            let distance = endX - startX;
+        // // 4. 判斷滑動方向的函式
+        // function handleSwipe() {
+        //     let distance = endX - startX;
 
-            // 如果滑動距離大於設定的最小值，才認定為有效滑動
-            if (Math.abs(distance) > minDistance) {
-                if (distance < 0) {
-                    // 起始點比結束點大（往左劃）
-                    window.location.href = "count3.html";
-                } else {
-                    // 起始點比結束點小（往右劃）
-                    window.location.href = "count3.html";
-                }
-            }
-        }
+        //     // 如果滑動距離大於設定的最小值，才認定為有效滑動
+        //     if (Math.abs(distance) > minDistance) {
+        //         if (distance < 0) {
+        //             // 起始點比結束點大（往左劃）
+        //             window.location.href = "count3.html";
+        //         } else {
+        //             // 起始點比結束點小（往右劃）
+        //             window.location.href = "count3.html";
+        //         }
+        //     }
+        // }
 
         // 電腦版左右鍵
         document.addEventListener('keydown', function (e) {
