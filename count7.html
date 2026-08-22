@@ -136,16 +136,14 @@
 
     <div class="container" id="area-count">
         <div class="banner-top">
-            <p onclick="toggleTheme()" id="top">計數器</p>
+            <p onclick="toggleTheme()" id="top">南無阿彌陀佛</p>
         </div>
-        <!-- <div id="area-count"> -->
         <div class="banner-center">
 
         </div>
         <div class="banner-foot">
             <p class="count-number" id="count-times">0</p>
         </div>
-        <!-- </div> -->
     </div>
 
 
@@ -259,6 +257,13 @@
         function toggleTheme() {
             const container = document.getElementById("area-count");
             container.classList.toggle("dark-theme");
+
+            const topText = document.getElementById("top");
+            if (container.classList.contains("dark-theme")) {
+                topText.textContent = "計數器";
+            } else {
+                topText.textContent = "南無阿彌陀佛";
+            }
         }
 
         // function toggleBgColor(element) {
