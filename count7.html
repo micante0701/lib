@@ -33,7 +33,8 @@
             background-repeat: no-repeat;
             background-size: contain;
             background-size: cover;
-            transition: background-position 2s ease;
+            /* transition: background-position 2s ease; */
+            transition: background-position 2s ease, background-color 2s ease, background-image 2s ease;
         }
 
         .banner-top,
@@ -58,6 +59,25 @@
             height: 85vh;
             font-size: 20vh;
             font-family: "Arial";
+        }
+
+        /* 預設文字顏色 */
+        #top,
+        #count-times {
+            color: black;
+        }
+
+        .container.dark-theme {
+            /* 移除原本的圖片 */
+            background-image: none;
+            /* 改成純黑色背景 */
+            background-color: black;
+            
+        }
+
+        .container.dark-theme #top,
+        .container.dark-theme #count-times {
+            color: white;
         }
 
         /* 手機模式 */
@@ -114,7 +134,7 @@
 
     <div class="container" id="area-count">
         <div class="banner-top">
-            <p onclick="toggleBgColor(document.body)" id="top">計數器</p>
+            <p onclick="toggleTheme()" id="top">計數器</p>
         </div>
         <!-- <div id="area-count"> -->
         <div class="banner-center">
@@ -234,34 +254,39 @@
 
         // 設定並套用顏色的函式
 
-        function toggleBgColor(element) {
-            // 取得元素計算後的背景顏色，並轉小寫、去除空白
-            const bgColor = window.getComputedStyle(element)
-                .backgroundColor
-                .toLowerCase()
-                .replace(/\s+/g, '');
-
-            // 判斷是否為黑色
-            const isBlack = ['black', '#000000', '#000', 'rgb(0,0,0)', 'rgba(0,0,0,1)'].includes(bgColor);
-
-            // 取得 DOM 元素（重複使用的元素先存成變數）
-            const topEl = document.getElementById("top");
-            const countNumEl = document.getElementById("count-times");
-
-            if (isBlack) {
-                // 當前是黑色 -> 切換為淺色主題
-                document.body.style.backgroundColor = "rgb(211, 208, 156)";
-                if (topEl) topEl.style.color = "black";
-                if (countNumEl) countNumEl.style.color = "black";
-                localStorage.setItem("userTheme", "normal");
-            } else {
-                // 當前不是黑色（包含白色或其他顏色） -> 切換為深色主題
-                document.body.style.backgroundColor = "black";
-                if (topEl) topEl.style.color = "#ffffff";
-                if (countNumEl) countNumEl.style.color = "#ffffff";
-                localStorage.setItem("userTheme", "dark");
-            }
+        function toggleTheme() {
+            const container = document.getElementById("area-count");
+            container.classList.toggle("dark-theme");
         }
+
+        // function toggleBgColor(element) {
+        //     // 取得元素計算後的背景顏色，並轉小寫、去除空白
+        //     const bgColor = window.getComputedStyle(element)
+        //         .backgroundColor
+        //         .toLowerCase()
+        //         .replace(/\s+/g, '');
+
+        //     // 判斷是否為黑色
+        //     const isBlack = ['black', '#000000', '#000', 'rgb(0,0,0)', 'rgba(0,0,0,1)'].includes(bgColor);
+
+        //     // 取得 DOM 元素（重複使用的元素先存成變數）
+        //     const topEl = document.getElementById("top");
+        //     const countNumEl = document.getElementById("count-times");
+
+        //     if (isBlack) {
+        //         // 當前是黑色 -> 切換為淺色主題
+        //         document.body.style.backgroundColor = "rgb(211, 208, 156)";
+        //         if (topEl) topEl.style.color = "black";
+        //         if (countNumEl) countNumEl.style.color = "black";
+        //         localStorage.setItem("userTheme", "normal");
+        //     } else {
+        //         // 當前不是黑色（包含白色或其他顏色） -> 切換為深色主題
+        //         document.body.style.backgroundColor = "black";
+        //         if (topEl) topEl.style.color = "#ffffff";
+        //         if (countNumEl) countNumEl.style.color = "#ffffff";
+        //         localStorage.setItem("userTheme", "dark");
+        //     }
+        // }
 
         // ↑ ↑ ↑ 省電模式 ↑ ↑ ↑ //
 
