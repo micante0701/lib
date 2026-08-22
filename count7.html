@@ -28,6 +28,8 @@
             flex-direction: column;
 
             user-select: none;
+            /* 針對 Safari / iOS */
+            -webkit-user-select: none;
 
             background-image: url(assets/images/amitabha_desk.png);
             background-repeat: no-repeat;
@@ -72,7 +74,7 @@
             background-image: none;
             /* 改成純黑色背景 */
             background-color: black;
-            
+
         }
 
         .container.dark-theme #top,
@@ -161,13 +163,13 @@
             }
 
             // ★ 取得local storage「背景顏色」設定
-            const savedTheme = localStorage.getItem('userTheme'); // 取得「背景顏色」設定
-            const mainTitle = document.querySelector(".countArea");
-            // 如果local storage有說是省電模式，則直接進入黑白畫面
-            if (savedTheme === 'dark') {
-                document.body.style.backgroundColor = "black";
-                mainTitle.style.color = "#ffffff";
-            }
+            // const savedTheme = localStorage.getItem('userTheme'); // 取得「背景顏色」設定
+            // const mainTitle = document.querySelector(".countArea");
+            // // 如果local storage有說是省電模式，則直接進入黑白畫面
+            // if (savedTheme === 'dark') {
+            //     document.body.style.backgroundColor = "black";
+            //     mainTitle.style.color = "#ffffff";
+            // }
 
         });
 
