@@ -65,8 +65,8 @@ a:visited {
 
 /* ~~~ */
 
-.overlay-changeNum{
-font-size: 1.5rem;
+.overlay-changeNum {
+    font-size: 1.5rem;
 }
 
 /* ~~~ */
@@ -78,7 +78,6 @@ font-size: 1.5rem;
 
 
 .overlay {
-    font-size: 1.5rem; /*overlay標題文字大小*/
     position: fixed;
     top: 0;
     left: 0;
@@ -91,7 +90,6 @@ font-size: 1.5rem;
     justify-content: center;
     align-items: center;
     z-index: 999;
-    color: black;
 }
 
 .overlay-content {
@@ -99,9 +97,112 @@ font-size: 1.5rem;
     /* 限制高度 */
     overflow-y: auto;
     /* 超出時捲動 */
-    background: #e0e0e0;
+    background: #fff;
     padding: 20px;
     border-radius: 8px;
+}
+
+
+.overlay-content>div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* overlay 按鈕樣式 */
+.overlay-content div button,
+.overlay-content div a {
+    width: fit-content;
+    margin: 0px auto;
+    padding: 8px 16px;
+    border-radius: 14px;
+    background: #fff8dc;
+    /* 淡奶油色 */
+    border: 2px solid #f4d35e;
+    box-shadow: 0 6px 0 #e6c84f;
+    /* 偽立體感 */
+    text-align: center;
+    transition: all 0.2s ease;
+
+    font-family: "標楷體";
+
+    /* 專門給<a>標籤清除預設樣式 */
+    text-decoration: none;
+    box-sizing: border-box;
+    /* 避免部分瀏覽器上可能會無法發揮作用或出現位移異常，所以給此設定 */
+    display: inline-block;
+}
+
+.overlay-content div a,
+.overlay-content div a:link,
+.overlay-content div a:visited {
+    color: black;
+}
+
+.overlay-content .btn-group button {
+    font-family: Arial, sans-serif;
+}
+
+/* overlay 按鈕跳動 */
+.overlay-content div button:hover,
+.overlay-content div a:hover {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #e6c84f;
+}
+
+/* overlay 按鈕標題 */
+.overlay-content span,
+.overlay-content label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8a6d1d;
+    margin-bottom: 12px;
+    /* letter-spacing: 1px; */
+}
+
+.overlay-content .btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-group {
+    font-family: "Arial";
+}
+
+/* 使 + - 按鈕於正確位置 */
+.overlay-content .btn-group button {
+    margin: 0;
+}
+
+.overlay-content div select {
+    width: fit-content;
+    min-width: 180px;
+    /* 避免選單太窄不好點擊 */
+    margin: 0 auto;
+    padding: 8px 16px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a3f12;
+    /* 深字體顏色 */
+    border-radius: 14px;
+    background-color: #fff8dc;
+    /* 淡奶油色 */
+    border: 2px solid #f4d35e;
+    box-shadow: 0 6px 0 #e6c84f;
+    /* 偽立體感 */
+    outline: none;
+    /* 移除點擊時預設的外框 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.overlay-content div select:hover {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #e6c84f;
 }
 
 #toolbox {
@@ -302,9 +403,10 @@ figure::after {
 }
 
 .settingEmoji {
-    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; /* 2026/07/01 新增sans-serif */
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+    /* 2026/07/01 新增sans-serif */
     /* 2026/07/01 新增 */
-    line-height: 1; 
+    line-height: 1;
 }
 
 .addMore p {
