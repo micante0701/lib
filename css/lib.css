@@ -216,7 +216,6 @@ a:visited {
 
 /* 設定內部框 */
 /* 覆蓋層的樣式 */
-
 .overlay {
     position: fixed;
     top: 0;
@@ -230,31 +229,40 @@ a:visited {
     justify-content: center;
     align-items: center;
     z-index: 999;
+    /* 毛玻璃模糊效果 */
+    /* backdrop-filter: blur(1px); */
+    /* -webkit-backdrop-filter: blur(8px); */
 }
 
 .overlay-content {
-    max-height: 80vh;
     /* 限制高度 */
-    overflow-y: auto;
+    max-height: 80vh;
     /* 超出時捲動 */
+    overflow-y: auto;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-}
-
-
-.overlay-content>div {
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    align-items: center;
+    gap: 12px;
 }
 
-/* overlay 按鈕樣式 */
-.overlay-content div button,
-.overlay-content div a {
+.overlay-content span,
+.overlay-content label,
+.overlay-content figcaption {
+    /* 文字大小 */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8a6d1d;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.overlay-content button,
+.overlay-content a {
+    display: inline-block;
     width: fit-content;
-    margin: 0px auto;
     padding: 8px 16px;
     border-radius: 14px;
     background: #fff8dc;
@@ -264,85 +272,59 @@ a:visited {
     /* 偽立體感 */
     text-align: center;
     transition: all 0.2s ease;
-
-    font-family: "標楷體";
-
-    /* 專門給<a>標籤清除預設樣式 */
+    font-family: "標楷體", serif;
+    color: #000;
     text-decoration: none;
     box-sizing: border-box;
-    /* 避免部分瀏覽器上可能會無法發揮作用或出現位移異常，所以給此設定 */
-    display: inline-block;
+    cursor: pointer;
 }
 
-.overlay-content div a,
-.overlay-content div a:link,
-.overlay-content div a:visited {
-    color: black;
+.overlay-content a:link,
+.overlay-content a:visited {
+    color: #000;
 }
 
-.overlay-content .btn-group button {
-    font-family: Arial, sans-serif;
-}
-
-/* overlay 按鈕跳動 */
-.overlay-content div button:hover,
-.overlay-content div a:hover {
-    transform: translateY(3px);
-    box-shadow: 0 3px 0 #e6c84f;
-}
-
-/* overlay 按鈕標題 */
-.overlay-content span,
-.overlay-content label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #8a6d1d;
-    margin-bottom: 12px;
-    /* letter-spacing: 1px; */
-}
-
-.overlay-content .btn-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 16px;
-}
-
-.btn-group {
-    font-family: "Arial";
-}
-
-/* 使 + - 按鈕於正確位置 */
-.overlay-content .btn-group button {
-    margin: 0;
-}
-
-.overlay-content div select {
+/* 下拉選單樣式 */
+.overlay-content select {
     width: fit-content;
     min-width: 180px;
-    /* 避免選單太窄不好點擊 */
-    margin: 0 auto;
     padding: 8px 16px;
     font-size: 1.5rem;
     font-weight: bold;
     color: #4a3f12;
-    /* 深字體顏色 */
     border-radius: 14px;
     background-color: #fff8dc;
-    /* 淡奶油色 */
     border: 2px solid #f4d35e;
     box-shadow: 0 6px 0 #e6c84f;
-    /* 偽立體感 */
     outline: none;
-    /* 移除點擊時預設的外框 */
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
 }
 
-.overlay-content div select:hover {
+/* 按鈕與選單懸停跳動效果 */
+.overlay-content button:hover,
+.overlay-content a:hover,
+.overlay-content select:hover {
     transform: translateY(3px);
     box-shadow: 0 3px 0 #e6c84f;
+}
+
+.overlay-content button:active,
+.overlay-content a:active,
+.overlay-content select:active {
+    /* 位移等於原本陰影的厚度(回彈效果) */
+    transform: translateY(6px);
+    /* 陰影完全消失，模擬被壓平 */
+    box-shadow: 0 0 0 #e6c84f;
+}
+
+.btn-group button {
+    font-family: Arial, sans-serif;
+}
+
+.overlay-content button {
+    margin: 0;
 }
 
 
@@ -583,6 +565,10 @@ figure::after {
 
     toolbox {
         width: 90%;
+    }
+
+    .overlay-content div select {
+        width: 80%;
     }
 }
 
