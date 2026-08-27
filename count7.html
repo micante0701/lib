@@ -110,7 +110,17 @@
         <!-- <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a> -->
         <div id="overlay" class="overlay" onclick="closePopup(event)">
             <span id="toolbox" class="overlay-content">
-                <p>
+                <a href="tools.html">返回工具列表</a>
+                <figure>
+                    <figcaption>背景音</figcaption>
+                    <audio controls loop src="assets/audio/amitabha.mp3"></audio>
+                </figure>
+                <span>計數「歸零」</span>
+                <button class="mouse btnTheme" onclick="resetToZero()">歸零</button>
+                <span>計數「加總」</span>
+                <button class="mouse btnTheme" onclick="sumAllcounters()">啟動</button>
+                <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
+                <!-- <p>
                     <a href="tools.html">返回工具列表</a>
                 </p>
                 <p>
@@ -128,7 +138,7 @@
                 <button class="mouse btnTheme" onclick="sumAllcounters()">啟動</button>
                 <br>
                 </p>
-                <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
+                <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button> -->
             </span>
         </div>
     </div>
