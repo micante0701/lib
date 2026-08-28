@@ -252,11 +252,21 @@ a:visited {
 .overlay-content label,
 .overlay-content figcaption {
     /* 文字大小 */
-    font-size: 1.5rem;
+
     font-weight: bold;
     color: #8a6d1d;
     margin-top: 8px;
     text-align: center;
+}
+
+/* overlay文字大小設定：★ 手機版有額外設定 */
+.overlay-content figcaption,
+.overlay-content button,
+.overlay-content select,
+.overlay-content label,
+.overlay-content span,
+.overlay-content a {
+    font-size: 2rem;
 }
 
 .overlay-content button,
@@ -289,7 +299,6 @@ a:visited {
     width: fit-content;
     min-width: 180px;
     padding: 8px 16px;
-    font-size: 1.5rem;
     font-weight: bold;
     color: #4a3f12;
     border-radius: 14px;
@@ -569,6 +578,16 @@ figure::after {
 
     .overlay-content div select {
         width: 80%;
+    }
+
+    /* overlay文字大小設定 */
+    .overlay-content figcaption,
+    .overlay-content button,
+    .overlay-content select,
+    .overlay-content label,
+    .overlay-content span,
+    .overlay-content a {
+        font-size: 1.5rem;
     }
 }
 

@@ -422,8 +422,22 @@ figure::after {
         display: inline-block;
     }
 
-    toolbox {
+    .toolbox {
         width: 90%;
+    }
+
+    .overlay-content div select {
+        width: fit-content;
+    }
+
+    /* overlay文字大小設定 */
+    .overlay-content figcaption,
+    .overlay-content button,
+    .overlay-content select,
+    .overlay-content label,
+    .overlay-content span,
+    .overlay-content a {
+        font-size: 1.5rem;
     }
 }
 
