@@ -145,6 +145,7 @@
         /* 手機模式 */
         @media screen and (max-width: 768px) {
             .container {
+                /* 數字越大，圖片往左 */
                 background-position: 50% center;
                 transition: background-position 2s ease;
             }
@@ -340,7 +341,7 @@
 
         // 長按修改數字區
         let pressTimer = null;
-        const longPressDuration = 1500; 
+        const longPressDuration = 1300; 
 
         count.addEventListener("mousedown", startLongPress);
         count.addEventListener("touchstart", startLongPress);
@@ -392,7 +393,7 @@
 
         let startX = 0;
         let endX = 0;
-        const minDistance = 250;
+        const minDistance = 210;
 
         document.addEventListener('touchstart', function (e) {
             startX = e.touches[0].clientX;
