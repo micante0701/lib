@@ -36,40 +36,58 @@ body {
 
 /* --- 桌號選擇區 --- */
 .table-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 15px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 
-.table-card {
-    height: 100px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s;
-}
+    .table-card {
+        height: 100px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.1s, background-color 0.2s, border 0.2s;
+        user-select: none; /* 防止拖移時選取到文字 */
+    }
 
-.table-card:hover {
-    transform: scale(1.03);
-}
+    .table-card:hover {
+        transform: scale(1.03);
+    }
 
-.table-empty {
-    background-color: #e0e0e0;
-    color: #555;
-}
+    /* 【修改/新增】桌位狀態顏色 */
+    .table-empty {
+        background-color: #e0e0e0;
+        color: #555;
+    }
 
-.table-active {
-    background-color: #ffca28;
-    color: #333;
-}
+    .table-draft {
+        background-color: #ff80ab; /* 未出單：粉紅色 */
+        color: #fff;
+    }
+
+    .table-submitted {
+        background-color: #4caf50; /* 已出單：綠色 */
+        color: #fff;
+    }
+
+    /* 【新增】拖移效果樣式 */
+    .table-card.dragging {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+
+    .table-card.drag-over {
+        border: 3px dashed #0288d1;
+        transform: scale(1.05);
+    }
 
 /* --- 通用 Overlay --- */
 .overlay {
