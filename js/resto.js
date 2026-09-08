@@ -3,7 +3,7 @@ const appConfig = {
     minChargePerPerson: 200, //低銷價格設定
     soupPrice: 70, // 單點湯品固定價格 (用於需求4動態計算折抵)
     tables: ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "Q1", "Q2", "Q3", "Q4", "Q5", "Y1", "Y2"],
-    categories: ["義大利麵", "燉飯", "早午餐", "沙拉", "排餐", "點心", "兒童餐", "下午茶", "咖啡", "茶飲", "蔬果汁", "氣泡飲", "甜點"],
+    categories: ["義大利麵", "燉飯", "早午餐", "沙拉", "排餐", "點心", "兒童餐", "下午茶", "咖啡", "茶飲", "蔬果汁", "氣泡飲", "甜點", "熱舞"],
 
     drinkOptions: {
         temp: ["冰", "熱"],
@@ -28,7 +28,13 @@ const appConfig = {
             { name: "焦糖瑪奇朵", price: 120 },
             { name: "重乳酪", price: 120 },
             { name: "彩虹果凍", price: 120 },
-            { name: "三重奏", price: 120 }
+            { name: "三重奏", price: 120 },
+            { name: "藍莓櫻桃起司", price: 120 },
+            { name: "芋頭", price: 120 },
+            { name: "伯爵紅茶波士頓", price: 120 },
+            { name: "原味波士頓", price: 120 },
+            { name: "黑森林", price: 120 },
+            { name: "長方形巧克力", price: 120 }
         ]
     },
 
@@ -123,13 +129,19 @@ const appConfig = {
 
         // 甜點
         { id: "m62", name: "彩虹蛋糕", category: "甜點", price: 140 },
+        { id: "m65", name: "彩虹果凍", category: "甜點", price: 120 },
         { id: "m63", name: "焦糖瑪奇朵", category: "甜點", price: 120 },
         { id: "m64", name: "重乳酪", category: "甜點", price: 120 },
-        { id: "m65", name: "彩虹果凍", category: "甜點", price: 120 },
-        { id: "m66", name: "三重奏", category: "甜點", price: 120 },
+        { id: "m67", name: "藍莓櫻桃起士", category: "甜點", price: 120 },
+        { id: "m68", name: "芋頭", category: "甜點", price: 120 },
+        { id: "m69", name: "原味波士頓", category: "甜點", price: 120 },
+        { id: "m70", name: "黑森林", category: "甜點", price: 120 },
+        { id: "m71", name: "長方形巧克力", category: "甜點", price: 120 },
+        { id: "m72", name: "三重奏", category: "甜點", price: 120 },
+        { id: "m73", name: "三重奏", category: "甜點", price: 120 },
 
-        // 甜點
-        { id: "m67", name: "三重奏", category: "甜點", price: 120 },
+        //熱舞
+        { id: "m74", name: "主廚熱舞", category: "熱舞", price: 5000 }
     ]
 };
 
@@ -140,6 +152,7 @@ let currentTable = null;
 let currentCategory = appConfig.categories[0];
 let selectedCartIndexForNote = null;
 let tempDrinkOptionsTarget = null; // 暫存正在設定冰糖的飲料物件
+let draggedTable = null; // 【新增】暫存目前正在拖移的桌號
 
 const getFormattedTime = () => new Date().toLocaleTimeString('zh-TW', { hour12: false });
 
@@ -163,7 +176,12 @@ function setupHorizontalScroll() {
 
 function setupOverlayBackgroundClick() {
     const overlays = [
-        { id: "order-overlay", closeFn: () => document.getElementById("order-overlay").classList.remove("active") },
+        {
+            id: "order-overlay",
+            closeFn: () => {
+                closeOrderModalWithoutSubmitting();
+            }
+        },
         { id: "note-overlay", closeFn: () => handleNoteCancel() },
         { id: "drink-opt-overlay", closeFn: () => document.getElementById("drink-opt-overlay").classList.remove("active") },
         { id: "history-overlay", closeFn: () => document.getElementById("history-overlay").classList.remove("active") }
@@ -177,22 +195,120 @@ function setupOverlayBackgroundClick() {
     });
 }
 
-function renderTables() {
-    const grid = document.getElementById("table-grid");
-    grid.innerHTML = "";
-    appConfig.tables.forEach(table => {
-        const card = document.createElement("div");
-        const hasOrder = ordersState[table] && ordersState[table].items.length > 0;
-        card.className = `table-card ${hasOrder ? 'table-active' : 'table-empty'}`;
-
-        let firstTimeText = (hasOrder && ordersState[table].firstOrderTime)
-            ? `<div style="font-size:0.75rem; margin-top:4px;">首點: ${ordersState[table].firstOrderTime}</div>`
-            : '';
-        card.innerHTML = `<div>${table}</div><div style="font-size:0.8rem; margin-top:2px;">${hasOrder ? '用餐中' : '空桌'}</div>${firstTimeText}`;
-        card.onclick = () => openOrderOverlay(table);
-        grid.appendChild(card);
-    });
+// 【新增】關閉點餐介面且未按「出單」時的處理邏輯
+function closeOrderModalWithoutSubmitting() {
+    if (currentTable && ordersState[currentTable]) {
+        const tableData = ordersState[currentTable];
+        if (tableData.items.length > 0) {
+            // 如果原本不是已出單，改為粉色未出單狀態
+            if (tableData.status !== 'submitted') {
+                tableData.status = 'draft';
+            }
+        } else {
+            delete ordersState[currentTable];
+        }
+    }
+    document.getElementById("order-overlay").classList.remove("active");
+    renderTables();
 }
+
+// 【修改】桌號卡片渲染：支援粉紅/綠色狀態與 HTML5 Drag & Drop 拖移事件
+    function renderTables() {
+        const grid = document.getElementById("table-grid");
+        grid.innerHTML = "";
+        appConfig.tables.forEach(table => {
+            const card = document.createElement("div");
+            const hasOrder = ordersState[table] && ordersState[table].items.length > 0;
+            const status = hasOrder ? ordersState[table].status : 'empty';
+
+            let statusClass = 'table-empty';
+            let statusText = '空桌';
+
+            if (status === 'draft') {
+                statusClass = 'table-draft'; // 粉色
+                statusText = '未出單';
+            } else if (status === 'submitted') {
+                statusClass = 'table-submitted'; // 綠色
+                statusText = '用餐中';
+            }
+
+            card.className = `table-card ${statusClass}`;
+
+            let firstTimeText = (hasOrder && ordersState[table].firstOrderTime)
+                ? `<div style="font-size:0.75rem; margin-top:4px;">首點: ${ordersState[table].firstOrderTime}</div>`
+                : '';
+            card.innerHTML = `<div>${table}</div><div style="font-size:0.8rem; margin-top:2px;">${statusText}</div>${firstTimeText}`;
+            card.onclick = () => openOrderOverlay(table);
+
+            // 【新增】設定可拖移與綁定 Drop 事件
+            card.setAttribute("draggable", "true");
+            setupDragAndDropEvents(card, table);
+
+            grid.appendChild(card);
+        });
+    }
+
+    // 【新增】 Drag & Drop 拖動換桌功能實現
+    function setupDragAndDropEvents(card, table) {
+        card.ondragstart = (e) => {
+            draggedTable = table;
+            card.classList.add("dragging");
+            e.dataTransfer.setData("text/plain", table);
+        };
+
+        card.ondragend = () => {
+            card.classList.remove("dragging");
+            draggedTable = null;
+        };
+
+        card.ondragover = (e) => {
+            e.preventDefault();
+            if (draggedTable && draggedTable !== table) {
+                card.classList.add("drag-over");
+            }
+        };
+
+        card.ondragleave = () => {
+            card.classList.remove("drag-over");
+        };
+
+        card.ondrop = (e) => {
+            e.preventDefault();
+            card.classList.remove("drag-over");
+            const fromTable = e.dataTransfer.getData("text/plain");
+            const toTable = table;
+
+            if (fromTable && toTable && fromTable !== toTable) {
+                moveTableOrder(fromTable, toTable);
+            }
+        };
+    }
+
+    // 【新增】 跨桌訂單拖移移轉邏輯
+    function moveTableOrder(fromTable, toTable) {
+        const fromData = ordersState[fromTable];
+        if (!fromData || fromData.items.length === 0) {
+            return; // 來源桌沒有點餐，不進行移動
+        }
+
+        const toData = ordersState[toTable];
+        if (toData && toData.items.length > 0) {
+            if (!confirm(`目標桌號 [${toTable}] 目前有餐點，是否要將 [${fromTable}] 的訂單覆蓋或合併至 [${toTable}]？`)) {
+                return;
+            }
+            // 進行合併
+            toData.items = [...toData.items, ...fromData.items];
+            if (fromData.status === 'draft' || toData.status === 'draft') {
+                toData.status = 'draft'; // 只要其中一桌包含未出單品項，標記為未出單
+            }
+        } else {
+            // 移動至空桌
+            ordersState[toTable] = JSON.parse(JSON.stringify(fromData));
+        }
+
+        delete ordersState[fromTable]; // 清空原桌位
+        renderTables();
+    }
 
 function openOrderOverlay(table) {
     currentTable = table;
@@ -241,7 +357,8 @@ function renderMenu() {
 // 新增餐點至購物車 (需求1: 點餐後直接進入購物車，不自動開啟彈窗)
 function addItemToCart(item) {
     const tableData = ordersState[currentTable];
-    const isExtra = tableData.isSaved;
+    // const isExtra = tableData.isSaved;
+    const isExtra = tableData.status === 'submitted'; // 如果已經出單過，新加點為加點品項
 
     const newItem = {
         cartUid: Date.now() + Math.random(),
@@ -263,7 +380,7 @@ function addItemToCart(item) {
         orderTime: null
     };
 
-    tableData.items.push(newItem);
+    tableData.items.unshift(newItem);
     renderCart();
 }
 
