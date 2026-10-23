@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="佛說無量壽經">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佛說無量壽經</title>
+    <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
+    <link rel="stylesheet" href="css/lib.css">
+    <script src="js/book.js" defer></script>
+    <!-- <script src="header.js" defer></script> -->
+</head>
+
+<body>
+    <!-- <div id="header">
+    </div> -->
+    <a class="floating-btn mouse settingEmoji" id="btnPos1" onclick="togglePopup()">⚙</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
+    <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
+    <div id="overlay" class="overlay" onclick="closePopup(event)">
+        <div id="toolbox" class="overlay-content">
+            <a href="index.html">回首頁</a>
+            <figure>
+                <figcaption>背景音</figcaption>
+                <audio controls loop src="assets/audio/amitabha.mp3"></audio>
+            </figure>
+            <span>護眼模式</span>
+            <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
+            <span>文字大小</span>
+            <div class="btn-group">
+                <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
+                <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
+            </div>
+            <label for="toc">章節目錄</label>
+            <select id="toc">
+                <option value="">-- 請選擇 --</option>
+            </select>
+            <a href="pair.html">雙頁對照檢視</a>
+            <button class="mouse" id="reset">離線瀏覽更新</button>
+        </div>
+    </div>
+    <div id="top">
+        <h1>竹窗隨筆</h1>
+        <h3>蓮池大師</h3>
+        
+
+    </div>
+    <div class="container">
+        <div class="left"></div>
+        <div class="center">
+            <div class="content">
+                <h5>出版說明</h5>
+                <p>「竹窗隨筆」為明末高僧蓮池大師所作，內中收錄了大師隨感所筆之短文四百餘篇，詳辨禪、教、淨之正知見，乃至對佛儒間的諍論也有一番精闢論述。而其中談到修行人生活行止的部分，更可以看到一代大師的風骨，真堪作我等佛子最佳典範。</p>
+                <p>敝會為方便大眾閱讀，特將本書重新排版，並加新式標點；而原版（蓮池大師全集木刻版）中，若干罕用古字，亦將之改為今所流通之字體。因係重新排版，其中錯漏恐將難免，尚望諸讀者大德不吝賜正，以使爾後再版時得以修改完善。</p>
+                <p>願此書之出版，能夠廣益諸佛子！</p>
+                <p>佛陀教育基金會 謹識</p>
+                <h5>竹窗隨筆序</h5>
+                <p>古有容齋隨筆，予效之竹窗之下。時有所感，筆焉；時有所見，筆焉。從初至再，成二帙矣！茲度八旬，頗知七十九年之非，而自覺其心之未悄然也。奈何久仆樂生之堂，無能勤趙老之屨，於是一榻而走千山，寸晷而遊神於百世，所感所見，積之歲月，忽復成帙。雖東語西話，賓叩主酬，種種不一，要歸於整飭行門、平治心地而已。餘如世諦中事，無關於法化，無補於修進者，則不暇及焉。噫！吾耄矣，胡不囊括瓶守，而喋喋乃爾？噫！吾耄矣，斜陽賸月，能幾何時，此而不言，更待何日？苟有利於民物，他何恤為？因以付管城子。萬曆乙卯春日後學雲棲袾宏謹識</p>
+                <h5>僧無為</h5>
+                <p>吳江流慶菴無為能公，齒先予，德先予，出家先予；予蚤歲遊蘇湖間，與同堂坐禪。及予住雲棲，公來受戒，求列名弟子。予謝不允，則固請曰：「昔普慧、普賢二大菩薩尚求入匡廬蓮社，我何人斯，自絕佳會。」不得已，如董蘿石謁新建故事，許之。以賢下愚，有古人風，筆之以勸後進。</p>
+                <h5>人命呼吸間</h5>
+                <p>一僧瘵疾經年，久憊枕席，眾知必死，而彼無死想，語之死，輒不懌。予使人直告：「令速治後事，一心正念。」彼謂男病忌生日前，過期當徐議之耳。本月十七日乃其始生，先一日奄忽。吁！人命在呼吸間，佛為無病人言之也。況垂死而不悟，悲夫！</p>
+                <h5>古今著述</h5>
+                <p>予在家時，於友人錢啟東家，一道者因予語及出家，渠云：「不在出家，祇貴得明師耳。」予時未以為然。又一道者云：「玄門文字，須看上古聖賢所作，近代者多出臆見，不足信。」予時亦未以為然。今思二言皆有深意；雖未必盡然，而未必不然也。以例吾宗，亦復如是。因識之。</p>
+                <h5>儒釋和會</h5>
+                <p>有聰明人，以禪宗與儒典和會，此不惟慧解圓融，亦引進諸淺識者，不復以儒謗釋，其意固甚美矣。雖然，據麤言細語，皆第一義，則誠然誠然；若按文折理，窮深極微，則翻成戲論，已入門者又不可不知也。</p>
+                <h5>楞嚴（一）</h5>
+                <p>天如集楞嚴會解，或曰：「此天如之楞嚴，非釋迦之楞嚴也。」予謂此語雖是，而新學執此，遂欲盡廢古人註疏，則非也。即盡廢註疏，單存白文，獨不曰：「此釋迦之楞嚴，非自己之楞嚴」乎？則經可廢也，何況註疏！又不曰：「自己之楞嚴遍一切處」乎？則諸子百家，乃至樵歌牧唱，皆不可廢也，何況註疏！</p>
+                <h5>楞嚴（二）</h5>
+                <p>不獨楞嚴，近時於諸經大都不用註疏。夫不泥先入之言，而直究本文之旨，誠為有見；然因是成風，乃至逞其胸臆，冀勝古以為高，而曲解僻說者有矣！新學無知，反為所誤。且古人勝今人處極多，其不及者什一；今人不如古人處極多，其勝者百一。則孰若姑存之。喻如學藝者，必先遵師教以為繩矩，他時後日，神機妙手，超過其師，誰得而限之也？而何必汲汲於求勝也？而況乎終不出於古人之範圍也！</p>
+                <h5>禮懺功德</h5>
+                <p>姑蘇曹魯川居士為予言：有女在夫家，夏坐室中，一蛇從牆上逐鴿，墮庭心，家人見而斃之。數日後，蛇附女作語。魯川往視，則云：「我昔為荊州守，高歡反，追我至江滸，遂死江中，我父母妻子不知安否？」魯川驚曰：「歡六朝時人，今歷隋唐宋元而至大明矣！」鬼方悟死久，並知為蛇。曰：「既作蛇，死亦無恨，但為我禮梁皇懺一部，吾行矣！」乃延泗洲寺僧定空禮懺。懺畢，索齋，為施斛食一壇。明日女安穩如故。懺之時義大矣哉！</p>
+                
+            </div>
+        </div>
+        <div class="right"></div>
+    </div>
+    <div class="bottom" id="bottom"><a href="#top">回到頂部</a></div>
+</body>
+
+</html>
