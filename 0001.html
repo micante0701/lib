@@ -10,6 +10,37 @@
     <link rel="stylesheet" href="css/lib.css">
     <script src="js/book.js" defer></script>
     <!-- <script src="header.js" defer></script> -->
+    <style>
+        /* tooltip 樣式 */
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed #666;
+            /* 輔助識別：虛線底線 */
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            /* 顯示在文字上方 */
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out;
+            z-index: 10;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,39 +50,26 @@
     <a class="floating-btn mouse settingEmoji" id="btnPos2" href="#top">↑</a>
     <a class="floating-btn mouse settingEmoji" id="btnPos3" href="#bottom">↓</a>
     <div id="overlay" class="overlay" onclick="closePopup(event)">
-        <span id="toolbox" class="overlay-content">
-            <p>
-                <a href="index.html">回首頁</a>
-            </p>
-            <p>
+        <div id="toolbox" class="overlay-content">
+            <a href="index.html">回首頁</a>
             <figure>
                 <figcaption>背景音</figcaption>
                 <audio controls loop src="assets/audio/amitabha.mp3"></audio>
             </figure>
-            <br>
             <span>護眼模式</span>
-            <br>
             <button class="mouse btnTheme" onclick="toggleTheme()" id="themePicker">開/關</button>
-            <br>
             <span>文字大小</span>
-            <br>
-            <span>
+            <div class="btn-group">
                 <button class="mouse toolboxBtn" onclick="changeFontSize(1)">+</button>
                 <button class="mouse toolboxBtn" onclick="changeFontSize(-1)">-</button>
-            </span>
-            <br>
+            </div>
             <label for="toc">章節目錄</label>
-            <br>
             <select id="toc">
                 <option value="">-- 請選擇 --</option>
             </select>
-            <br>
-            </p>
-            <p>
-                <a href="pair.html">雙頁對照檢視</a>
-            </p>
-            <button class="mouse " id="reset" style="font-size: 2rem;">離線瀏覽更新</button>
-        </span>
+            <a href="pair.html">雙頁對照檢視</a>
+            <button class="mouse" id="reset">離線瀏覽更新</button>
+        </div>
     </div>
     <div id="top">
         <h1>佛說無量壽經</h1>
@@ -63,7 +81,7 @@
             <div class="content">
                 <span class="tooltip" data-tooltip="旅舍"></span>
                 <p>我聞如是：</p>
-                <p>一時佛住王舍城<span class="tooltip" data-tooltip="ㄑㄧˊ">耆</span><span class="tooltip" data-tooltip="ㄕㄜˊ">闍</span>崛山中，與大比丘眾萬二千人俱，一切大聖神通已達，其名曰：尊者了本際、尊者正願、尊者正語、尊者大號、尊者仁賢、尊者離垢、尊者名聞、尊者善實、尊者具足、尊者牛王、尊者優樓頻[3]<span class="tooltip" data-tooltip="ㄌㄨㄛˊ">䗍</span>迦葉、尊者伽耶迦葉、尊者那提迦葉、尊者摩訶迦葉、尊者舍利弗、尊者大目揵連、尊者劫賓那、尊者大住、尊者大淨志、尊者摩訶周那、尊者滿願子、尊者離障[4]閡、尊者流灌、尊者堅伏、尊者面王、尊者[5]果乘、尊者仁性、尊者[6]喜樂、尊者善來、尊者羅云、尊者阿難，皆如斯等上首者也。</p>
+                <p>一時佛住王舍城<span class="tooltip" data-tooltip="耆">耆</span><span class="tooltip" data-tooltip="ㄕㄜˊ">闍</span>崛山中，與大比丘眾萬二千人俱，一切大聖神通已達，其名曰：尊者了本際、尊者正願、尊者正語、尊者大號、尊者仁賢、尊者離垢、尊者名聞、尊者善實、尊者具足、尊者牛王、尊者優樓頻[3]<span class="tooltip" data-tooltip="ㄌㄨㄛˊ">䗍</span>迦葉、尊者伽耶迦葉、尊者那提迦葉、尊者摩訶迦葉、尊者舍利弗、尊者大目揵連、尊者劫賓那、尊者大住、尊者大淨志、尊者摩訶周那、尊者滿願子、尊者離障[4]閡、尊者流灌、尊者堅伏、尊者面王、尊者[5]果乘、尊者仁性、尊者[6]喜樂、尊者善來、尊者羅云、尊者阿難，皆如斯等上首者也。</p>
                 <p>又與大乘眾菩薩俱，普賢菩薩、妙德菩薩、慈氏菩薩等，此賢劫中一切菩薩。</p>
                 <p>又賢護等十六正士：善思議菩薩、信慧菩薩、空無菩薩、神通華菩薩、光英菩薩、慧上菩薩、智幢菩薩、寂根菩薩、願慧菩薩、香象菩薩、寶英菩薩、中住菩薩、制行菩薩、解脫菩薩，皆[7]遵普賢大士之德，具諸菩薩無量行願，安住一切功德之法，遊步十方，行權方便，入佛法藏，究竟彼岸，於無量世界現成等覺。</p>
                 <p>處兜[8]率天弘宣正法，捨彼天宮降神母胎，從右脇生，現行七步。光明顯曜，普照十方無量佛土，六種[9]振動，舉聲自稱：「吾當於世為無上尊，釋梵奉侍，天、人歸仰。」示現算計、文藝、射御，博綜道術，貫練群籍，遊於後園講武試藝。現處宮中色味之間，見老、病、死，悟世非常，棄國財位，入山學道，服乘、白馬、寶冠、瓔珞，遣之令還。捨珍妙衣而著法服，剃除鬚髮，端坐樹下。勤苦六年，行如所應。現五濁剎隨順群生，示有塵垢沐浴金流。天按樹枝得攀出池，靈禽翼從往詣道場，吉祥感徵表章功祚。哀受施草，敷佛樹下，[1]加趺而坐，奮大光明使魔知之。魔率官屬而來逼試，制以智力皆令降伏，得微妙法成最正覺。釋梵祈勸請轉法輪，以佛遊步、佛吼而吼，扣法鼓、吹法螺、執法劍、建法幢、震法雷、曜法電、澍法雨、演法施，常以法音覺諸世間，光明普照無量佛土。一切世界六種震動，總攝魔界、動魔宮殿，眾魔[2]懾怖莫不歸伏。摑裂邪網，消滅諸見，散諸塵勞，壞諸欲塹。嚴護法城，開闡法門；洗濯垢污，顯明清白；光融佛法，宣流正化。入國分衛獲諸豐饍，貯功德、示福田、欲宣法、現欣笑，以諸法藥救療三苦。顯現道意無量功德，授菩薩記成等正覺，示現滅度拯濟無極。消除諸漏，[3]殖眾德本，具足功德微妙難量。遊諸佛國，普現道教，其所修行清淨無穢。</p>
