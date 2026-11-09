@@ -203,7 +203,43 @@ a:visited {
     text-align: center;
 }
 
+/* 註釋類 - 2026/11/04新增 */
+p.commentTitle {
+    /* font-weight: bold; */
+    text-align: center;
+    background-color: lightblue;
+}
+
+p.comment,
+p.commentTitle {
+    text-indent: 0;
+}
+
+/* 注音設定 */
+.bopomofo {
+    position: relative;
+    cursor: help;
+    ruby-position: under;
+}
+
+.bopomofo rt {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.bopomofo:hover rt {
+    visibility: visible;
+    opacity: 1;
+}
+
+ruby rt{
+    font-size: 0.8rem;
+}
+
 /* ↑↑↑ 文本控制 ↑↑↑ */
+
+
 
 /* ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★*/
 
