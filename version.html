@@ -9,6 +9,34 @@
     <link rel="icon" href="assets/icons/amitabha.png" type="image/png">
     <link rel="stylesheet" href="css/version.css">
     <script type="module" src="js/version.js" defer></script>
+    <script>
+        async function reset() {
+
+            // 如果離線不允許reset
+            if (!navigator.onLine) {
+                alert("目前為離線狀態，無法重置，請連上網路後再試");
+                return;
+            }
+
+            if ("serviceWorker" in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+
+                for (let registration of registrations) {
+                    await registration.unregister();
+                }
+
+                // 清除cache(刪除舊資料)
+                const cacheNames = await caches.keys();
+                for (let name of cacheNames) {
+                    await caches.delete(name);
+                }
+
+                console.log("Service Workers & caches cleared");
+
+                window.location.reload();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -58,7 +86,7 @@
     </div> -->
     <div class="container">
         <header>
-            <h1>更新日誌</h1>
+            <h1 onclick="reset()">更新日誌</h1>
             <p class="subtitle">此地記錄本站歷史演進，以及更新方向</p>
         </header>
 
